@@ -9,6 +9,7 @@ public class Member {
 
     @Id @GeneratedValue
     private Long id;
+
     private String loginId;
     private String password;
     //회원 과 운영자를 구분하는
