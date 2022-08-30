@@ -10,7 +10,7 @@ import shopprj.shop.web.argumentresolver.Login;
 public class HomeController {
 
     @GetMapping("/")
-    public String homeForm(@Login MemberDto loginMember, Model model) {
+    public String homeForm(@Login MemberDto loginMember) {
         if (loginMember == null) {
             return "Home";
         }
