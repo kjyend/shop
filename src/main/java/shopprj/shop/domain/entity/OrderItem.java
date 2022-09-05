@@ -11,4 +11,7 @@ import javax.persistence.Id;
 public class OrderItem {
     @Id @GeneratedValue
     private Long id;
+
+    private Long orderPrice;
+    private Long count;
 }

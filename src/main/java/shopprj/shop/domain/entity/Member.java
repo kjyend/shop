@@ -22,7 +22,7 @@ public class Member {
 
     private String loginId;
     private String password;
-    //회원 과 운영자를 구분하는
+    private MemberStatus status;
 
     public MemberDto toMemberDto(Member member){
         return MemberDto.builder()
