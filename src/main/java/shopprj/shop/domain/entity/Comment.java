@@ -12,4 +12,7 @@ public class Comment {
     @Id @GeneratedValue
     private Long id;
 
+    private String userName;
+    private Long point;
+    private String talk;
 }

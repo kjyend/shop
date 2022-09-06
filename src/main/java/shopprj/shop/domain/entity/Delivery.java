@@ -1,6 +1,7 @@
 package shopprj.shop.domain.entity;
 
 import lombok.Getter;
+import shopprj.shop.domain.entity.status.DeliveryStatus;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

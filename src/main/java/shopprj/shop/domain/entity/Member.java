@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import shopprj.shop.domain.dto.MemberDto;
+import shopprj.shop.domain.entity.status.MemberStatus;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
