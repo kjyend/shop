@@ -9,10 +9,12 @@ import shopprj.shop.domain.entity.Member;
 public class MemberDto {
     private String loginId;
     private String password;
+    private String name;
 
     public Member toMemberEntity(MemberDto memberDto){
         return Member.builder()
                 .loginId(memberDto.getLoginId())
-                .password(memberDto.getPassword()).build();
+                .password(memberDto.getPassword())
+                .name(memberDto.getName()).build();
     }
 }

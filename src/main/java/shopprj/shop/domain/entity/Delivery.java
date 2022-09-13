@@ -3,9 +3,7 @@ package shopprj.shop.domain.entity;
 import lombok.Getter;
 import shopprj.shop.domain.entity.status.DeliveryStatus;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Getter
@@ -17,5 +15,6 @@ public class Delivery {
     private String street;
     private String zipcode;
 
-    private DeliveryStatus status;
+    @Enumerated(EnumType.STRING)
+    private DeliveryStatus status; //[READY, COMP, ARRIVAL]
 }

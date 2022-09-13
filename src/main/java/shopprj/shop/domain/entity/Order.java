@@ -1,12 +1,10 @@
 package shopprj.shop.domain.entity;
 
 import lombok.Getter;
+import org.springframework.data.annotation.CreatedDate;
 import shopprj.shop.domain.entity.status.OrderStatus;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -16,8 +14,10 @@ public class Order {
     @Id @GeneratedValue
     private Long id;
 
-    private String name;
-    private LocalDateTime localDateTime;
-    private OrderStatus Status;
+    @CreatedDate
+    private LocalDateTime createdDate;
+
+    @Enumerated(EnumType.STRING)
+    private OrderStatus Status; //[ORDER, CANCEL]
 
 }

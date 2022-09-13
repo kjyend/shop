@@ -7,9 +7,7 @@ import lombok.NoArgsConstructor;
 import shopprj.shop.domain.dto.MemberDto;
 import shopprj.shop.domain.entity.status.MemberStatus;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Getter
@@ -23,12 +21,16 @@ public class Member {
 
     private String loginId;
     private String password;
-    private MemberStatus status;
+    private String name;
+
+    @Enumerated(EnumType.STRING)
+    private MemberStatus status;//[MEMBER, MANAGER, ADMIN]
 
     public MemberDto toMemberDto(Member member){
         return MemberDto.builder()
                 .loginId(member.getLoginId())
-                .password(member.getPassword()).build();
+                .password(member.getPassword())
+                .name(member.getName()).build();
     }
 
 }

@@ -20,6 +20,7 @@ import javax.servlet.http.HttpSession;
 @Slf4j
 @RequiredArgsConstructor
 public class LoginController {
+
     private final MemberService memberService;
     private final LoginService loginService;
 
