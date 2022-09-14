@@ -20,8 +20,8 @@ public class Item {
     private Long id;
 
     private String name;
-    private int price;
-    private int stockQuantity;
+    private Long price;
+    private Long stockQuantity;
 
     public ItemDto toItemDto(Item item) {
         return ItemDto.builder()

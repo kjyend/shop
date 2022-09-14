@@ -9,8 +9,8 @@ import shopprj.shop.domain.entity.Item;
 public class ItemDto {
 
     private String name;
-    private int price;
-    private int stockQuantity;
+    private Long price;
+    private Long stockQuantity;
 
     public Item toItemEntity(ItemDto itemDto) {
         return Item.builder()

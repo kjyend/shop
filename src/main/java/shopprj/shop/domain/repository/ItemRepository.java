@@ -6,4 +6,5 @@ import shopprj.shop.domain.entity.Item;
 
 @Repository
 public interface ItemRepository extends JpaRepository<Item, String> {
+
 }

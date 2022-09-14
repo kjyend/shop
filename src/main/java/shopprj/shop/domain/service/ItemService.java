@@ -12,6 +12,8 @@ public class ItemService {
     private final ItemRepository itemRepository;
 
     public void countUpdate(ItemDto itemDto, Long count) {
+        //count를 바꾼다.
         //item의 양을 늘린다.
+        itemRepository.;
     }
 }
