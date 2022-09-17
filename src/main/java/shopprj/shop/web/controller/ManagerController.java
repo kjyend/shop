@@ -39,7 +39,12 @@ public class ManagerController {
     }
 
     @GetMapping("/MemberManage")
-    public String MemberMangeForm(){
+    public String MemberManageForm(){
         return "manager/MemberManager";
+    }
+
+    @PostMapping("/MemberManage")
+    public String MemberManage(){
+        return "redirect:/";
     }
 }

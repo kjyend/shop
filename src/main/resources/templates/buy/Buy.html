@@ -3,21 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <link th:href="@{/css/bootstrap.min.css}" href="../css/bootstrap.min.css" rel="stylesheet">
-    <title>Buy</title>
+    <title>home</title>
 </head>
 <body>
 <div class="navbar navbar-dark bg-dark">
     <div class="container-md">
         <a class="navbar-brand" th:onclick="|location.href='@{/}'|">Shop</a>
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <div>
+            <div th:if="${member.loginId=='admin'}">
+                <button class="btn btn-primary" th:onclick="|location.href='shopManage'|" type="submit">Manage</button>
+            </div>
+            <div th:unless="${member.loginId=='admin'}">
                 <button class="btn btn-primary" th:onclick="|location.href='Mypage'|" type="submit">Mypage</button>
             </div>
             <form th:action="@{/logout}" method="post">
-                <button class="btn btn-primary" th:onclick="|location.href='login.html'|" type="submit">sign out</button>
+                <div>
+                    <button class="btn btn-primary" th:onclick="|location.href='login.html'|" type="submit">sign out</button>
+                </div>
             </form>
         </div>
     </div>
 </div>
+
 </body>
 </html>
