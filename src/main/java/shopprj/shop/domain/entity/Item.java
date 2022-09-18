@@ -29,4 +29,8 @@ public class Item {
                 .price(item.getPrice())
                 .stockQuantity(item.getStockQuantity()).build();
     }
+
+    public void addStock(Long stock){
+        this.stockQuantity+=stock;
+    }
 }
