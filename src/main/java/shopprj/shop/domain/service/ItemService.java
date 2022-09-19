@@ -12,9 +12,9 @@ public class ItemService {
 
     private final ItemRepository itemRepository;
 
-    public void countUpdate(ItemDto itemDto, Long count) {
+    public void countUpdate(ItemDto itemDto) {
         Item stock = itemRepository.findByName(itemDto.getName());
-        stock.addStock(count);
+        stock.addStock(itemDto.getStockQuantity());
         itemRepository.save(stock);
     }
 
