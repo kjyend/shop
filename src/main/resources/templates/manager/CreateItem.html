@@ -4,6 +4,14 @@
     <meta charset="UTF-8">
     <link th:href="@{/css/bootstrap.min.css}" href="../css/bootstrap.min.css" rel="stylesheet">
     <title>home</title>
+    <style>
+        .main-body{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+        }
+    </style>
 </head>
 <body>
 <div class="navbar navbar-dark bg-dark">
@@ -24,7 +32,29 @@
         </div>
     </div>
 </div>
+<div class="container">
+    <form class="main-body">
+        <div class="mb-2">
+            <label for="name" class="form-label">이름</label>
+            <input type="text" id="name" class="form-control">
+        </div>
+        <div class="mb-2">
+            <label for="price" class="form-label">가격</label>
+            <input type="text" id="price" class="form-control">
+        </div>
+        <div class="mb-2">
+            <label for="stockQuantity" class="form-label">수량</label>
+            <input type="text" id="stockQuantity" class="form-control">
+        </div>
 
+        <div>
+            <button type="submit" class="btn btn-lg btn-primary">아이탬 추가하기</button>
+            <button class="btn btn-secondary btn-lg" onclick="location.href='checkHome.html'"
+                    th:onclick="|location.href='@{/}'|" type="button">취소</button>
+        </div>
+    </form>
+
+</div>
 
 </body>
 </html>

@@ -6,7 +6,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import shopprj.shop.domain.dto.ItemDto;
+import shopprj.shop.domain.dto.MemberDto;
 import shopprj.shop.domain.service.ItemService;
+import shopprj.shop.web.argumentresolver.Login;
 
 @Controller
 @RequiredArgsConstructor
@@ -28,7 +30,8 @@ public class ManagerController {
     }
 
     @GetMapping("/CreateItem")
-    public String createItemForm(ItemDto itemDto,Model model){
+    public String createItemForm(@Login MemberDto loginMember, ItemDto itemDto, Model model){
+        model.addAttribute("member",loginMember);
         model.addAttribute("item",itemDto);
         return "manager/CreateItem";
     }
