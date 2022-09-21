@@ -33,18 +33,18 @@
     </div>
 </div>
 <div class="container">
-    <form class="main-body">
+    <form class="main-body" th:object="${itemDto}" method="post">
         <div class="mb-2">
             <label for="name" class="form-label">이름</label>
-            <input type="text" id="name" class="form-control">
+            <input type="text" id="name" class="form-control" th:field="*{name}">
         </div>
         <div class="mb-2">
             <label for="price" class="form-label">가격</label>
-            <input type="text" id="price" class="form-control">
+            <input type="text" id="price" class="form-control" th:field="*{price}">
         </div>
         <div class="mb-2">
             <label for="stockQuantity" class="form-label">수량</label>
-            <input type="text" id="stockQuantity" class="form-control">
+            <input type="text" id="stockQuantity" class="form-control" th:field="*{stockQuantity}">
         </div>
 
         <div>

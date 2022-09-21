@@ -16,5 +16,30 @@
         </form>
     </div>
 </div>
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">이름</th>
+                <th scope="col">가격</th>
+                <th scope="col">수량</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="items,i:${itemDto}">
+                <th scope="row" th:text="${i.index+1}"></th>
+                <td th:text="${items[0]}"></td>
+                <td th:text="${items[1]}"></td>
+                <td th:text="${items[2]}"></td>
+                <td>
+                    <form action="" method="get">
+                        <button type="submit">+</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>

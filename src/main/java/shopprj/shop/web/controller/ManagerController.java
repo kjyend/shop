@@ -1,6 +1,7 @@
 package shopprj.shop.web.controller;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,8 +19,9 @@ public class ManagerController {
 
     //물품 추가-2가지로 생각한다. 1. 물품의 양을 추가한다. 2. 물품의 종류를 추가한다.
     @GetMapping("/shopManage")
-    public String shopManageForm(ItemDto itemDto, Model model){
+    public String shopManageForm(@Login MemberDto loginMember, ItemDto itemDto, Model model){
         model.addAttribute("item",itemDto);
+        model.addAttribute("member",loginMember);
         return "manager/ShopManager";
     }
 
