@@ -29,11 +29,12 @@
         <tbody>
             <tr th:each="items,i:${itemDto}">
                 <th scope="row" th:text="${i.index+1}"></th>
-                <td th:text="${items[0]}"></td>
-                <td th:text="${items[1]}"></td>
-                <td th:text="${items[2]}"></td>
+                <td th:text="${items.name}"></td>
+                <td th:text="${items.price}"></td>
+                <td th:text="${items.stockQuantity}"></td>
                 <td>
                     <form action="" method="get">
+<!--                        히든으로 post로 넣어버리고 정보를 넣고 원하는 숫자를 넣어서 수량을 조절하자-->
                         <button type="submit">+</button>
                     </form>
                 </td>

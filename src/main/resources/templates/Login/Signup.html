@@ -41,6 +41,10 @@
             <label for="password" class="form-label">password</label>
             <input type="password" id="password" th:field="*{password}" class="form-control" th:errorclass="field-error" required>
         </div>
+        <div>
+            <label for="name" class="form-label"></label>
+            <input type="text" class="form-control" id="name" th:field="*{name}" placeholder="name">
+        </div>
         <div class="margin-button">
             <button type="submit" class="w-100 btn btn-lg btn-primary">sign-up</button>
         </div>
