@@ -9,11 +9,26 @@
 <div class="navbar navbar-dark bg-dark">
     <div class="container-md">
         <a class="navbar-brand" th:onclick="|location.href='@{/}'|">Shop</a>
-        <form th:action="@{/logout}" method="post">
-            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <button class="btn btn-primary" th:onclick="|location.href='login.html'|" type="submit">sign out</button>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <div th:if="${member.loginId=='admin'}">
+                <button class="btn btn-primary" th:onclick="|location.href='shopManage'|" type="submit">Manage</button>
             </div>
-        </form>
+            <div th:unless="${member.loginId=='admin'}">
+                <button class="btn btn-primary" th:onclick="|location.href='Mypage'|" type="submit">Mypage</button>
+            </div>
+            <form th:action="@{/logout}" method="post">
+                <div>
+                    <button class="btn btn-primary" th:onclick="|location.href='login.html'|" type="submit">sign out</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div>
+    <div>상품 주문을 실패했습니다.</div>
+    <div>
+        <button>메인메뉴로 돌아가기</button>
+        <button>상품주문으로 돌아가기</button>
     </div>
 </div>
 </body>
