@@ -25,19 +25,25 @@
     </div>
 </div>
 <div>
-    <label for="productName" class="form-label">제품이름</label>
-    <div type="text" id="productName"></div>
+    <div>
+        <label for="productName" class="form-label">제품이름</label>
+        <div type="text" id="productName"></div>
+    </div>
 </div>
 <div>
     <form>
         <div>
-            <label for="city" class="form-label">주소</label>
-            <span type="text" id="city"></span>
-            <span type="text" id="street"></span>
-            <span type="text" id="zipcode"></span>
+            <label for="name" class="form-label">이름</label>
+            <input type="text" id="name">
         </div>
         <div>
-            <button type="submit">메인화면으로 돌아간다.</button>
+            <label for="city" class="form-label">주소</label>
+            <input type="text" id="city">
+            <input type="text" id="street">
+            <input type="text" id="zipcode">
+        </div>
+        <div>
+            <button type="submit" th:text="가격 총액을 적는다."></button>
             <button class="btn btn-secondary btn-lg" onclick="location.href='checkHome.html'"
                     th:onclick="|location.href='@{/}'|" type="button">취소</button>
         </div>

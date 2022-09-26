@@ -24,7 +24,30 @@
         </div>
     </div>
 </div>
-
-
+<div class="container">
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">stationId</th>
+            <th scope="col">stationName</th>
+            <th scope="col">내릴 정류소를 선택해주세요</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="">
+            <th scope="row" th:text="${i.index}"></th>
+            <td th:text=""></td>
+            <td th:text=""></td>
+            <td th:text=""></td>
+<!--        이름,가격,수량은 내가 text값해서 넣어야한다.-->
+            <td>
+                <form action="" method="post">
+                    <input type="hidden" name="">
+                    <input type="hidden" name="">
+                    <button type="submit" class=" btn btn-lg btn-primary" >구매하기</button>
+                </form>
+            </td>
+        </tr>
 </body>
 </html>
