@@ -6,9 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import shopprj.shop.domain.dto.ItemDto;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -22,6 +22,9 @@ public class Item {
     private String name;
     private Long price;
     private Long stockQuantity;
+
+    @OneToMany(mappedBy = "item")
+    private List<OrderItem> orderItems=new ArrayList<OrderItem>();
 
     public ItemDto toItemDto(Item item) {
         return ItemDto.builder()

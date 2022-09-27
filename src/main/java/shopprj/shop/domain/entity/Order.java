@@ -6,6 +6,8 @@ import shopprj.shop.domain.entity.status.OrderStatus;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -16,6 +18,17 @@ public class Order {
 
     @CreatedDate
     private LocalDateTime createdDate;
+
+    @OneToMany(mappedBy = "order")
+    private List<OrderItem> orderItems=new ArrayList<OrderItem>();
+
+    @ManyToOne
+    @JoinColumn(name = "member_id")
+    private Member member; //주문 회원
+
+    @OneToOne
+    @JoinColumn(name = "delivery_id")
+    private Delivery delivery;
 
     @Enumerated(EnumType.STRING)
     private OrderStatus Status; //[ORDER, CANCEL]

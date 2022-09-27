@@ -1,8 +1,6 @@
 package shopprj.shop.domain.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Cart {
@@ -10,4 +8,8 @@ public class Cart {
     private String id;
 
     private Long cartCount;
+
+    @ManyToOne
+    @JoinColumn(name = "member_id")
+    private Member member;
 }

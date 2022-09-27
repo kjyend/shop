@@ -15,6 +15,9 @@ public class Delivery {
     private String street;
     private String zipcode;
 
+    @OneToOne(mappedBy = "delivery")
+    private Order order;
+
     @Enumerated(EnumType.STRING)
     private DeliveryStatus status; //[READY, COMP, ARRIVAL]
 }
