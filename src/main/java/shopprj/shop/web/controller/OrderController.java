@@ -13,6 +13,7 @@ public class OrderController {
 
     @GetMapping("/Buy")
     public String BuyForm(@Login MemberDto loginMember, ItemDto itemDto, Model model){
+        model.addAttribute("member", loginMember);
         model.addAttribute("item",itemDto);
         return "buy/Buy";
     }
@@ -22,7 +23,9 @@ public class OrderController {
     }
 
     @GetMapping("/Cart")
-    public String CartForm(){
+    public String CartForm(@Login MemberDto loginMember, ItemDto itemDto, Model model){
+        model.addAttribute("member", loginMember);
+        model.addAttribute("item",itemDto);
         return "buy/Cart";
     }
 
@@ -33,19 +36,21 @@ public class OrderController {
 
 
     @GetMapping("/Bill")
-    public String InvoiceForm(ItemDto itemDto,Model model){
+    public String InvoiceForm(@Login MemberDto loginMember, ItemDto itemDto, Model model){
+        model.addAttribute("member", loginMember);
         model.addAttribute("item",itemDto);
         return "bill/Bill";
     }
 
     @GetMapping("Success")
-    public String SuccessForm(){
-
-        return "invoice/Success";
+    public String SuccessForm(@Login MemberDto loginMember, Model model){
+        model.addAttribute("member", loginMember);
+        return "bill/Success";
     }
 
     @GetMapping("/Fail")
-    public String FailForm(){
-        return "invoice/Fail";
+    public String FailForm(@Login MemberDto loginMember, Model model){
+        model.addAttribute("member", loginMember);
+        return "bill/Fail";
     }
 }

@@ -17,12 +17,12 @@
     </div>
 </div>
 <div class="container">
-    <form action="Edit.html" th:object="${memberDto}" method="get">
+    <form action="" th:object="${member}" method="post">
         <div>아이디
-            <span th:text="*{loginId}"></span>
+            <span id="loginId" th:text="*{loginId}"></span>
         </div>
         <div>이름
-            <span th:text="*{name}"></span>
+            <span id="name" th:text="*{name}"></span>
         </div>
         <div>
             <button type="submit" class="w-100 btn btn-lg btn-primary">Edit</button>

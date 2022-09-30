@@ -16,6 +16,12 @@ public class MemberController {
         return "mypage/MyPage";
     }
 
+    @PostMapping("/Mypage")
+    public String Mypage(@Login MemberDto loginMember, Model model){
+        model.addAttribute("member", loginMember);
+        return "mypage/MyPage";
+    }
+
     @GetMapping("/Edit")
     public String EditForm(@Login MemberDto loginMember, Model model){
         model.addAttribute("member",loginMember);
