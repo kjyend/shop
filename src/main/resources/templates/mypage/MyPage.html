@@ -18,10 +18,12 @@
 </div>
 <div class="container">
     <form action="" th:object="${member}" method="post">
-        <div>아이디
+        <div>
+            <span>아이디 : </span>
             <span id="loginId" th:text="*{loginId}"></span>
         </div>
-        <div>이름
+        <div>
+            <span>이름 : </span>
             <span id="name" th:text="*{name}"></span>
         </div>
         <div>
