@@ -17,7 +17,7 @@
     </div>
 </div>
 <div class="container">
-    <form class="form-signin" action="" th:object="${member}" method="post">
+    <form action="" th:object="${member}" method="post">
         <div class="mb-3">
             <label for="loginId" class="form-label">id</label>
             <input type="text" id="loginId" th:field="*{loginId}" class="form-control" th:errorclass="field-error" required>
@@ -31,10 +31,10 @@
             <label for="name" class="form-label">이름</label>
             <input type="text" class="form-control" id="name" th:field="*{name}">
         </div>
-        <div class="margin-button">
+        <div>
             <button type="submit" class="w-100 btn btn-lg btn-primary">Edit</button>
         </div>
-        <div class="margin-button">
+        <div>
             <button class="w-100 btn btn-secondary btn-lg" onclick="location.href='checkHome.html'"
                     th:onclick="|location.href='@{/}'|" type="button">취소</button>
         </div>

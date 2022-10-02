@@ -1,14 +1,19 @@
 package shopprj.shop.web.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import shopprj.shop.domain.dto.MemberDto;
+import shopprj.shop.domain.service.MemberService;
 import shopprj.shop.web.argumentresolver.Login;
 
 @Controller
+@RequiredArgsConstructor
 public class MemberController {
+
+    private final MemberService memberService;
 
     @GetMapping("/Mypage")
     public String MypageForm(@Login MemberDto loginMember, Model model){
@@ -19,7 +24,7 @@ public class MemberController {
     @PostMapping("/Mypage")
     public String Mypage(@Login MemberDto loginMember, Model model){
         model.addAttribute("member", loginMember);
-        return "mypage/MyPage";
+        return "mypage/Edit";
     }
 
     @GetMapping("/Edit")
@@ -27,9 +32,10 @@ public class MemberController {
         model.addAttribute("member",loginMember);
         return "mypage/Edit";
     }
-    @PostMapping
-    public String Edit(@Login MemberDto loginMember){
+    @PostMapping("/Edit")
+    public String Edit(MemberDto loginMember){
         //repository를 통해서 수정하기 생각해야한다.
+        memberService.update(loginMember);
         return "redirect:/";
     }
 

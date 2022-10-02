@@ -19,15 +19,15 @@
 <div class="container">
     <form action="" th:object="${member}" method="post">
         <div>
-            <span>아이디 : </span>
-            <span id="loginId" th:text="*{loginId}"></span>
+            <span style="font-size: 3em">아이디 : </span>
+            <span style="font-size: 3em" id="loginId" th:text="*{loginId}"></span>
         </div>
         <div>
-            <span>이름 : </span>
-            <span id="name" th:text="*{name}"></span>
+            <span style="font-size: 3em">이름 : </span>
+            <span style="font-size: 3em" id="name" th:text="*{name}"></span>
         </div>
         <div>
-            <button type="submit" class="w-100 btn btn-lg btn-primary">Edit</button>
+            <button class="w-100 btn btn-lg btn-primary" >Edit</button>
         </div>
         <div class="margin-button">
             <button class="w-100 btn btn-secondary btn-lg" onclick="location.href='Home.html'"
