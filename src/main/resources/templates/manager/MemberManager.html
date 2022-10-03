@@ -16,5 +16,31 @@
         </form>
     </div>
 </div>
+<div class="container">
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">아이디</th>
+            <th scope="col">이름</th>
+            <th scope="col">삭제</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="members,i:${member}">
+            <th scope="row" th:text="${i.index+1}"></th>
+            <td th:text="${members.loginId}"></td>
+            <td th:text="${members.name}"></td>
+            <td>
+                <form action="" method="post">
+                    <button type="submit">delete</button>
+<!--                    아직 기능 구현이 안되었다.-->
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
 </body>
 </html>

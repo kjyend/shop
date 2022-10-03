@@ -1,6 +1,7 @@
 package shopprj.shop.web.controller;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +12,7 @@ import shopprj.shop.web.argumentresolver.Login;
 
 @Controller
 @RequiredArgsConstructor
+@Slf4j
 public class MemberController {
 
     private final MemberService memberService;
@@ -21,11 +23,6 @@ public class MemberController {
         return "mypage/MyPage";
     }
 
-    @PostMapping("/Mypage")
-    public String Mypage(@Login MemberDto loginMember, Model model){
-        model.addAttribute("member", loginMember);
-        return "mypage/Edit";
-    }
 
     @GetMapping("/Edit")
     public String EditForm(@Login MemberDto loginMember, Model model){

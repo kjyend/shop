@@ -20,7 +20,6 @@ public class ManagerController {
     @GetMapping("/shopManage")
     public String shopManageForm(@Login MemberDto loginMember, ItemDto itemDto, Model model){
         model.addAttribute("item",itemDto);
-        model.addAttribute("member",loginMember);
         return "manager/ShopManager";
     }
 
@@ -44,12 +43,14 @@ public class ManagerController {
     }
 
     @GetMapping("/MemberManage")
-    public String MemberManageForm(){//회원 관리를 해야한다.
+    public String MemberManageForm(@Login MemberDto loginMember,Model model){//회원 관리를 해야한다.
+        model.addAttribute("member",loginMember);
         return "manager/MemberManager";
     }
 
     @PostMapping("/MemberManage")
-    public String MemberManage(){
+    public String MemberManage(MemberDto loginMember){
+        //관리자가 회원들 삭제하거나 메시지를 공지할때 사용해도될듯
         return "redirect:/";
     }
 }

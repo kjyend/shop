@@ -24,8 +24,8 @@ public class MemberService {
         Optional<Member> member = memberRepository.findByLoginId(memberDto.getLoginId());
         if(member==null){
             log.info("123={}",member.get());
-
         }else {
+//            memberRepository.save(member);
             log.info("321",member.get());
         }
 

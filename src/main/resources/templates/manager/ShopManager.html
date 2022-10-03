@@ -24,6 +24,7 @@
                 <th scope="col">이름</th>
                 <th scope="col">가격</th>
                 <th scope="col">수량</th>
+                <th scope="col">추가 할 수량</th>
             </tr>
         </thead>
         <tbody>
@@ -34,9 +35,9 @@
                 <td th:text="${items.stockQuantity}"></td>
                 <td>
                     <form action="" method="post">
-                        <input type="text" class="form-control" th:field="${items.stockQuantity}">
-<!--                        히든으로 post로 넣어버리고 정보를 넣고 원하는 숫자를 넣어서 수량을 조절하자-->
-                        <button type="submit">+</button>
+                            <input type="text"  th:text="${items.stockQuantity}">
+<!--                            히든으로 post로 넣어버리고 정보를 넣고 원하는 숫자를 넣어서 수량을 조절하자-->
+                            <button type="submit">+</button>
                     </form>
                 </td>
             </tr>
