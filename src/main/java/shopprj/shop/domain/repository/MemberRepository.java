@@ -7,6 +7,6 @@ import shopprj.shop.domain.entity.Member;
 import java.util.Optional;
 
 @Repository
-public interface MemberRepository extends JpaRepository<Member, String> {
+public interface MemberRepository extends JpaRepository<Member, Long> {
     Optional<Member> findByLoginId(String loginId);
 }

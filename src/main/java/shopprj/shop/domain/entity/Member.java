@@ -37,11 +37,18 @@ public class Member {
     @Enumerated(EnumType.STRING)
     private MemberStatus status;//[MEMBER, MANAGER, ADMIN]
 
-    public MemberDto toMemberDto(Member member){
+    public MemberDto toMemberDto(){
         return MemberDto.builder()
-                .loginId(member.getLoginId())
-                .password(member.getPassword())
-                .name(member.getName()).build();
+                .id(id)
+                .loginId(loginId)
+                .password(password)
+                .name(name).build();
+    }
+
+    public void update(String loginId,String password,String name){
+        this.loginId=loginId;
+        this.password=password;
+        this.name=name;
     }
 
 }

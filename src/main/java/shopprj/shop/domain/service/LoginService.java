@@ -13,10 +13,10 @@ public class LoginService {
     private final MemberRepository memberRepository;
 
     public MemberDto login(MemberDto memberDto){
-        Member member = memberDto.toMemberEntity(memberDto);
-        Member member1 = memberRepository.findByLoginId(member.getLoginId()).filter(m -> m.getPassword().equals(member.getPassword())).orElse(null);
-        if(member1!=null) {
-            return member.toMemberDto(member1);
+        Member member = memberDto.toMemberEntity();
+        Member memberCheck = memberRepository.findByLoginId(member.getLoginId()).filter(m -> m.getPassword().equals(member.getPassword())).orElse(null);
+        if(memberCheck!=null) {
+            return memberCheck.toMemberDto();
         }else{
             return null;
         }

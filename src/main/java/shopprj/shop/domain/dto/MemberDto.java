@@ -7,14 +7,16 @@ import shopprj.shop.domain.entity.Member;
 @Builder
 @Getter
 public class MemberDto {
+    private Long id;
     private String loginId;
     private String password;
     private String name;
 
-    public Member toMemberEntity(MemberDto memberDto){
+    public Member toMemberEntity(){
         return Member.builder()
-                .loginId(memberDto.getLoginId())
-                .password(memberDto.getPassword())
-                .name(memberDto.getName()).build();
+                .id(id)
+                .loginId(loginId)
+                .password(password)
+                .name(name).build();
     }
 }

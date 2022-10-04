@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import shopprj.shop.domain.dto.MemberDto;
 import shopprj.shop.domain.service.MemberService;
@@ -17,22 +18,21 @@ public class MemberController {
 
     private final MemberService memberService;
 
-    @GetMapping("/Mypage")
+    @GetMapping("/Mypage/{id}")
     public String MypageForm(@Login MemberDto loginMember, Model model){
         model.addAttribute("member", loginMember);
         return "mypage/MyPage";
     }
 
 
-    @GetMapping("/Edit")
-    public String EditForm(@Login MemberDto loginMember, Model model){
+    @GetMapping("/Edit/{id}")
+    public String EditForm(@PathVariable Long id, @Login MemberDto loginMember, Model model){
         model.addAttribute("member",loginMember);
         return "mypage/Edit";
     }
-    @PostMapping("/Edit")
-    public String Edit(MemberDto loginMember){
-        //repository를 통해서 수정하기 생각해야한다.
-        memberService.update(loginMember);
+    @PostMapping("/Edit/{id}")
+    public String Edit(@PathVariable String id, MemberDto loginMember){
+        memberService.update(id,loginMember);
         return "redirect:/";
     }
 
