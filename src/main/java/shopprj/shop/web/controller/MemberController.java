@@ -30,10 +30,11 @@ public class MemberController {
         model.addAttribute("member",loginMember);
         return "mypage/Edit";
     }
+
     @PostMapping("/Edit/{id}")
     public String Edit(@PathVariable String id, MemberDto loginMember){
         memberService.update(id,loginMember);
-        return "redirect:/";
+        return "redirect:/Mypage/"+id;
     }
 
 }

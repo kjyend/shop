@@ -19,21 +19,45 @@
 <div class="container">
     <form action="" th:object="${member}" method="get">
         <div>
-            <span style="font-size: 3em">아이디 : </span>
-            <span style="font-size: 3em" id="loginId" th:text="*{loginId}"></span>
-        </div>
-        <div>
-            <span style="font-size: 3em">이름 : </span>
-            <span style="font-size: 3em" id="name" th:text="*{name}"></span>
-        </div>
-        <div>
-            <a th:href="@{/Edit/{id} (id=${member.id})}" role="button" class="w-100 btn btn-lg btn-primary">Edit</a>
-        </div>
-        <div class="margin-button">
-            <button class="w-100 btn btn-secondary btn-lg" onclick="location.href='Home.html'"
-                    th:onclick="|location.href='@{/}'|" type="button">취소</button>
+            <div>
+                <span style="font-size: 3em">아이디 : </span>
+                <span style="font-size: 3em" id="loginId" th:text="*{loginId}"></span>
+            </div>
+            <div>
+                <span style="font-size: 3em">이름 : </span>
+                <span style="font-size: 3em" id="name" th:text="*{name}"></span>
+            </div>
+            <div>
+                <a th:href="@{/Edit/{id} (id=${member.id})}" role="button" class="btn btn-lg btn-primary">Edit</a>
+            </div>
         </div>
     </form>
+</div>
+<div class="container">
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">상품 주문</th>
+            <th scope="col">주문 금액</th>
+            <th scope="col">수량</th>
+            <th scope="col">주문 상태</th>
+            <th scope="col">배송 취소</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="items:${item}">
+            <td scope="row" th:text="${items.name}"></td>
+            <td th:text="${items.price}"></td>
+            <td th:text="${items.stockQuantity}"></td>
+            <td></td>
+            <td>
+                <form action="" method="post">
+                    <button type="submit">취소하기</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </div>
 </body>
 </html>
