@@ -26,4 +26,7 @@ public class MemberService {
         member.update(memberDto.getLoginId(),memberDto.getPassword(),memberDto.getName());
     }
 
+    public boolean checkLoginIdDuplicate(String loginId) {
+        return memberRepository.existsByLoginId(loginId);
+    }
 }

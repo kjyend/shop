@@ -2,6 +2,7 @@ package shopprj.shop.web.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +25,10 @@ public class MemberController {
         return "mypage/MyPage";
     }
 
+    @GetMapping("/Mypage/{loginId}")
+    public ResponseEntity<Boolean> checkLoginIdDuplicate(@PathVariable String loginId){
+        return ResponseEntity.ok(memberService.checkLoginIdDuplicate(loginId));
+    }
 
     @GetMapping("/Edit/{id}")
     public String EditForm(@PathVariable Long id, @Login MemberDto loginMember, Model model){
