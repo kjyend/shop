@@ -22,7 +22,7 @@
             <label for="loginId" class="form-label">id</label>
             <input type="text" id="loginId" th:field="*{loginId}" class="form-control" th:errorclass="field-error" required>
             <div class="field-error" th:errors="*{loginId}"/>
-            <a th:href="@{/Mypage/{loginId} (id=${member.loginId})}" role="button" class="btn btn-lg btn-primary">중복확인</a>
+            <a th:href="@{/Mypage-loginId/{loginId} (id=${member.loginId})}" role="button" class="btn btn-lg btn-primary">중복확인</a>
         </div>
         <div class="mb-3">
             <label for="password" class="form-label">password</label>

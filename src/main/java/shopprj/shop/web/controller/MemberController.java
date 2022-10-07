@@ -25,9 +25,15 @@ public class MemberController {
         return "mypage/MyPage";
     }
 
-    @GetMapping("/Mypage/{loginId}")
-    public ResponseEntity<Boolean> checkLoginIdDuplicate(@PathVariable String loginId){
-        return ResponseEntity.ok(memberService.checkLoginIdDuplicate(loginId));
+    @GetMapping("/Mypage-loginId/{loginId}")
+    public String checkLoginIdDuplicate(@PathVariable String loginId){
+        ResponseEntity<Boolean> ok = ResponseEntity.ok(memberService.checkLoginIdDuplicate(loginId));//아이디 중복확인
+        if(ok.equals("true")){
+        //중복확인으로 체크하기
+        }else {
+
+        }
+        return null;
     }
 
     @GetMapping("/Edit/{id}")
