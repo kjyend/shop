@@ -29,25 +29,29 @@
         <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">stationId</th>
-            <th scope="col">stationName</th>
-            <th scope="col">내릴 정류소를 선택해주세요</th>
+            <th scope="col">제목</th>
+            <th scope="col">가격</th>
+            <th scope="col">수량</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="">
-            <th scope="row" th:text="${i.index}"></th>
-            <td th:text=""></td>
-            <td th:text=""></td>
-            <td th:text=""></td>
+        <tr th:each="items,i:${item}">
+            <th scope="row" th:text="${i.index+1}"></th>
+            <td th:text="${items.name}"></td>
+            <td th:text="${items.price}"></td>
+            <td th:text="${items.stockQuantity}"></td>
 <!--        이름,가격,수량은 내가 text값해서 넣어야한다.-->
             <td>
                 <form action="" method="post">
-                    <input type="hidden" name="">
-                    <input type="hidden" name="">
+                    <input type="hidden" name="name" th:value="${items.name}">
+                    <input type="hidden" name="price" th:value="${items.price}">
+                    <input type="hidden" name="stockQuantity" th:value="${items.stockQuantity}">
                     <button type="submit" class=" btn btn-lg btn-primary" >구매하기</button>
                 </form>
             </td>
         </tr>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>

@@ -29,12 +29,21 @@
     <div type="text" id="productName"></div>
 </div>
 <div>
-    <form>
+    <form th:object="${Delivery}">
         <div>
             <label for="city" class="form-label">주소</label>
-            <span type="text" id="city"></span>
-            <span type="text" id="street"></span>
-            <span type="text" id="zipcode"></span>
+            <div>
+                <span style="font-size: 3em">주소1 : </span>
+                <span style="font-size: 3em" id="city" th:text="*{city}"></span>
+            </div>
+            <div>
+                <span style="font-size: 3em">주소2 : </span>
+                <span style="font-size: 3em" id="street th:text="*{street}"></span>
+            </div>
+            <div>
+                <span style="font-size: 3em">상세주소 : </span>
+                <span style="font-size: 3em" id="zipcode" th:text="*{zipcode}"></span>
+            </div>
         </div>
         <div>
             <button class="btn btn-primary" th:onclick="|location.href='login.html'|" type="submit">메인메뉴로 돌아가기</button>
