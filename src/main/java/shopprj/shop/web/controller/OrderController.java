@@ -18,7 +18,7 @@ public class OrderController {
         return "buy/Buy";
     }
     @PostMapping("/Buy")
-    public String Buy(){//총 가격, 주소 넣어서,
+    public String Buy(ItemDto itemDto){//총 가격, 주소 넣어서,
         return "redirect:/";
     }
 
@@ -30,7 +30,8 @@ public class OrderController {
     }
 
     @PostMapping("/Cart")
-    public String Cart(){
+    public String Cart(ItemDto itemDto){
+        //cart로 자신의 id를 넣는다던가 아니면 다른 식으로 표현해야한다.
         return "redirect:/";
     }
 
@@ -43,7 +44,8 @@ public class OrderController {
     }
 
     @GetMapping("Success")
-    public String SuccessForm(@Login MemberDto loginMember, Model model){
+    public String SuccessForm(@Login MemberDto loginMember,ItemDto itemDto ,Model model){
+        model.addAttribute("item",itemDto);
         model.addAttribute("member", loginMember);
         return "bill/Success";
     }

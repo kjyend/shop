@@ -29,8 +29,7 @@ public class MemberController {
     public String checkLoginIdDuplicate(@PathVariable String loginId){
         ResponseEntity<Boolean> ok = ResponseEntity.ok(memberService.checkLoginIdDuplicate(loginId));//아이디 중복확인
         if(ok.equals("true")){
-        //중복확인으로 체크하기
-//      중복값을 확인하고 다른값인지 확인한다.
+
         }else {
 
         }
