@@ -25,5 +25,31 @@
     </div>
 </div>
 <!--상품의 이름, 가격, 수량, 댓글을 달수있게해야한다.-->
+<div>
+    <table class="container">
+        <thead class="table">
+        <tr>
+            <th scope="col">제품</th>
+            <th scope="col">가격</th>
+            <th scope="col">수량</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:object="${item}">
+            <td th:text="${item.name}"></td>
+            <td th:text="${item.price}"></td>
+            <td th:text="${item.stockQuantity}"></td>
+            <td>
+                <form action="" method="post">
+                    <input type="hidden" name="name" th:value="${items.name}">
+                    <input type="hidden" name="price" th:value="${items.price}">
+                    <input type="hidden" name="stockQuantity" th:value="${items.stockQuantity}">
+                    <button type="submit" class=" btn btn-lg btn-primary" >구매하기</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>
