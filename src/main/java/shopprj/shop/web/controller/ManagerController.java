@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import shopprj.shop.domain.dto.ItemDto;
 import shopprj.shop.domain.dto.MemberDto;
 import shopprj.shop.domain.service.ItemService;
+import shopprj.shop.domain.service.ManagerService;
 import shopprj.shop.web.argumentresolver.Login;
 
 @Controller
@@ -15,6 +16,8 @@ import shopprj.shop.web.argumentresolver.Login;
 public class ManagerController {
 
     private final ItemService itemService;
+
+    private final ManagerService managerService;
 
     //물품 추가-2가지로 생각한다. 1. 물품의 양을 추가한다. 2. 물품의 종류를 추가한다.
     @GetMapping("/shopManage")
@@ -52,5 +55,10 @@ public class ManagerController {
     public String MemberManage(MemberDto loginMember){
         //관리자가 회원들 삭제하거나 메시지를 공지할때 사용해도될듯
         return "redirect:/";
+    }
+    @PostMapping("/delete")
+    public String MemberDelete(MemberDto loginMember){
+        managerService.deleteMember(loginMember.getId());
+        return "redirect:/manager/MemberManager";
     }
 }
