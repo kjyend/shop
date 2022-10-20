@@ -9,11 +9,15 @@
 <div class="navbar navbar-dark bg-dark">
     <div class="container-md">
         <a class="navbar-brand" th:onclick="|location.href='@{/}'|">Shop</a>
-        <form th:action="@{/logout}" method="post">
-            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <button class="btn btn-primary" th:onclick="|location.href='login.html'|" type="submit">sign out</button>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <div th:if="${member.loginId=='admin'}">
+                <button class="btn btn-primary" th:onclick="|location.href='MemberManage'|" type="submit">MemberManage</button>
+                <button class="btn btn-primary" th:onclick="|location.href='CreateItem'|" type="submit">CreateItem</button>
             </div>
-        </form>
+            <form th:action="@{/logout}" method="post">
+                <button class="btn btn-primary" th:onclick="|location.href='login.html'|" type="submit">sign out</button>
+            </form>
+        </div>
     </div>
 </div>
 <div class="container">
