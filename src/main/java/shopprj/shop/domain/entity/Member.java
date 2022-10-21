@@ -45,7 +45,7 @@ public class Member {
                 .name(name).build();
     }
 
-    public void update(String loginId,String password,String name){
+    public void updateMember(String loginId, String password, String name){
         this.loginId=loginId;
         this.password=password;
         this.name=name;

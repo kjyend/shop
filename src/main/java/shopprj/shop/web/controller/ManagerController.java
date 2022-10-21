@@ -22,6 +22,7 @@ public class ManagerController {
     //물품 추가-2가지로 생각한다. 1. 물품의 양을 추가한다. 2. 물품의 종류를 추가한다.
     @GetMapping("/shopManage")
     public String shopManageForm(@Login MemberDto loginMember, ItemDto itemDto, Model model){
+        itemService.findAll();//dto로 바꾸어서 다시 나오게 해야한다. 그리고 출력해야한다. 그리고 model값에 넣는다.
         model.addAttribute("member",loginMember);
         model.addAttribute("item",itemDto);
         return "manager/ShopManager";
@@ -48,7 +49,6 @@ public class ManagerController {
 
     @GetMapping("/MemberManage")
     public String MemberManageForm(@Login MemberDto loginMember,Model model){//회원 관리를 해야한다.
-        model.addAttribute("member",loginMember);
         model.addAttribute("member",loginMember);
         return "manager/MemberManager";
     }

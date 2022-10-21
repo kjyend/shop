@@ -6,6 +6,8 @@ import shopprj.shop.domain.dto.ItemDto;
 import shopprj.shop.domain.entity.Item;
 import shopprj.shop.domain.repository.ItemRepository;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class ItemService {
@@ -22,5 +24,11 @@ public class ItemService {
     public void createItem(ItemDto itemDto) {
         Item item = itemDto.toItemEntity(itemDto);
         itemRepository.save(item);
+    }
+
+    public List<ItemDto> findAll() {
+        List<Item> all = itemRepository.findAll();
+        //all의 있는 item을 itemdto로 바꾸어야한다.
+        return null;
     }
 }
