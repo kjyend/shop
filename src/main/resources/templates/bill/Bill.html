@@ -25,22 +25,26 @@
     </div>
 </div>
 <div>
-    <div>
-        <label for="productName" class="form-label">제품이름</label>
-        <div type="text" id="productName"></div>
-    </div>
+    <form th:object="${item}">
+        <div>
+            <label class="form-label">제품이름</label>
+            <div th:text="${item.name}"></div>
+        </div>
+    </form>
 </div>
 <div>
-    <form>
+    <form th:object="${member}">
         <div>
             <label for="name" class="form-label">이름</label>
-            <input type="text" id="name">
+            <input type="text" id="name" th:field="*{name}">
         </div>
+    </form>
+    <form th:object="${Delivery}">
         <div>
             <label for="city" class="form-label">주소</label>
-            <input type="text" id="city">
-            <input type="text" id="street">
-            <input type="text" id="zipcode">
+            <input type="text" id="city" th:field="*{city}">
+            <input type="text" id="street" th:field="*{street}">
+            <input type="text" id="zipcode" th:field="*{zipcode}">
         </div>
         <div>
             <button type="submit" th:text=""></button>

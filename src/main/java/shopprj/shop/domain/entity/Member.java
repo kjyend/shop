@@ -25,6 +25,9 @@ public class Member {
     private String password;
     private String name;
 
+    @Enumerated(EnumType.STRING)
+    private MemberStatus status;//[MEMBER, MANAGER, ADMIN]
+
     @OneToMany(mappedBy="member")
     private List<Comment> comments=new ArrayList<Comment>();
 
@@ -34,15 +37,14 @@ public class Member {
     @OneToMany(mappedBy = "member")
     private List<Order> orders=new ArrayList<Order>();
 
-    @Enumerated(EnumType.STRING)
-    private MemberStatus status;//[MEMBER, MANAGER, ADMIN]
 
     public MemberDto toMemberDto(){
         return MemberDto.builder()
                 .id(id)
                 .loginId(loginId)
                 .password(password)
-                .name(name).build();
+                .name(name)
+                .status(MemberStatus.MEMBER).build();
     }
 
     public void updateMember(String loginId, String password, String name){
