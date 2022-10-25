@@ -26,15 +26,9 @@ public class MemberController {
     }
 
     @GetMapping("/Mypage-loginId/{loginId}")
-    public String checkLoginIdDuplicate(@PathVariable("loginId") String loginId,@PathVariable String id){
-        ResponseEntity<Boolean> ok = ResponseEntity.ok(memberService.checkLoginIdDuplicate(loginId));//아이디 중복확인
-        if(ok.equals("true")){
-
-        }else {
-
-        }
-        //다른 걸로 확인을 해야하나? 고민해야한다.
-        return "redirect:/Edit/"+id;
+    public ResponseEntity<Boolean> checkLoginIdDuplicate(@PathVariable("loginId") String loginId){
+        //다른 걸로 확인을 해야하나? 고민해야한다. ?? 중복 안됨; 뭐야;
+        return ResponseEntity.ok(memberService.checkLoginIdDuplicate(loginId));
     }
 
     @GetMapping("/Edit/{id}")

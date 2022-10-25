@@ -12,6 +12,7 @@ import shopprj.shop.domain.repository.MemberRepository;
 @Service
 @RequiredArgsConstructor
 @Slf4j
+@Transactional
 public class MemberService {
 
     private final MemberRepository memberRepository;
@@ -21,7 +22,7 @@ public class MemberService {
         memberRepository.save(member);
     }
 
-    @Transactional
+
     public void update(String id,MemberDto memberDto){
         Member member = memberRepository.findById(Long.valueOf(id)).orElseThrow(() -> new IllegalArgumentException("해당 아이디가 없습니다."));
         member.updateMember(memberDto.getLoginId(),memberDto.getPassword(),memberDto.getName());
