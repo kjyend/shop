@@ -8,6 +8,8 @@ import shopprj.shop.domain.dto.MemberDto;
 import shopprj.shop.domain.entity.Member;
 import shopprj.shop.domain.repository.MemberRepository;
 
+import java.util.List;
+
 
 @Service
 @RequiredArgsConstructor
@@ -30,5 +32,11 @@ public class MemberService {
 
     public boolean checkLoginIdDuplicate(String loginId) {
         return memberRepository.existsByLoginId(loginId);
+    }
+
+    public List<MemberDto> findAll() {
+        List<Member> all = memberRepository.findAll();
+        //람다 표현식이 ㅇ있는데 기억이 안나;
+        return null;
     }
 }

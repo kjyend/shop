@@ -28,6 +28,7 @@ public class MemberController {
     @GetMapping("/Mypage-loginId/{loginId}")
     public ResponseEntity<Boolean> checkLoginIdDuplicate(@PathVariable("loginId") String loginId){
         //다른 걸로 확인을 해야하나? 고민해야한다. ?? 중복 안됨; 뭐야;
+        //할때 확인을 해야한다. 아 html에서 해야하는걸 안했다.
         return ResponseEntity.ok(memberService.checkLoginIdDuplicate(loginId));
     }
 

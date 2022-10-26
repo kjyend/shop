@@ -29,6 +29,7 @@ public class ItemService {
     public List<ItemDto> findAll() {
         List<Item> all = itemRepository.findAll();
         //all의 있는 item을 itemdto로 바꾸어야한다.
+
         return null;
     }
 }
