@@ -36,7 +36,7 @@ public class MemberService {
 
     public List<MemberDto> findAll() {
         List<Member> all = memberRepository.findAll();
-        //람다 표현식이 ㅇ있는데 기억이 안나;
+        //람다 표현식이 있는데 기억이 안나;
         return null;
     }
 }

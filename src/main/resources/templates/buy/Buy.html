@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <link th:href="@{/css/bootstrap.min.css}" href="../css/bootstrap.min.css" rel="stylesheet">
     <title>home</title>
+    <style>
+        .mid{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            z-index: 3;
+        }
+    </style>
 </head>
 <body>
 <div class="navbar navbar-dark bg-dark">
@@ -25,7 +34,7 @@
     </div>
 </div>
 <!--상품의 이름, 가격, 수량, 댓글을 달수있게해야한다.-->
-<div>
+<div class="mid">
     <table class="container">
         <thead class="table">
         <tr>
@@ -35,10 +44,10 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:object="${item}">
-            <td th:text="${item.name}"></td>
-            <td th:text="${item.price}"></td>
-            <td th:text="${item.stockQuantity}"></td>
+        <tr th:each="items :${item}">
+            <td th:text="${items.name}"></td>
+            <td th:text="${items.price}"></td>
+            <td th:text="${items.stockQuantity}"></td>
             <td>
                 <form action="" method="post">
                     <input type="hidden" name="name" th:value="${items.name}">

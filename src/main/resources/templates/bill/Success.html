@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <link th:href="@{/css/bootstrap.min.css}" href="../css/bootstrap.min.css" rel="stylesheet">
     <title>Success</title>
+    <style>
+        .mid{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            z-index: 3;
+        }
+    </style>
 </head>
 <body>
 <div class="navbar navbar-dark bg-dark">
@@ -30,7 +39,8 @@
         <div th:text="*{name}"></div>
     </form>
 </div>
-<div>
+
+<div class="mid">
     <form th:object="${Delivery}">
         <div>
             <label for="city" class="form-label">주소</label>

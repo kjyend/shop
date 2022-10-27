@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <link th:href="@{/css/bootstrap.min.css}" href="../css/bootstrap.min.css" rel="stylesheet">
     <title>Fail</title>
+    <style>
+        .mid{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            z-index: 3;
+        }
+    </style>
 </head>
 <body>
 <div class="navbar navbar-dark bg-dark">
@@ -24,7 +33,7 @@
         </div>
     </div>
 </div>
-<div>
+<div class="mid">
     <div>상품 주문을 실패했습니다.</div>
     <div>
         <button class="btn btn-primary" th:onclick="|location.href='login.html'|" type="submit">메인메뉴로 돌아가기</button>
