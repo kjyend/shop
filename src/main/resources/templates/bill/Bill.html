@@ -3,7 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <link th:href="@{/css/bootstrap.min.css}" href="../css/bootstrap.min.css" rel="stylesheet">
-    <title>Invoice</title>
+    <title>Bill</title>
+    <style>
+        .mid{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 50%;
+            transform: translate(-50%,-50%);
+            z-index: 3;
+        }
+    </style>
 </head>
 <body>
 <div class="navbar navbar-dark bg-dark">
@@ -24,30 +34,27 @@
         </div>
     </div>
 </div>
-<div>
+<div class="mid">
     <form th:object="${item}">
         <div>
             <label class="form-label">제품이름</label>
             <div th:text="${item.name}"></div>
         </div>
     </form>
-</div>
-<div>
     <form th:object="${member}">
         <div>
             <label for="name" class="form-label">이름</label>
             <input type="text" id="name" th:field="*{name}">
         </div>
     </form>
-    <form th:object="${Delivery}">
+    <form action="" th:object="${delivery}">
         <div>
-            <label for="city" class="form-label">주소</label>
-            <input type="text" id="city" th:field="*{city}">
-            <input type="text" id="street" th:field="*{street}">
-            <input type="text" id="zipcode" th:field="*{zipcode}">
+            <label class="form-label">주소</label>
+            <input id="city" th:field="*{city}">
+            <input id="street" th:field="*{street}">
+            <input id="zipcode" th:field="*{zipcode}">
         </div>
         <div>
-            <button type="submit" th:text=""></button>
             <button class="btn btn-secondary btn-lg" onclick="location.href='checkHome.html'"
                     th:onclick="|location.href='@{/}'|" type="button">취소</button>
         </div>

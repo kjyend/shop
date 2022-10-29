@@ -13,6 +13,9 @@
             transform: translate(-50%,-50%);
             z-index: 3;
         }
+        .margin-button{
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -32,7 +35,7 @@
             <label for="loginId" class="form-label">id</label>
             <input type="text" id="loginId" th:field="*{loginId}" class="form-control" th:errorclass="field-error" required>
             <div class="field-error" th:errors="*{loginId}"/>
-            <div action="Mypage-loginId" method="get">
+            <div class="margin-button" action="Mypage-loginId" method="get">
 <!--                <a th:href="@{/Mypage-loginId/{loginId} (id=${member.loginId})}" role="button" class="btn btn-lg btn-primary">중복확인</a>-->
 <!--                데이터를 보내야하는데 안보네짐 아마도 다르게 해야할거같다.-->
                 <button type="submit" class="btn btn-lg btn-primary">중복검사</button>
@@ -47,9 +50,13 @@
             <input type="text" class="form-control" id="name" th:field="*{name}">
         </div>
         <div>
-            <button type="submit" class="w-100 btn btn-lg btn-primary">Edit</button>
-            <button class="w-100 btn btn-secondary btn-lg" onclick="location.href='checkHome.html'"
-                    th:onclick="|location.href='@{/}'|" type="button">취소</button>
+            <div class="margin-button">
+               <button type="submit" class="w-100 btn btn-lg btn-primary">Edit</button>
+            </div>
+            <div class="margin-button">
+                <button class="w-100 btn btn-secondary btn-lg" onclick="location.href='checkHome.html'"
+                        th:onclick="|location.href='@{/}'|" type="button">취소</button>
+            </div>
         </div>
     </form>
 </div>
