@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import shopprj.shop.domain.dto.CommentDto;
 import shopprj.shop.domain.dto.DeliveryDto;
 import shopprj.shop.domain.dto.ItemDto;
 import shopprj.shop.domain.dto.MemberDto;
@@ -13,8 +14,9 @@ import shopprj.shop.web.argumentresolver.Login;
 public class OrderController {
 
     @GetMapping("/Buy")
-    public String BuyForm(@Login MemberDto loginMember, ItemDto itemDto, Model model){
+    public String BuyForm(@Login MemberDto loginMember, ItemDto itemDto, CommentDto commentDto, Model model){
         model.addAttribute("member", loginMember);
+        model.addAttribute("comment",commentDto);
         model.addAttribute("item",itemDto);
         return "buy/Buy";
     }

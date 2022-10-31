@@ -34,31 +34,40 @@
     </div>
 </div>
 <!--상품의 이름, 가격, 수량, 댓글을 달수있게해야한다.-->
-<div class="mid">
+<div >
     <table class="container">
         <thead class="table">
         <tr>
             <th scope="col">제품</th>
             <th scope="col">가격</th>
             <th scope="col">수량</th>
+            <th scope="col">구매하기</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="items :${item}">
-            <td th:text="${items.name}"></td>
-            <td th:text="${items.price}"></td>
-            <td th:text="${items.stockQuantity}"></td>
+            <td th:text="${item.name}"></td>
+            <td th:text="${item.price}"></td>
+            <td th:text="${item.stockQuantity}"></td>
             <td>
                 <form action="" method="post">
-                    <input type="hidden" name="name" th:value="${items.name}">
-                    <input type="hidden" name="price" th:value="${items.price}">
-                    <input type="hidden" name="stockQuantity" th:value="${items.stockQuantity}">
+                    <input type="hidden" name="name" th:value="${item.name}">
+                    <input type="hidden" name="price" th:value="${item.price}">
+                    <input type="hidden" name="stockQuantity" th:value="${item.stockQuantity}">
                     <button type="submit" class=" btn btn-lg btn-primary" >구매하기</button>
                 </form>
             </td>
-        </tr>
         </tbody>
     </table>
+    <!--        댓글만들자-->
+    <div>
+        <form action="Comment" th:object="${comment}" method="post">
+            <div>
+                <input type="text" th:field="*{point}">
+                <input type="text" class="form-control" th:field="*{talk}">
+                <button type="submit">댓글달기</button>
+            </div>
+        </form>
+    </div>
 </div>
 </body>
 </html>
