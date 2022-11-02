@@ -35,11 +35,12 @@
             <label for="loginId" class="form-label">id</label>
             <input type="text" id="loginId" th:field="*{loginId}" class="form-control" th:errorclass="field-error" required>
             <div class="field-error" th:errors="*{loginId}"/>
-            <div class="margin-button" action="Mypage-loginId" method="get">
+<!--            <div class="margin-button" action="Mypage-loginId" method="get">-->
 <!--                <a th:href="@{/Mypage-loginId/{loginId} (id=${member.loginId})}" role="button" class="btn btn-lg btn-primary">중복확인</a>-->
 <!--                데이터를 보내야하는데 안보네짐 아마도 다르게 해야할거같다.-->
-                <button type="submit" class="btn btn-lg btn-primary">중복검사</button>
-            </div>
+<!--                <button type="submit" class="btn btn-lg btn-primary">중복검사</button>-->
+<!--            </div>-->
+            <input type="button" value="ID중복확인">
         </div>
         <div class="mb-3">
             <label for="password" class="form-label">password</label>

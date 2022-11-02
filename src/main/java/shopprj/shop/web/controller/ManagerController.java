@@ -1,6 +1,7 @@
 package shopprj.shop.web.controller;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,7 @@ import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
+@Slf4j
 public class ManagerController {
 
     private final ItemService itemService;
@@ -28,6 +30,7 @@ public class ManagerController {
     @GetMapping("/shopManage")
     public String shopManageForm(@Login MemberDto loginMember, ItemDto itemDto, Model model){
         List<ItemDto> all = itemService.findAll();//dto로 바꾸어서 다시 나오게 해야한다. 그리고 출력해야한다. 그리고 model값에 넣는다.
+        //금요일에 stream으로 한번에해서 전부 열기
         model.addAttribute("member",loginMember);
         model.addAttribute("item",all);
         return "manager/ShopManager";
@@ -54,7 +57,8 @@ public class ManagerController {
 
     @GetMapping("/MemberManage")
     public String MemberManageForm(@Login MemberDto loginMember,Model model){//회원 관리를 해야한다.
-        memberService.findAll();
+        //스트림 방법으로 해야한다. 금요일에한다. 지금은 null이 나온다.
+        List<MemberDto> all = memberService.findAll();
         model.addAttribute("member",loginMember);
         return "manager/MemberManager";
     }

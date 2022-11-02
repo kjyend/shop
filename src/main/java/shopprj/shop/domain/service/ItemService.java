@@ -28,8 +28,12 @@ public class ItemService {
 
     public List<ItemDto> findAll() {
         List<Item> all = itemRepository.findAll();
-        //all의 있는 item을 itemdto로 바꾸어야한다.
+        //all의 있는 item을 itemdto로 바꾸어야한다. stream으로 사용한다.
+        return null;
+    }
 
+    public List<ItemDto> findCart(){
+        //itemRepository에서 Cart가 1인값만 추출한다.
         return null;
     }
 }

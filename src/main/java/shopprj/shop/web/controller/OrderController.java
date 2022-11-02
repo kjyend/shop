@@ -1,5 +1,6 @@
 package shopprj.shop.web.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,13 +9,21 @@ import shopprj.shop.domain.dto.CommentDto;
 import shopprj.shop.domain.dto.DeliveryDto;
 import shopprj.shop.domain.dto.ItemDto;
 import shopprj.shop.domain.dto.MemberDto;
+import shopprj.shop.domain.service.ItemService;
 import shopprj.shop.web.argumentresolver.Login;
 
+import java.util.List;
+
 @Controller
+@RequiredArgsConstructor
 public class OrderController {
+
+    private final ItemService itemService;
 
     @GetMapping("/Buy")
     public String BuyForm(@Login MemberDto loginMember, ItemDto itemDto, CommentDto commentDto, Model model){
+        List<ItemDto> all = itemService.findAll();//dto로 바꾸어서 다시 나오게 해야한다. 그리고 출력해야한다. 그리고 model값에 넣는다.
+        //금요일에 stream으로 한번에해서 전부 열기
         model.addAttribute("member", loginMember);
         model.addAttribute("comment",commentDto);
         model.addAttribute("item",itemDto);
@@ -27,6 +36,9 @@ public class OrderController {
 
     @GetMapping("/Cart")
     public String CartForm(@Login MemberDto loginMember, ItemDto itemDto, Model model){
+        List<ItemDto> all = itemService.findAll();//dto로 바꾸어서 다시 나오게 해야한다. 그리고 출력해야한다. 그리고 model값에 넣는다.
+        //금요일에 stream으로 한번에해서 전부 열기
+        //선호하는것만 뽑아야한다.
         model.addAttribute("member", loginMember);
         model.addAttribute("item",itemDto);
         return "buy/Cart";
