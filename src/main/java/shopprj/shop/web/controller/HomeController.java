@@ -25,6 +25,7 @@ public class HomeController {
             return "Home";
         }
         model.addAttribute("member",loginMember);
+        model.addAttribute("item",all);
         return "LoginHome";
     }
 }

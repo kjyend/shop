@@ -5,6 +5,7 @@ import javax.persistence.*;
 @Entity
 public class Cart {
     @Id @GeneratedValue
+    @Column(name = "cart_id")
     private Long id;
 
     private Long cartCount; //상품을 원하는 갯수

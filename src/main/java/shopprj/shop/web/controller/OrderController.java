@@ -26,7 +26,7 @@ public class OrderController {
         //금요일에 stream으로 한번에해서 전부 열기
         model.addAttribute("member", loginMember);
         model.addAttribute("comment",commentDto);
-        model.addAttribute("item",itemDto);
+        model.addAttribute("item",all);
         return "buy/Buy";
     }
     @PostMapping("/Buy")
@@ -40,7 +40,7 @@ public class OrderController {
         //금요일에 stream으로 한번에해서 전부 열기
         //선호하는것만 뽑아야한다.
         model.addAttribute("member", loginMember);
-        model.addAttribute("item",itemDto);
+        model.addAttribute("item",all);
         return "buy/Cart";
     }
 

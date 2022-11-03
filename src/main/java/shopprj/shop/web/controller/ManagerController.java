@@ -60,6 +60,7 @@ public class ManagerController {
         //스트림 방법으로 해야한다. 금요일에한다. 지금은 null이 나온다.
         List<MemberDto> all = memberService.findAll();
         model.addAttribute("member",loginMember);
+        model.addAttribute("members",all);
         return "manager/MemberManager";
     }
 

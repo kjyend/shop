@@ -15,6 +15,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 public class Comment {
     @Id @GeneratedValue
+    @Column(name = "comment_id")
     private Long id;
 
     private Long point;
