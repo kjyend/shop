@@ -39,4 +39,5 @@ public class MemberService {
         //스트림 방법으로 해야한다.
         return null;
     }
+
 }

@@ -48,9 +48,11 @@
                 <td th:text="${items.stockQuantity}"></td>
                 <td>
                     <form action="" method="post">
-                            <input type="text"  th:text="${items.stockQuantity}">
-<!--                            히든으로 post로 넣어버리고 정보를 넣고 원하는 숫자를 넣어서 수량을 조절하자-->
-                            <button type="submit">+</button>
+                        <input type="text" th:text="${items.stockQuantity}">
+<!--                     두개를 계산해서 넣어햐하는데 고민해야할듯-->
+                        <input type="hidden" name="name" th:value="${items.name}">
+                        <input type="hidden" name="price" th:value="${items.price}">
+                        <button type="submit">+</button>
                     </form>
                 </td>
             </tr>

@@ -10,6 +10,7 @@ import shopprj.shop.domain.dto.DeliveryDto;
 import shopprj.shop.domain.dto.ItemDto;
 import shopprj.shop.domain.dto.MemberDto;
 import shopprj.shop.domain.service.ItemService;
+import shopprj.shop.domain.service.MemberService;
 import shopprj.shop.web.argumentresolver.Login;
 
 import java.util.List;
@@ -20,6 +21,8 @@ public class OrderController {
 
     private final ItemService itemService;
 
+    private final MemberService memberService;
+
     @GetMapping("/Buy")
     public String BuyForm(@Login MemberDto loginMember, ItemDto itemDto, CommentDto commentDto, Model model){
         List<ItemDto> all = itemService.findAll();//dto로 바꾸어서 다시 나오게 해야한다. 그리고 출력해야한다. 그리고 model값에 넣는다.
@@ -29,8 +32,11 @@ public class OrderController {
         model.addAttribute("item",all);
         return "buy/Buy";
     }
+
     @PostMapping("/Buy")
     public String Buy(ItemDto itemDto){//총 가격, 주소 넣어서,
+        //item에서 buy하면 item에서 표시할게 아니라 member에서 해야할듯
+        itemService.buyItem();
         return "redirect:/";
     }
 
@@ -47,6 +53,7 @@ public class OrderController {
     @PostMapping("/Cart")
     public String Cart(ItemDto itemDto){
         //cart로 자신의 id를 넣는다던가 아니면 다른 식으로 표현해야한다.
+        itemService.cartItem();
         return "redirect:/";
     }
 
