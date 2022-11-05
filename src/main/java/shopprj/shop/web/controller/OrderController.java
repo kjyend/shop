@@ -9,6 +9,7 @@ import shopprj.shop.domain.dto.CommentDto;
 import shopprj.shop.domain.dto.DeliveryDto;
 import shopprj.shop.domain.dto.ItemDto;
 import shopprj.shop.domain.dto.MemberDto;
+import shopprj.shop.domain.service.CommentService;
 import shopprj.shop.domain.service.ItemService;
 import shopprj.shop.domain.service.MemberService;
 import shopprj.shop.web.argumentresolver.Login;
@@ -23,10 +24,15 @@ public class OrderController {
 
     private final MemberService memberService;
 
+    private final CommentService commentService;
+
     @GetMapping("/Buy")
     public String BuyForm(@Login MemberDto loginMember, ItemDto itemDto, CommentDto commentDto, Model model){
         List<ItemDto> all = itemService.findAll();//dto로 바꾸어서 다시 나오게 해야한다. 그리고 출력해야한다. 그리고 model값에 넣는다.
         //금요일에 stream으로 한번에해서 전부 열기
+        List<CommentDto> talk = commentService.findTalk();
+        //stream으로 해결해야한다.
+        model.addAttribute("comments",talk);
         model.addAttribute("member", loginMember);
         model.addAttribute("comment",commentDto);
         model.addAttribute("item",all);

@@ -69,5 +69,13 @@
         </form>
     </div>
 </div>
+<div>
+    <form th:object="${comments}">
+        <div>
+            <span th:text="*{point}"></span>
+            <span th:text="*{talk}"></span>
+        </div>
+    </form>
+</div>
 </body>
 </html>
