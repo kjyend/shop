@@ -1,7 +1,12 @@
 package shopprj.shop.domain.repository;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import shopprj.shop.domain.dto.DeliveryDto;
+import shopprj.shop.domain.entity.Delivery;
+import shopprj.shop.domain.entity.Member;
 
 @Repository
-public class DeliveryRepository {
+public interface DeliveryRepository extends JpaRepository<Delivery,String> {
+    DeliveryDto findByMember(Member member);
 }

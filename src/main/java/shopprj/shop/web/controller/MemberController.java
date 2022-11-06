@@ -8,9 +8,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import shopprj.shop.domain.dto.DeliveryDto;
+import shopprj.shop.domain.dto.ItemDto;
 import shopprj.shop.domain.dto.MemberDto;
+import shopprj.shop.domain.service.DeliveryService;
+import shopprj.shop.domain.service.ItemService;
 import shopprj.shop.domain.service.MemberService;
 import shopprj.shop.web.argumentresolver.Login;
+
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -19,9 +25,17 @@ public class MemberController {
 
     private final MemberService memberService;
 
+    private final ItemService itemService;
+
+    private final DeliveryService deliveryService;
+
     @GetMapping("/Mypage/{id}")
     public String MypageForm(@Login MemberDto loginMember, Model model){
+        DeliveryDto myDelivery = deliveryService.findMyDelivery(loginMember);
+        List<ItemDto> all = itemService.findAll();
         model.addAttribute("member", loginMember);
+        model.addAttribute("item",all);
+        model.addAttribute("delivery",myDelivery);
         return "mypage/MyPage";
     }
 
