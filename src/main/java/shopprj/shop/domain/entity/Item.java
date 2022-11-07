@@ -27,12 +27,11 @@ public class Item {
     @OneToMany(mappedBy = "item")
     private List<OrderItem> orderItems=new ArrayList<OrderItem>();
 
-
-    public ItemDto toItemDto(Item item) {
+    public ItemDto toItemDto() {
         return ItemDto.builder()
-                .name(item.getName())
-                .price(item.getPrice())
-                .stockQuantity(item.getStockQuantity()).build();
+                .name(name)
+                .price(price)
+                .stockQuantity(stockQuantity).build();
     }
 
     public void addStock(Long stock){

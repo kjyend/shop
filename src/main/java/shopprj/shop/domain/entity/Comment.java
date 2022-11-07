@@ -25,7 +25,7 @@ public class Comment {
     @JoinColumn(name="member_id")
     private Member member;
 
-    public CommentDto toComment(){
+    public CommentDto toCommentDto(){
         return CommentDto.builder()
                 .talk(talk)
                 .point(point)

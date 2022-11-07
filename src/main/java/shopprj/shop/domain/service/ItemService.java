@@ -7,6 +7,7 @@ import shopprj.shop.domain.entity.Item;
 import shopprj.shop.domain.repository.ItemRepository;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -28,12 +29,14 @@ public class ItemService {
 
     public List<ItemDto> findAll() {
         List<Item> all = itemRepository.findAll();
+        List<ItemDto> itemList = all.stream()
+                .map(Item::toItemDto).collect(Collectors.toList());
         //all의 있는 item을 itemdto로 바꾸어야한다. stream으로 사용한다.
-        return null;
+        return itemList;
     }
 
-    public List<ItemDto> findCart(){
-
+    public List<ItemDto> findCart(){//CartDto 만들어야할듯
+        //CartDto만들고 연동시켜서 나오게 해야할듯
         //itemRepository에서 Cart가 1인값만 추출한다.
         return null;
     }

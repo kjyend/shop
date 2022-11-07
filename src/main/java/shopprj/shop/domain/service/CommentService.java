@@ -8,6 +8,7 @@ import shopprj.shop.domain.entity.Comment;
 import shopprj.shop.domain.repository.CommentRepository;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -15,16 +16,12 @@ public class CommentService {
 
     private final CommentRepository commentRepository;
 
-    public void pointCheck(){
-
-    }
-    public void talkCheck(){
-
-    }
     public List<CommentDto> findTalk(){
         List<Comment> all = commentRepository.findAll();
         //stream 으로 전부 찾아내기
-        return null;
+        List<CommentDto> commentList = all.stream()
+                .map(Comment::toCommentDto).collect(Collectors.toList());
+        return commentList;
     }
 
     public void save(CommentDto commentDto, MemberDto memberDto) {

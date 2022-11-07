@@ -61,6 +61,7 @@ public class LoginController {
         session.setAttribute("loginMember",loginMember);
         return "redirect:"+redirectULR;
     }
+
     @PostMapping("logout")
     public String logout(HttpServletRequest request){
         HttpSession session = request.getSession(false);
