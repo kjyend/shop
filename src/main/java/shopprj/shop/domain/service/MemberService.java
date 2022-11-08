@@ -9,6 +9,7 @@ import shopprj.shop.domain.entity.Member;
 import shopprj.shop.domain.repository.MemberRepository;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -37,7 +38,8 @@ public class MemberService {
     public List<MemberDto> findAll() {
         List<Member> all = memberRepository.findAll();
         //스트림 방법으로 해야한다.
-        return null;
+        List<MemberDto> findMember = all.stream().map(Member::toMemberDto).collect(Collectors.toList());
+        return findMember;
     }
 
 }

@@ -23,7 +23,7 @@ public class ItemService {
 
 
     public void createItem(ItemDto itemDto) {
-        Item item = itemDto.toItemEntity(itemDto);
+        Item item = itemDto.toItemEntity();
         itemRepository.save(item);
     }
 
@@ -36,9 +36,9 @@ public class ItemService {
     }
 
     public List<ItemDto> findCart(){//CartDto 만들어야할듯
-        //CartDto만들고 연동시켜서 나오게 해야할듯
-        //itemRepository에서 Cart가 1인값만 추출한다.
-        return null;
+        List<Item> findCart = itemRepository.findByCart();
+        List<ItemDto> cartList = findCart.stream().map(Item::toItemDto).collect(Collectors.toList());
+        return cartList;
     }
 
     public void buyItem(){

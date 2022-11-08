@@ -24,6 +24,9 @@ public class Item {
     private Long price;
     private Long stockQuantity;
 
+    @OneToOne
+    private Cart cart;
+
     @OneToMany(mappedBy = "item")
     private List<OrderItem> orderItems=new ArrayList<OrderItem>();
 
@@ -31,7 +34,9 @@ public class Item {
         return ItemDto.builder()
                 .name(name)
                 .price(price)
-                .stockQuantity(stockQuantity).build();
+                .stockQuantity(stockQuantity)
+                .cart(cart)
+                .build();
     }
 
     public void addStock(Long stock){

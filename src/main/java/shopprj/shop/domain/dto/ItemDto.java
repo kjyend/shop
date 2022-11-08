@@ -2,6 +2,7 @@ package shopprj.shop.domain.dto;
 
 import lombok.Builder;
 import lombok.Getter;
+import shopprj.shop.domain.entity.Cart;
 import shopprj.shop.domain.entity.Item;
 
 @Builder
@@ -11,11 +12,13 @@ public class ItemDto {
     private String name;
     private Long price;
     private Long stockQuantity;
+    private Cart cart;
 
-    public Item toItemEntity(ItemDto itemDto) {
+    public Item toItemEntity() {
         return Item.builder()
-                .name(itemDto.getName())
-                .price(itemDto.getPrice())
-                .stockQuantity(itemDto.getStockQuantity()).build();
+                .name(name)
+                .price(price)
+                .stockQuantity(stockQuantity)
+                .cart(cart).build();
     }
 }

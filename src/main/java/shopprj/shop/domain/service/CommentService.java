@@ -18,7 +18,6 @@ public class CommentService {
 
     public List<CommentDto> findTalk(){
         List<Comment> all = commentRepository.findAll();
-        //stream 으로 전부 찾아내기
         List<CommentDto> commentList = all.stream()
                 .map(Comment::toCommentDto).collect(Collectors.toList());
         return commentList;
