@@ -26,6 +26,10 @@ public class Delivery {
     @OneToOne(mappedBy = "delivery")
     private Order order;
 
+    @ManyToOne
+    @JoinColumn(name = "member_id")
+    private Member member;
+
     @Enumerated(EnumType.STRING)
     private DeliveryStatus status; //[READY, COMP, ARRIVAL]
 

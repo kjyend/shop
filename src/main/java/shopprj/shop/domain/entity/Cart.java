@@ -14,4 +14,8 @@ public class Cart {
     @JoinColumn(name = "member_id")
     private Member member;
 
+    @ManyToOne
+    @JoinColumn(name = "item_id")
+    private Item item;
+
 }

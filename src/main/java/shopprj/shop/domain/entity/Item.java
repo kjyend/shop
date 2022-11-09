@@ -24,8 +24,8 @@ public class Item {
     private Long price;
     private Long stockQuantity;
 
-    @OneToOne
-    private Cart cart;
+    @OneToMany
+    private List<Cart> cart=new ArrayList<Cart>();
 
     @OneToMany(mappedBy = "item")
     private List<OrderItem> orderItems=new ArrayList<OrderItem>();
@@ -35,7 +35,7 @@ public class Item {
                 .name(name)
                 .price(price)
                 .stockQuantity(stockQuantity)
-                .cart(cart)
+                .cart((Cart) cart)
                 .build();
     }
 

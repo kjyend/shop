@@ -38,6 +38,9 @@ public class Member {
     @OneToMany(mappedBy = "member")
     private List<Order> orders=new ArrayList<Order>();
 
+    @OneToMany(mappedBy = "member")
+    private List<Delivery> deliveries=new ArrayList<Delivery>();
+
 
     public MemberDto toMemberDto(){
         return MemberDto.builder()

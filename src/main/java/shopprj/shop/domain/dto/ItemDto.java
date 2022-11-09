@@ -5,6 +5,8 @@ import lombok.Getter;
 import shopprj.shop.domain.entity.Cart;
 import shopprj.shop.domain.entity.Item;
 
+import java.util.List;
+
 @Builder
 @Getter
 public class ItemDto {
@@ -19,6 +21,6 @@ public class ItemDto {
                 .name(name)
                 .price(price)
                 .stockQuantity(stockQuantity)
-                .cart(cart).build();
+                .cart((List<Cart>) cart).build();
     }
 }
