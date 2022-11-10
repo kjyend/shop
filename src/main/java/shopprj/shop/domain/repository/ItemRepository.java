@@ -10,6 +10,7 @@ import java.util.List;
 @Repository
 public interface ItemRepository extends JpaRepository<Item, String> {
      Item findByName(String name);
+     // findbycart에서 에러가 나온다. 답이 없는데?
 
-     List<Item> findByCart();
+     List<Item> findItemByCart();
 }

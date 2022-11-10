@@ -36,7 +36,7 @@ public class ItemService {
     }
 
     public List<ItemDto> findCart(){//CartDto 만들어야할듯
-        List<Item> findCart = itemRepository.findByCart();
+        List<Item> findCart = itemRepository.findItemByCart();
         List<ItemDto> cartList = findCart.stream().map(Item::toItemDto).collect(Collectors.toList());
         return cartList;
     }
