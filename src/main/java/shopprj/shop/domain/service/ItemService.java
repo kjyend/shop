@@ -36,10 +36,12 @@ public class ItemService {
     }
 
     public List<ItemDto> findCart(){//CartDto 만들어야할듯
-        List<Item> findCart = itemRepository.findItemByCart();
-        List<ItemDto> cartList = findCart.stream().map(Item::toItemDto).collect(Collectors.toList());
-        return cartList;
+//        List<Item> findCart = itemRepository.findByCart();
+//        List<ItemDto> cartList = findCart.stream().map(Item::toItemDto).collect(Collectors.toList());
+//        return cartList;
+        return null;
     }
+
 
     public void buyItem(){
         //item을 살때 member에 저장 해야하는것과 갯수파악잘해야한다.

@@ -3,6 +3,7 @@ package shopprj.shop.domain.dto;
 import lombok.Builder;
 import lombok.Getter;
 import shopprj.shop.domain.entity.Delivery;
+import shopprj.shop.domain.entity.Member;
 
 @Builder
 @Getter

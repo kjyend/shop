@@ -37,6 +37,7 @@ public class Delivery {
         return DeliveryDto.builder()
                 .city(city)
                 .street(street)
-                .zipcode(zipcode).build();
+                .zipcode(zipcode)
+                .build();
     }
 }

@@ -7,15 +7,18 @@ import shopprj.shop.domain.dto.MemberDto;
 import shopprj.shop.domain.entity.Member;
 import shopprj.shop.domain.repository.DeliveryRepository;
 
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class DeliveryService {
 
     private final DeliveryRepository deliveryRepository;
 
-    public DeliveryDto findMyDelivery(MemberDto loginMember) {
+    public Optional<DeliveryDto> findMyDelivery(MemberDto loginMember) {
         Member member = loginMember.toMemberEntity();
-        DeliveryDto byMember = deliveryRepository.findByMember(member);
+        Optional<DeliveryDto> byMember = deliveryRepository.findByMember(member);
         return byMember;
+        //delivery에 오류가 나온다.
     }
 }

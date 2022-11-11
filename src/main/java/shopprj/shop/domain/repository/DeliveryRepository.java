@@ -6,7 +6,9 @@ import shopprj.shop.domain.dto.DeliveryDto;
 import shopprj.shop.domain.entity.Delivery;
 import shopprj.shop.domain.entity.Member;
 
+import java.util.Optional;
+
 @Repository
 public interface DeliveryRepository extends JpaRepository<Delivery,String> {
-    DeliveryDto findByMember(Member member);
+    Optional<DeliveryDto> findByMember(Member member);
 }

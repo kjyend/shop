@@ -20,12 +20,12 @@ public class HomeController {
     @GetMapping("/")
     public String homeForm(@Login MemberDto loginMember, Model model) {
         List<ItemDto> all = itemService.findAll();//dto로 바꾸어서 다시 나오게 해야한다. 그리고 출력해야한다. 그리고 model값에 넣는다.
+        model.addAttribute("member",loginMember);
+        model.addAttribute("item",all);
         //금요일에 stream으로 한번에해서 전부 열기
         if (loginMember == null) {
             return "Home";
         }
-        model.addAttribute("member",loginMember);
-        model.addAttribute("item",all);
         return "LoginHome";
     }
 }

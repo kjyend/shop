@@ -41,13 +41,13 @@
                     <button type="submit" class=" btn btn-lg btn-primary" >구매하기</button>
                 </form>
             </td>
-            <form action="Cart" method="get">
-                <input type="hidden" name="name" th:value="${items.name}">
-                <input type="hidden" name="price" th:value="${items.price}">
-                <input type="hidden" name="stockQuantity" th:value="${items.stockQuantity}">
-                <button type="submit" class=" btn btn-lg btn-primary" >쇼핑카드에 넣기</button>
-            </form>
             <td>
+                <form action="Cart" method="get">
+                    <input type="hidden" name="name" th:value="${items.name}">
+                    <input type="hidden" name="price" th:value="${items.price}">
+                    <input type="hidden" name="stockQuantity" th:value="${items.stockQuantity}">
+                    <button type="submit" class=" btn btn-lg btn-primary" >쇼핑카드에 넣기</button>
+                </form>
             </td>
         </tr>
         </tbody>

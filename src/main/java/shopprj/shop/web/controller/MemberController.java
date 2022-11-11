@@ -17,6 +17,7 @@ import shopprj.shop.domain.service.MemberService;
 import shopprj.shop.web.argumentresolver.Login;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor
@@ -31,11 +32,13 @@ public class MemberController {
 
     @GetMapping("/Mypage/{id}")
     public String MypageForm(@Login MemberDto loginMember, Model model){
-        DeliveryDto myDelivery = deliveryService.findMyDelivery(loginMember);
+        //여기서 에러가 나온다. 일단 대기를 해야할듯
+        Optional<DeliveryDto> myDelivery = deliveryService.findMyDelivery(loginMember);
+        
         List<ItemDto> all = itemService.findAll();
         model.addAttribute("member", loginMember);
         model.addAttribute("item",all);
-        model.addAttribute("delivery",myDelivery);
+//        model.addAttribute("delivery",myDelivery);
         return "mypage/MyPage";
     }
 
