@@ -2,7 +2,10 @@ package shopprj.shop.domain.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import shopprj.shop.domain.dto.CartDto;
 import shopprj.shop.domain.dto.ItemDto;
+import shopprj.shop.domain.entity.Cart;
 import shopprj.shop.domain.entity.Item;
 import shopprj.shop.domain.repository.ItemRepository;
 
@@ -11,6 +14,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class ItemService {
 
     private final ItemRepository itemRepository;
@@ -35,11 +39,11 @@ public class ItemService {
         return itemList;
     }
 
-    public List<ItemDto> findCart(){//CartDto 만들어야할듯
-//        List<Item> findCart = itemRepository.findByCart();
-//        List<ItemDto> cartList = findCart.stream().map(Item::toItemDto).collect(Collectors.toList());
-//        return cartList;
-        return null;
+    public List<ItemDto> findCart(CartDto cartDto){//CartDto 만들어야할듯
+        Cart cart = cartDto.toCart();
+        List<Item> findCart = itemRepository.findByCart(cart);
+        List<ItemDto> cartList = findCart.stream().map(Item::toItemDto).collect(Collectors.toList());
+        return cartList;
     }
 
 

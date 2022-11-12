@@ -19,6 +19,6 @@ public class DeliveryService {
         Member member = loginMember.toMemberEntity();
         Optional<DeliveryDto> byMember = deliveryRepository.findByMember(member);
         return byMember;
-        //delivery에 오류가 나온다.
+        //delivery에 오류가 나온다. 자신의 번호랑 같은지 확인을 한다.
     }
 }
