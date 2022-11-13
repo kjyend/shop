@@ -48,10 +48,10 @@
                 <td th:text="${items.stockQuantity}"></td>
                 <td>
                     <form action="" method="post">
-                        <input type="text" th:text="${items.stockQuantity}">
-<!--                     두개를 계산해서 넣어햐하는데 고민해야할듯-->
+                        <input type="text" name="stockQuantity" th:value="${items.stockQuantity}">
                         <input type="hidden" name="name" th:value="${items.name}">
                         <input type="hidden" name="price" th:value="${items.price}">
+                        <input type="hidden" name="stockQuantity" th:value="${items.stockQuantity}">
                         <button type="submit">+</button>
                     </form>
                 </td>

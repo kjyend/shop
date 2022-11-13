@@ -31,14 +31,13 @@ public class MemberController {
     private final DeliveryService deliveryService;
 
     @GetMapping("/Mypage/{id}")
-    public String MypageForm(@Login MemberDto loginMember, Model model){
+    public String MypageForm(@Login MemberDto loginMember,DeliveryDto deliveryDto, Model model){
         //여기서 에러가 나온다. 일단 대기를 해야할듯
-        Optional<DeliveryDto> myDelivery = deliveryService.findMyDelivery(loginMember);
         
         List<ItemDto> all = itemService.findAll();
         model.addAttribute("member", loginMember);
         model.addAttribute("item",all);
-//        model.addAttribute("delivery",myDelivery);
+        model.addAttribute("delivery",deliveryDto);
         return "mypage/MyPage";
     }
 

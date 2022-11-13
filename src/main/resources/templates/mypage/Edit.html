@@ -40,7 +40,6 @@
 <!--                데이터를 보내야하는데 안보네짐 아마도 다르게 해야할거같다.-->
 <!--                <button type="submit" class="btn btn-lg btn-primary">중복검사</button>-->
 <!--            </div>-->
-            <input type="button" value="ID중복확인">
         </div>
         <div class="mb-3">
             <label for="password" class="form-label">password</label>
@@ -60,6 +59,10 @@
             </div>
         </div>
     </form>
+</div>
+<div>
+    <input type="hidden" name="loginId" th:value="*{loginId}">
+    <button type="submit">중복확인</button>
 </div>
 </body>
 </html>

@@ -49,6 +49,7 @@ public class ItemService {
 
     public void buyItem(){
         //item을 살때 member에 저장 해야하는것과 갯수파악잘해야한다.
+
     }
 
     public void cartItem(){
