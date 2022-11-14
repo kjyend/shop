@@ -14,6 +14,7 @@ import shopprj.shop.domain.dto.MemberDto;
 import shopprj.shop.domain.service.DeliveryService;
 import shopprj.shop.domain.service.ItemService;
 import shopprj.shop.domain.service.MemberService;
+import shopprj.shop.domain.service.OrderService;
 import shopprj.shop.web.argumentresolver.Login;
 
 import java.util.List;
@@ -28,12 +29,12 @@ public class MemberController {
 
     private final ItemService itemService;
 
-    private final DeliveryService deliveryService;
+    private final OrderService orderService;
 
     @GetMapping("/Mypage/{id}")
     public String MypageForm(@Login MemberDto loginMember,DeliveryDto deliveryDto, Model model){
         //여기서 에러가 나온다. 일단 대기를 해야할듯
-        
+        //findAll이 아니라 구매할때 넣는것을 넣어야할듯
         List<ItemDto> all = itemService.findAll();
         model.addAttribute("member", loginMember);
         model.addAttribute("item",all);
