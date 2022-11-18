@@ -34,6 +34,7 @@
             <td th:text="${items.price}"></td>
             <td th:text="${items.stockQuantity}"></td>
             <td>
+<!--                home이기 때문에 로그인 해주세요로 바로 로그인 화면으로 지나감-->
                 <form action="Buy" method="get">
                     <input type="hidden" name="name" th:value="${items.name}">
                     <input type="hidden" name="price" th:value="${items.price}">
@@ -42,6 +43,7 @@
                 </form>
             </td>
             <td>
+                <!--                home이기 때문에 로그인 해주세요로 바로 로그인 화면으로 지나감-->
                 <form action="Cart" method="get">
                     <input type="hidden" name="name" th:value="${items.name}">
                     <input type="hidden" name="price" th:value="${items.price}">

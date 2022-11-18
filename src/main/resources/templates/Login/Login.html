@@ -38,7 +38,7 @@
 </head>
 <body>
 <div class="container">
-    <form class="form-signin" action="" th:object="${memberDto}" method="post">
+    <form class="form-signin" action="" th:object="${member}" method="post">
         <div>
             <label for="loginId" class="form-label"></label>
             <input type="text" class="form-control"  id="loginId" th:field="*{loginId}" placeholder="id">
@@ -55,6 +55,10 @@
         <div class="margin-button">
             <button class="w-100 btn btn-secondary btn-lg" onclick="location.href='Home.html'"
                     th:onclick="|location.href='@{/}'|" type="button">취소</button>
+        </div>
+        <div class="margin-button">
+            <button class="w-100 btn btn-lg btn-primary" onclick="location.href='Signup.html'"
+                    th:onclick="|location.href='@{/signup}'|" type="button">sign-up</button>
         </div>
     </form>
 </div>
