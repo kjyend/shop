@@ -46,10 +46,16 @@ public class ItemService {
         return cartList;
     }
 
+    public ItemDto findBuyItem(ItemDto itemDto){
+        Item byName = itemRepository.findByName(itemDto.getName());
+        ItemDto item = byName.toItemDto();
+        return item;
 
-    public void buyItem(){
+    }
+
+    public void buyItem(String name){
         //item을 살때 member에 저장 해야하는것과 갯수파악잘해야한다.
-
+        itemRepository.findByName(name);
     }
 
     public void cartItem(){

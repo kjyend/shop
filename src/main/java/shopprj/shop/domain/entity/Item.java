@@ -24,10 +24,10 @@ public class Item {
     private Long price;
     private Long stockQuantity;
 
-    @OneToMany(mappedBy = "item")
+    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
     private List<Cart> cart=new ArrayList<Cart>();
 
-    @OneToMany(mappedBy = "item")
+    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems=new ArrayList<OrderItem>();
 
     public ItemDto toItemDto() {
@@ -35,7 +35,6 @@ public class Item {
                 .name(name)
                 .price(price)
                 .stockQuantity(stockQuantity)
-                .cart(cart)
                 .build();
     }
 

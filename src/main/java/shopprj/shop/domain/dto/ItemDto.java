@@ -14,13 +14,13 @@ public class ItemDto {
     private String name;
     private Long price;
     private Long stockQuantity;
-    private List<Cart> cart;
+
 
     public Item toItemEntity() {
         return Item.builder()
                 .name(name)
                 .price(price)
                 .stockQuantity(stockQuantity)
-                .cart(cart).build();
+                .build();
     }
 }

@@ -27,25 +27,22 @@ public class OrderController {
     private final CommentService commentService;
 
     @GetMapping("/Buy")
-    public String BuyForm(@Login MemberDto loginMember, ItemDto itemDto, CommentDto commentDto, Model model){
-        if(loginMember==null){
-            return "login/Login";
-        }
-        List<ItemDto> all = itemService.findAll();//dto로 바꾸어서 다시 나오게 해야한다. 그리고 출력해야한다. 그리고 model값에 넣는다.
-        //금요일에 stream으로 한번에해서 전부 열기
+    public String BuyForm(@Login MemberDto loginMember,ItemDto itemDto, CommentDto commentDto, Model model){
+        ItemDto buyItem = itemService.findBuyItem(itemDto);//dto로 바꾸어서 다시 나오게 해야한다. 그리고 출력해야한다. 그리고 model값에 넣는다.
+//금요일에 stream으로 한번에해서 전부 열기
         List<CommentDto> talk = commentService.findTalk();
         //stream으로 해결해야한다.
         model.addAttribute("comments",talk);
         model.addAttribute("member", loginMember);
         model.addAttribute("comment",commentDto);
-        model.addAttribute("item",all);
+        model.addAttribute("item",buyItem);
         return "buy/Buy";
     }
 
     @PostMapping("/Buy")
     public String Buy(ItemDto itemDto){//총 가격, 주소 넣어서,
         //item에서 buy하면 item에서 표시할게 아니라 member에서 해야할듯
-        itemService.buyItem();
+//        itemService.buyItem();
         return "redirect:/";
     }
 
