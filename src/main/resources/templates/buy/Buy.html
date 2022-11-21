@@ -60,17 +60,19 @@
         </tbody>
     </table>
     <!--        댓글만들자-->
-    <div>
+    <div class="container">
         <form action="Comment" th:object="${comment}" method="post">
             <div>
                 <input type="text" th:field="*{point}">
+<!--                별점 점수 주기-->
                 <input type="text" class="form-control" th:field="*{talk}">
                 <button type="submit">댓글달기</button>
             </div>
         </form>
     </div>
 </div>
-<div>
+<div class="container">
+<!--    이건 다른 댓글로 달아야 겠다.-->
     <form th:object="${comment}">
         <div>
             <span th:text="*{point}"></span>
