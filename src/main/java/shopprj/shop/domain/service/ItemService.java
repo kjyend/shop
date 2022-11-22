@@ -53,14 +53,4 @@ public class ItemService {
 
     }
 
-    public void buyItem(String name){
-        //item을 살때 member에 저장 해야하는것과 갯수파악잘해야한다.
-        itemRepository.findByName(name);
-    }
-
-    public void cartItem(){
-        //item을 cart에 넣을때 cart에 갯수을 표시하고 member값을 잘 받아둔다.
-    }
-
-
 }

@@ -5,13 +5,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import shopprj.shop.domain.dto.CommentDto;
-import shopprj.shop.domain.dto.DeliveryDto;
-import shopprj.shop.domain.dto.ItemDto;
-import shopprj.shop.domain.dto.MemberDto;
+import shopprj.shop.domain.dto.*;
 import shopprj.shop.domain.service.CommentService;
 import shopprj.shop.domain.service.ItemService;
-import shopprj.shop.domain.service.MemberService;
+import shopprj.shop.domain.service.OrderService;
 import shopprj.shop.web.argumentresolver.Login;
 
 import java.util.List;
@@ -22,7 +19,7 @@ public class OrderController {
 
     private final ItemService itemService;
 
-    private final MemberService memberService;
+    private final OrderService orderService;
 
     private final CommentService commentService;
 
@@ -44,9 +41,10 @@ public class OrderController {
     }
 
     @PostMapping("/Buy")
-    public String Buy(ItemDto itemDto){//총 가격, 주소 넣어서,
+    public String Buy(OrderDto orderDto, ItemDto itemDto){//총 가격, 주소 넣어서,
         //item에서 buy하면 item에서 표시할게 아니라 member에서 해야할듯
-//        itemService.buyItem();
+        //올때 orderDto로 받아야 한다.
+        orderService.OrderItem(orderDto,itemDto);
         return "redirect:/";
     }
 
@@ -66,7 +64,7 @@ public class OrderController {
     @PostMapping("/Cart")
     public String Cart(ItemDto itemDto){
         //cart로 자신의 id를 넣는다던가 아니면 다른 식으로 표현해야한다.
-        itemService.cartItem();
+
         return "redirect:/";
     }
 
