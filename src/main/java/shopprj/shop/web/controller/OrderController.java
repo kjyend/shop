@@ -27,7 +27,7 @@ public class OrderController {
     public String BuyForm(@Login MemberDto loginMember,ItemDto itemDto, CommentDto commentDto, Model model){
         if(loginMember==null){
             //새로운 itemform을 만들어서 그쪽ㅇ으로 보낸다. redirection으로 보내야한다.
-            return "login/Login";
+            return "redirect:/login";
         }
         ItemDto buyItem = itemService.findBuyItem(itemDto);//dto로 바꾸어서 다시 나오게 해야한다. 그리고 출력해야한다. 그리고 model값에 넣는다.
 //금요일에 stream으로 한번에해서 전부 열기
@@ -44,6 +44,7 @@ public class OrderController {
     public String Buy(OrderDto orderDto, ItemDto itemDto){//총 가격, 주소 넣어서,
         //item에서 buy하면 item에서 표시할게 아니라 member에서 해야할듯
         //올때 orderDto로 받아야 한다.
+        //이것을 그냥 bill로 보넨다.
         orderService.OrderItem(orderDto,itemDto);
         return "redirect:/";
     }
@@ -51,7 +52,7 @@ public class OrderController {
     @GetMapping("/Cart")
     public String CartForm(@Login MemberDto loginMember, ItemDto itemDto, Model model){
         if(loginMember==null){
-            return "login/Login";
+            return "redirect:/login";
         }
         List<ItemDto> all = itemService.findAll();//dto로 바꾸어서 다시 나오게 해야한다. 그리고 출력해야한다. 그리고 model값에 넣는다.
         //금요일에 stream으로 한번에해서 전부 열기
