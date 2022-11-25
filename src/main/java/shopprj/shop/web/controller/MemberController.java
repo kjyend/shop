@@ -61,4 +61,9 @@ public class MemberController {
         return "redirect:/Mypage/"+id;
     }
 
+    @PostMapping("/Cancel")
+    public void Cancel(){
+
+    }
+
 }
