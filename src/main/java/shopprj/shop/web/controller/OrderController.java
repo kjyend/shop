@@ -46,7 +46,7 @@ public class OrderController {
         //올때 orderDto로 받아야 한다.
         //이것을 그냥 bill로 보넨다.
         orderService.OrderItem(orderDto,itemDto);
-        return "redirect:/";
+        return "redirect:/Bill";
     }
 
     @GetMapping("/Cart")
@@ -77,6 +77,16 @@ public class OrderController {
         model.addAttribute("item",itemDto);
         return "bill/Bill";
     }
+
+    @PostMapping("/Bill")
+    public String Invoice(){
+//        if(){
+//            return "redirect:/Fail";
+//        }
+
+        return "redirect:/Success";
+    }
+
 
     @GetMapping("Success")
     public String SuccessForm(@Login MemberDto loginMember,ItemDto itemDto, DeliveryDto deliveryDto ,Model model){
