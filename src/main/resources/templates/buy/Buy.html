@@ -66,7 +66,14 @@
         <form action="Comment" th:object="${comment}" method="post">
             <div>
                 <span th:text="${member.name}"></span>
-                <input  type="text" th:field="*{point}">
+                <select class="form-select form-select-sm g-3" aria-label=".form-select-sm example">
+                    <option selected>별점</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
 <!--                별점 점수 주기-->
                 <input type="text" class="form-control" th:field="*{talk}">
                 <button type="submit">댓글달기</button>

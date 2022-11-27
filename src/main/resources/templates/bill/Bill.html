@@ -37,13 +37,12 @@
 <div class="mid">
     <form th:object="${item}">
         <div>
-            제품이름 <div th:text="${item.name}"></div>
+            제품이름 <span th:text="${item.name}"></span>
         </div>
     </form>
     <form th:object="${member}">
         <div>
-            <label for="name" class="form-label">이름</label>
-            <input type="text" id="name" th:field="*{name}">
+            이름 <span th:text="*{name}"></span>
         </div>
     </form>
     <form action="" th:object="${delivery}">
