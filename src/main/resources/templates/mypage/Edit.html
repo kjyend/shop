@@ -23,13 +23,11 @@
     <div class="container-md">
         <a class="navbar-brand" th:onclick="|location.href='@{/}'|">Shop</a>
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <a class="btn btn-primary" th:onclick="|location.href='orderList.html'|" type="submit">orderList</a>
+            <a class="btn btn-primary" th:onclick="|location.href='@{/OrderList}'|" type="submit">orderList</a>
+            <form th:action="@{/logout}" method="post">
+                    <button class="btn btn-primary" th:onclick="|location.href='login.html'|" type="submit">sign out</button>
+            </form>
         </div>
-        <form th:action="@{/logout}" method="post">
-            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <button class="btn btn-primary" th:onclick="|location.href='login.html'|" type="submit">sign out</button>
-            </div>
-        </form>
     </div>
 </div>
 <div class="mid">

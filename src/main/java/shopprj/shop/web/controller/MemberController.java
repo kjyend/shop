@@ -66,4 +66,9 @@ public class MemberController {
 
     }
 
+    @GetMapping("/OrderList")
+    public void ListForm(@Login MemberDto loginMember){
+
+    }
+
 }

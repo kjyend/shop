@@ -53,7 +53,13 @@
             <input id="zipcode" th:field="*{zipcode}">
         </div>
         <div>
-            <button class="btn btn-primary" >구매하기</button>
+            <form action="" method="post">
+                <input type="hidden" name="name" th:value="${item.name}">
+                <input type="hidden" name="price" th:value="${delivery.city}">
+                <input type="hidden" name="price" th:value="${delivery.street}">
+                <input type="hidden" name="stockQuantity" th:value="${delivery.zipcode}">
+                <button type="submit" class="btn btn-primary" >구매하기</button>
+            </form>
             <button class="btn btn-secondary btn-lg" onclick="location.href='LoginHome.html'"
                     th:onclick="|location.href='@{/}'|" type="button">취소</button>
         </div>
