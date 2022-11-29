@@ -42,11 +42,12 @@
             <td th:text="${items.stockQuantity}"></td>
 <!--        이름,가격,수량은 내가 text값해서 넣어야한다.-->
             <td>
-                <form action="" method="post">
+                <form action="Bill" method="get">
                     <input type="hidden" name="name" th:value="${items.name}">
                     <input type="hidden" name="price" th:value="${items.price}">
                     <input type="hidden" name="stockQuantity" th:value="${items.stockQuantity}">
                     <button type="submit" class=" btn btn-lg btn-primary" >구매하기</button>
+                    <!--                    post값을 주는데 bill값으로 넘겨야한다.-->
                 </form>
             </td>
             <td>

@@ -10,15 +10,39 @@
     <div class="container-md">
         <a class="navbar-brand" th:onclick="|location.href='@{/}'|">Shop</a>
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <button class="btn btn-primary" th:onclick="|location.href='Mypage.html'|" type="submit">Mypage</button>
-        </div>
-        <form th:action="@{/logout}" method="post">
-            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-
+            <a href="#" class="btn btn-primary" th:href="@{/Mypage/{id} (id=${member.id})}" role="button">Mypage</a>
+            <form th:action="@{/logout}" method="post">
                 <button class="btn btn-primary" th:onclick="|location.href='login.html'|" type="submit">sign out</button>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
+</div>
+<div class="container">
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">상품 주문</th>
+            <th scope="col">주문 금액</th>
+            <th scope="col">수량</th>
+            <th scope="col">주문 상태</th>
+            <th scope="col">배송 취소</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="orders:${order}">
+            <td scope="row" th:text="${item.name}"></td>
+            <td th:text="${item.price}"></td>
+<!--            수량은 따로 받아서 해야할듯한다.-->
+            <td th:text="${item.stockQuantity}"></td>
+            <td th:text="${orders.status}"></td>
+            <td>
+                <form action="" method="post">
+                    <button type="submit">취소하기</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </div>
 </body>
 </html>

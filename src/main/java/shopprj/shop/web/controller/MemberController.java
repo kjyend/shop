@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import shopprj.shop.domain.dto.DeliveryDto;
 import shopprj.shop.domain.dto.ItemDto;
 import shopprj.shop.domain.dto.MemberDto;
+import shopprj.shop.domain.dto.OrderDto;
 import shopprj.shop.domain.service.DeliveryService;
 import shopprj.shop.domain.service.ItemService;
 import shopprj.shop.domain.service.MemberService;
@@ -67,8 +68,10 @@ public class MemberController {
     }
 
     @GetMapping("/OrderList")
-    public void ListForm(@Login MemberDto loginMember){
-
+    public String ListForm(@Login MemberDto loginMember, OrderDto orderDto,Model model){
+        model.addAttribute("member",loginMember);
+        model.addAttribute("order", orderDto);
+        return "mypage/orderList";
     }
 
 }
