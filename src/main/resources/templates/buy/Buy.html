@@ -48,7 +48,7 @@
         <tr th:object="${item}">
             <td th:text="${item.name}"></td>
             <td th:text="${item.price}"></td>
-            <td th:text="${item.stockQuantity}"></td>
+            <td id="stockQuantity" name="stockQuantity" th:value="${item.stockQuantity}"/>
             <td>
                 <form action="Bill" method="get">
                     <input type="hidden" name="name" th:value="${item.name}">
@@ -63,17 +63,15 @@
     </table>
     <!--        댓글만들자-->
     <div class="container">
-        <form action="Comment" th:object="${comment}" method="post">
+        <form action="Comment" th:object="${member}" method="post">
             <div>
-                <span th:text="${member.name}"></span>
-                <select class="form-select form-select-sm g-3" aria-label=".form-select-sm example">
-                    <option selected>별점</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                </select>
+                <span th:text="*{name}"></span>
+                <div>
+                    <select th:field="${comment.point}">
+                        <option value="">별점을 선택해주세요</option>
+                        <option th:each="points:${comment.point}" th:value="${points}" th:text="${points}"></option>
+                    </select>
+                </div>
 <!--                별점 점수 주기-->
                 <input type="text" class="form-control" th:field="*{talk}">
                 <button type="submit">댓글달기</button>
@@ -83,12 +81,12 @@
 </div>
 <div class="container">
 <!--    이건 다른 댓글로 달아야 겠다.-->
-    <form th:object="${comment}">
+    <div th:each="comments : ${comment}">
         <div>
-            <span th:text="*{point}"></span>
-            <span th:text="*{talk}"></span>
+            <span th:text="${comments.point}"></span>
+            <span th:text="${comments.talk}"></span>
         </div>
-    </form>
+    </div>
 </div>
 </body>
 </html>

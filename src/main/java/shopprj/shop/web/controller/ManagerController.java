@@ -17,7 +17,6 @@ import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
-@Slf4j
 public class ManagerController {
 
     private final ItemService itemService;
@@ -38,7 +37,6 @@ public class ManagerController {
 
     @PostMapping("/shopManage")//물품의 양을 추가한다.
     public String updateItem(ItemDto itemDto){
-        log.info("={}",itemDto.getStockQuantity());
         itemService.countUpdate(itemDto);//int a의 양을 넣으면 양이 추가된다. 나중에 따로 받는다.
         return "redirect:/";
     }
