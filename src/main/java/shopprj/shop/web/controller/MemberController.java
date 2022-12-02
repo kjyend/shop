@@ -68,9 +68,9 @@ public class MemberController {
     }
 
     @GetMapping("/OrderList")
-    public String ListForm(@Login MemberDto loginMember, OrderDto orderDto,Model model){
+    public String ListForm(@Login MemberDto loginMember, ItemDto itemDto,Model model){
         model.addAttribute("member",loginMember);
-        model.addAttribute("order", orderDto);
+        model.addAttribute("item", itemDto);
         return "mypage/orderList";
     }
 

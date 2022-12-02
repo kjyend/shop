@@ -11,6 +11,7 @@ import shopprj.shop.domain.service.ItemService;
 import shopprj.shop.domain.service.OrderService;
 import shopprj.shop.web.argumentresolver.Login;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -33,10 +34,17 @@ public class OrderController {
 //금요일에 stream으로 한번에해서 전부 열기
         List<CommentDto> talk = commentService.findTalk();
         //stream으로 해결해야한다.
+        List<Integer> points = new ArrayList<>();
+        points.add(1);
+        points.add(2);
+        points.add(3);
+        points.add(4);
+        points.add(5);
         model.addAttribute("comments",talk);
         model.addAttribute("member", loginMember);
         model.addAttribute("comment",commentDto);
         model.addAttribute("item",buyItem);
+        model.addAttribute("points",points);
         return "buy/Buy";
     }
 

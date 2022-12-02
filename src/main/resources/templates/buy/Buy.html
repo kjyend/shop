@@ -63,13 +63,13 @@
     </table>
     <!--        댓글만들자-->
     <div class="container">
-        <form action="Comment" th:object="${member}" method="post">
+        <form action="Comment" th:object="${comment}" method="post">
             <div>
-                <span th:text="*{name}"></span>
                 <div>
-                    <select th:field="${comment.point}">
+                    <span th:text="${member.name}"></span>
+                    <select th:field="*{point}" style="width: 150px;">
                         <option value="">별점을 선택해주세요</option>
-                        <option th:each="points:${comment.point}" th:value="${points}" th:text="${points}"></option>
+                        <option th:each="point:${points}" th:value="${point}" th:text="${point}"></option>
                     </select>
                 </div>
 <!--                별점 점수 주기-->

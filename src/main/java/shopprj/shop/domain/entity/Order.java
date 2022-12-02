@@ -27,6 +27,9 @@ public class Order {
     @CreatedDate
     private LocalDateTime createdDate;
 
+    @Enumerated(EnumType.STRING)
+    private OrderStatus status; //[ORDER, CANCEL]
+
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems=new ArrayList<OrderItem>();
 
@@ -38,8 +41,6 @@ public class Order {
     @JoinColumn(name = "delivery_id")
     private Delivery delivery;
 
-    @Enumerated(EnumType.STRING)
-    private OrderStatus status; //[ORDER, CANCEL]
 
     public OrderDto toOrderDto(){
         return OrderDto.builder()

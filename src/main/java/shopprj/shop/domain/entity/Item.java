@@ -35,6 +35,7 @@ public class Item {
                 .name(name)
                 .price(price)
                 .stockQuantity(stockQuantity)
+                .orderItems(orderItems)
                 .build();
     }
 

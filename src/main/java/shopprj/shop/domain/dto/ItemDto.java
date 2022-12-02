@@ -4,7 +4,9 @@ import lombok.Builder;
 import lombok.Getter;
 import shopprj.shop.domain.entity.Cart;
 import shopprj.shop.domain.entity.Item;
+import shopprj.shop.domain.entity.OrderItem;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Builder
@@ -14,13 +16,14 @@ public class ItemDto {
     private String name;
     private Long price;
     private Long stockQuantity;
-
+    private List<OrderItem> orderItems=new ArrayList<>();
 
     public Item toItemEntity() {
         return Item.builder()
                 .name(name)
                 .price(price)
                 .stockQuantity(stockQuantity)
+                .orderItems(orderItems)
                 .build();
     }
 }

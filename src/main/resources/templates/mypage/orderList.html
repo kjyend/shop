@@ -29,12 +29,13 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="orders:${order}">
-            <td scope="row" th:text="${item.name}"></td>
-            <td th:text="${item.price}"></td>
+        <tr th:each="items:${item}">
+            <td scope="row" th:text="${items.name}"></td>
+            <td th:text="${items.price}"></td>
 <!--            수량은 따로 받아서 해야할듯한다.-->
-            <td th:text="${item.stockQuantity}"></td>
-            <td th:text="${orders.status}"></td>
+            <td th:text="${items.stockQuantity}"></td>
+            <td th:text="${items.orderItems}"></td>
+            <!--다른값으로 받아야 할듯하다.-->
             <td>
                 <form action="" method="post">
                     <button type="submit">취소하기</button>
