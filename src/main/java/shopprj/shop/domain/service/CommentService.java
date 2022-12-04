@@ -2,6 +2,7 @@ package shopprj.shop.domain.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import shopprj.shop.domain.dto.CommentDto;
 import shopprj.shop.domain.dto.MemberDto;
 import shopprj.shop.domain.entity.Comment;
@@ -12,6 +13,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class CommentService {
 
     private final CommentRepository commentRepository;

@@ -30,8 +30,7 @@ public class OrderController {
             //새로운 itemform을 만들어서 그쪽ㅇ으로 보낸다. redirection으로 보내야한다.
             return "redirect:/login";
         }
-        ItemDto buyItem = itemService.findBuyItem(itemDto);//dto로 바꾸어서 다시 나오게 해야한다. 그리고 출력해야한다. 그리고 model값에 넣는다.
-//금요일에 stream으로 한번에해서 전부 열기
+        //금요일에 stream으로 한번에해서 전부 열기
         List<CommentDto> talk = commentService.findTalk();
         //stream으로 해결해야한다.
         List<Integer> points = new ArrayList<>();
@@ -40,10 +39,11 @@ public class OrderController {
         points.add(3);
         points.add(4);
         points.add(5);
+
         model.addAttribute("comments",talk);
         model.addAttribute("member", loginMember);
         model.addAttribute("comment",commentDto);
-        model.addAttribute("item",buyItem);
+        model.addAttribute("item",itemDto);
         model.addAttribute("points",points);
         return "buy/Buy";
     }
