@@ -33,6 +33,7 @@ public class MemberController {
     public String MypageForm(@Login MemberDto loginMember,DeliveryDto deliveryDto, Model model){
         //여기서 에러가 나온다. 일단 대기를 해야할듯
         //findAll이 아니라 구매할때 넣는것을 넣어야할듯
+        //member에서
         List<ItemDto> all = itemService.findAll();
         model.addAttribute("member", loginMember);
         model.addAttribute("item",all);
@@ -60,12 +61,15 @@ public class MemberController {
     }
 
     @PostMapping("/Cancel")
-    public void Cancel(){
-
+    public String Cancel(ItemDto itemDto){
+        //itemdto 삭제를 하거나 orderitemDto를 만들어서 삭제해야한다.
+        return "";
     }
 
     @GetMapping("/OrderList")
     public String ListForm(@Login MemberDto loginMember,Model model){
+        // order에서 status에 order인경우+자신의 리스트만 list에서 나오게 해야한다.
+        //query를 만들어서 쏴야할듯하다.
         List<ItemDto> all = itemService.findAll();
         model.addAttribute("member",loginMember);
         model.addAttribute("item", all);

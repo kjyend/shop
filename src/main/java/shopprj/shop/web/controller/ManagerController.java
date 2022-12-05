@@ -56,6 +56,7 @@ public class ManagerController {
     @GetMapping("/MemberManage")
     public String MemberManageForm(@Login MemberDto loginMember,Model model){//회원 관리를 해야한다.
         //스트림 방법으로 해야한다. 금요일에한다. 지금은 null이 나온다.
+        //findAll이 아니라 나중에 status에서 member만 뽑아서 리스트를 만든다.
         List<MemberDto> all = memberService.findAll();
         model.addAttribute("member",loginMember);
         model.addAttribute("members",all);
@@ -65,6 +66,7 @@ public class ManagerController {
     @PostMapping("/MemberManage")
     public String MemberManage(MemberDto loginMember){
         //관리자가 회원들 삭제하거나 메시지를 공지할때 사용해도될듯
+
         return "redirect:/";
     }
     @PostMapping("/delete")
