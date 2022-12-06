@@ -48,7 +48,12 @@
         <tr th:object="${item}">
             <td th:text="${item.name}"></td>
             <td th:text="${item.price}"></td>
-            <td id="stockQuantity" name="stockQuantity" th:value="${item.stockQuantity}"/>
+            <td>
+                <select name="stockQuantity"  th:field="${item.stockQuantity}" >
+                    <option value="">수량을 선택해주세요</option>
+                    <option name="stockQuantity" th:each="point:${points}" th:value="${point}" th:text="${point}"></option>
+                </select>
+            </td>
             <td>
                 <form action="Bill" method="get">
                     <input type="hidden" name="name" th:value="${item.name}">
@@ -81,10 +86,12 @@
 </div>
 <div class="container">
 <!--    이건 다른 댓글로 달아야 겠다.-->
-    <div th:each="comments : ${comment}">
+    <div th:each="commentList : ${comments}">
         <div>
-            <span th:text="${comments.point}"></span>
-            <span th:text="${comments.talk}"></span>
+<!--            멤버의 이름을 써야한다.-->
+<!--            폼을 만들어야 한다.-->
+            <span th:text="${commentList.point}"></span>
+            <span th:text="${commentList.talk}"></span>
         </div>
     </div>
 </div>

@@ -33,6 +33,7 @@ public class OrderController {
         //금요일에 stream으로 한번에해서 전부 열기
         List<CommentDto> talk = commentService.findTalk();
         //stream으로 해결해야한다.
+
         List<Integer> points = new ArrayList<>();
         points.add(1);
         points.add(2);
