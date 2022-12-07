@@ -35,6 +35,7 @@ public class Cart {
     public CartDto toCartDto(){
         return CartDto.builder()
                 .id(id)
-                .cartCount(cartCount).build();
+                .cartCount(cartCount)
+                .status(status).build();
     }
 }
