@@ -53,7 +53,7 @@
             </td>
             <td>
 <!--                Cart화면으로 넘어간다.-->
-                <form action="Cart" method="get">
+                <form action="Cart" method="post">
                     <input type="hidden" name="name" th:value="${items.name}">
                     <input type="hidden" name="price" th:value="${items.price}">
                     <input type="hidden" name="stockQuantity" th:value="${items.stockQuantity}">
