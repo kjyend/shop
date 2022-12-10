@@ -19,7 +19,6 @@ public class Cart {
     @Column(name = "cart_id")
     private Long id;
 
-    private Long cartCount; //상품을 원하는 갯수
 
     @Enumerated(EnumType.STRING)
     private CartStatus status;
@@ -35,7 +34,6 @@ public class Cart {
     public CartDto toCartDto(){
         return CartDto.builder()
                 .id(id)
-                .cartCount(cartCount)
-                .status(status).build();
+                .status(CartStatus.LIKE).build();
     }
 }

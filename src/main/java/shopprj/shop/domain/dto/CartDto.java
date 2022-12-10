@@ -10,13 +10,11 @@ import shopprj.shop.domain.entity.status.CartStatus;
 public class CartDto {
 
     private Long id;
-    private Long cartCount;
     private CartStatus status;
 
     public Cart toCart(){
         return Cart.builder()
                 .id(id)
-                .cartCount(cartCount)
-                .status(status).build();
+                .status(CartStatus.LIKE).build();
     }
 }

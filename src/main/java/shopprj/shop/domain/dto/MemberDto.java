@@ -20,6 +20,6 @@ public class MemberDto {
                 .loginId(loginId)
                 .password(password)
                 .name(name)
-                .status(MemberStatus.MEMBER ).build();
+                .status(MemberStatus.MEMBER).build();
     }
 }
