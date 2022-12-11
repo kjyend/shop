@@ -42,4 +42,8 @@ public class Item {
     public void addStock(Long stock){
         this.stockQuantity+=stock;
     }
+
+    public void subtractStock(Long stock){
+        this.stockQuantity-=stock;
+    }
 }
