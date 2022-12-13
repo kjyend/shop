@@ -45,7 +45,7 @@
             이름 <span th:text="*{name}"></span>
         </div>
     </form>
-    <form action="" th:object="${delivery}" method="post">
+    <form action="Success" th:object="${delivery}" method="get">
         <div>
             <label class="form-label">주소</label>
             <input id="city" th:field="*{city}">

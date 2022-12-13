@@ -58,7 +58,7 @@
                 <form action="Bill" method="get">
                     <input type="hidden" name="name" th:value="${item.name}">
                     <input type="hidden" name="price" th:value="${item.price}">
-                    <input type="hidden" name="stockQuantity" th:value="${item.stockQuantity}">
+                    <input type="hidden" name="stockQuantity" th:value="${point}">
                     <button type="submit" class=" btn btn-lg btn-primary" >구매하기</button>
 <!--                    post값을 주는데 bill값으로 넘겨야한다.-->
                 </form>

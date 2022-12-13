@@ -96,7 +96,7 @@ public class OrderController {
         //일단 수량을 체크해서 수량이 없으면 fail을 내보낸다.
         //수량이 있으면 수량을 줄이고 success를 보낸다.
         //그리고 배달로 보내야한다.
-
+        itemService.countSubtract(itemDto);
         return "redirect:/Success";
     }
 
