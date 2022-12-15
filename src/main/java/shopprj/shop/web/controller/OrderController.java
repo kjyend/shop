@@ -1,6 +1,7 @@
 package shopprj.shop.web.controller;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +15,7 @@ import shopprj.shop.web.argumentresolver.Login;
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @Controller
 @RequiredArgsConstructor
 public class OrderController {
@@ -82,6 +84,8 @@ public class OrderController {
 
     @GetMapping("/Bill")
     public String InvoiceForm(@Login MemberDto loginMember, ItemDto itemDto, DeliveryDto deliveryDto, Model model){
+        log.info("12={}",itemDto.getName());
+        log.info("11={}",itemDto.getStockQuantity());
         model.addAttribute("delivery",deliveryDto);
         model.addAttribute("member", loginMember);
         model.addAttribute("item",itemDto);
@@ -90,13 +94,14 @@ public class OrderController {
 
     @PostMapping("/Bill")
     public String Invoice(ItemDto itemDto, DeliveryDto deliveryDto){
-//        if(){
-//            return "redirect:/Fail";
-//        }
+        Boolean aBoolean = itemService.countSubtract(itemDto);
+        if(aBoolean.equals(false)){
+            return "redirect:/Fail";
+        }
         //일단 수량을 체크해서 수량이 없으면 fail을 내보낸다.
         //수량이 있으면 수량을 줄이고 success를 보낸다.
         //그리고 배달로 보내야한다.
-        itemService.countSubtract(itemDto);
+
         return "redirect:/Success";
     }
 

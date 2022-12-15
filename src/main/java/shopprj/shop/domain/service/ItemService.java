@@ -25,12 +25,14 @@ public class ItemService {
         itemRepository.save(stock);
     }
 
-    public void countSubtract(ItemDto itemDto){
+    public Boolean countSubtract(ItemDto itemDto){
         Item stock = itemRepository.findByName(itemDto.getName());
         stock.subtractStock(itemDto.getStockQuantity());
         if(stock.getStockQuantity()>=0){
             itemRepository.save(stock);
+            return true;
         } else{
+            return false;
             //0보다 작은 값일때 if문으로 들어가게 해서 fail로 가게하는 값을 준다.
         }
     }
