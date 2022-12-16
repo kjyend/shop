@@ -35,7 +35,7 @@
 </div>
 <!--상품의 이름, 가격, 수량, 댓글을 달수있게해야한다.-->
 <div >
-    <table class="container" action="Bill" method="post">
+    <table class="container" >
         <thead class="table">
         <tr>
             <th scope="col">제품</th>
@@ -55,10 +55,12 @@
                 </select>
             </td>
             <td>
-                <input type="hidden" name="name" th:value="${item.name}">
-                <input type="hidden" name="price" th:value="${item.price}">
-                <input type="hidden" name="stockQuantity" th:value="${point}">
-                <button type="button" class=" btn btn-lg btn-primary" th:onclick="|location.href='@{/Bill}'|">구매하기</button>
+                <form action="Bill" method="get">
+                    <input type="hidden" name="name" th:value="${item.name}">
+                    <input type="hidden" name="price" th:value="${item.price}">
+                    <input type="hidden" name="stockQuantity" th:value="${point}">
+                    <button type="submit" class=" btn btn-lg btn-primary" th:onclick="|location.href='@{/Bill}'|">구매하기</button>
+                </form>
 <!--                    post값을 주는데 bill값으로 넘겨야한다.-->
             </td>
         </tr>

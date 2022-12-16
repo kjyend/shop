@@ -51,14 +51,17 @@ public class OrderController {
         return "buy/Buy";
     }
 
-    @PostMapping("/Buy")
-    public String Buy(OrderDto orderDto, ItemDto itemDto){//총 가격, 주소 넣어서,
-        //item에서 buy하면 item에서 표시할게 아니라 member에서 해야할듯
-        //올때 orderDto로 받아야 한다.
-        //이것을 그냥 bill로 보넨다.
-        orderService.OrderItem(orderDto,itemDto);
-        return "redirect:/Bill";
-    }
+    //생략해야할것 같다.
+//    @PostMapping("/Buy")
+//    public String Buy(OrderDto orderDto, ItemDto itemDto){//총 가격, 주소 넣어서,
+//        log.info("111={}",itemDto.getStockQuantity());
+//        log.info("112={}",itemDto.getName());
+//        //item에서 buy하면 item에서 표시할게 아니라 member에서 해야할듯
+//        //올때 orderDto로 받아야 한다.
+//        //이것을 그냥 bill로 보넨다.
+//        orderService.OrderItem(orderDto,itemDto);
+//        return "redirect:/Bill";
+//    }
 
     @GetMapping("/Cart")
     public String CartForm(@Login MemberDto loginMember, ItemDto itemDto, Model model){
@@ -92,8 +95,10 @@ public class OrderController {
         return "bill/Bill";
     }
 
+    //Buy Post부분을 여기에 넣어야할것 같다고 생각한다.
     @PostMapping("/Bill")
     public String Invoice(ItemDto itemDto, DeliveryDto deliveryDto){
+
         Boolean aBoolean = itemService.countSubtract(itemDto);
         if(aBoolean.equals(false)){
             return "redirect:/Fail";
