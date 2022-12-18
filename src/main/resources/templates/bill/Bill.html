@@ -24,8 +24,7 @@
                 <button class="btn btn-primary" th:onclick="|location.href='shopManage'|" type="submit">Manage</button>
             </div>
             <div th:unless="${member.loginId=='admin'}">
-                <button class="btn btn-primary" th:onclick="|location.href='Mypage'|" type="submit">Mypage</button>
-            </div>
+                <a href="#" class="btn btn-primary" th:href="@{/Mypage/{id} (id=${member.id})}" role="button">Mypage</a>            </div>
             <form th:action="@{/logout}" method="post">
                 <div>
                     <button class="btn btn-primary" th:onclick="|location.href='login.html'|" type="submit">sign out</button>
