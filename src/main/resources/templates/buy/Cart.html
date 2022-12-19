@@ -45,7 +45,7 @@
             <td th:text="${items.stockQuantity}"></td>
 <!--        이름,가격,수량은 내가 text값해서 넣어야한다.-->
             <td>
-                <form action="Bill" method="get">
+                <form action="Buy" method="get">
                     <input type="hidden" name="name" th:value="${items.name}">
                     <input type="hidden" name="price" th:value="${items.price}">
                     <input type="hidden" name="stockQuantity" th:value="${items.stockQuantity}">

@@ -81,7 +81,7 @@ public class OrderController {
         //cart로 자신의 id를 넣는다던가 아니면 다른 식으로 표현해야한다.
         //cart를 저장하는데 member,item,cart가 연결되어야한다.
         orderService.cartSave(itemDto,cartDto);
-        return "redirect:/";
+        return "redirect:/Cart";
     }
 
 

@@ -30,6 +30,9 @@ public class Item {
     @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems=new ArrayList<OrderItem>();
 
+    @OneToMany(mappedBy = "item" ,cascade = CascadeType.ALL)
+    private List<Comment> commentList=new ArrayList<Comment>();
+
     public ItemDto toItemDto() {
         return ItemDto.builder()
                 .name(name)

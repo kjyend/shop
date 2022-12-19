@@ -22,6 +22,10 @@ public class Comment {
     private String talk;
 
     @ManyToOne
+    @JoinColumn(name = "item_id")
+    private Item item;
+
+    @ManyToOne
     @JoinColumn(name="member_id")
     private Member member;
 
