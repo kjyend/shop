@@ -4,9 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.Range;
 import shopprj.shop.domain.dto.ItemDto;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,9 +24,16 @@ public class Item {
     @Column(name = "item_id")
     private Long id;
 
+    @NotBlank
     private String name;
-    private Long price;
-    private Long stockQuantity;
+
+    @NotNull
+    @Range(min=1000,max=10000000)
+    private Integer price;
+
+    @NotNull
+    @Max(value = 9999)
+    private Integer stockQuantity;
 
     @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
     private List<Cart> cart=new ArrayList<Cart>();
@@ -42,11 +53,11 @@ public class Item {
                 .build();
     }
 
-    public void addStock(Long stock){
+    public void addStock(Integer stock){
         this.stockQuantity+=stock;
     }
 
-    public void subtractStock(Long stock){
+    public void subtractStock(Integer stock){
         this.stockQuantity-=stock;
     }
 }

@@ -8,7 +8,7 @@ import shopprj.shop.domain.entity.Comment;
 @Getter
 public class CommentDto {
 
-    private Long point;
+    private Integer point;
     private String talk;
 
     public Comment toCommentEntity(){

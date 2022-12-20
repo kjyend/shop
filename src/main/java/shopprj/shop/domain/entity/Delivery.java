@@ -8,6 +8,7 @@ import shopprj.shop.domain.dto.DeliveryDto;
 import shopprj.shop.domain.entity.status.DeliveryStatus;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Getter
@@ -20,7 +21,9 @@ public class Delivery {
     @Column(name = "delivery_id")
     private Long id;
 
+    @NotBlank
     private String city;
+    @NotBlank
     private String street;
     private String zipcode;
 

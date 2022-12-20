@@ -19,7 +19,6 @@ public class Cart {
     @Column(name = "cart_id")
     private Long id;
 
-
     @Enumerated(EnumType.STRING)
     private CartStatus status;
 

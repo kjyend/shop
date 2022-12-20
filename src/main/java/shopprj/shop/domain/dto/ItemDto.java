@@ -14,8 +14,8 @@ import java.util.List;
 public class ItemDto {
 
     private String name;
-    private Long price;
-    private Long stockQuantity;
+    private Integer price;
+    private Integer stockQuantity;
     private List<OrderItem> orderItems=new ArrayList<>();
 
     public Item toItemEntity() {

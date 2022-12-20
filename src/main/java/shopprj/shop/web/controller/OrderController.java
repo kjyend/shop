@@ -68,7 +68,8 @@ public class OrderController {
         if(loginMember==null){
             return "redirect:/login";
         }
-        List<ItemDto> all = itemService.findAll();//dto로 바꾸어서 다시 나오게 해야한다. 그리고 출력해야한다. 그리고 model값에 넣는다.
+        List<ItemDto> all = itemService.findAll();
+        //dto로 바꾸어서 다시 나오게 해야한다. 그리고 출력해야한다. 그리고 model값에 넣는다.
         //금요일에 stream으로 한번에해서 전부 열기
         //선호하는것만 뽑아야한다.
         model.addAttribute("member", loginMember);
@@ -81,7 +82,7 @@ public class OrderController {
         //cart로 자신의 id를 넣는다던가 아니면 다른 식으로 표현해야한다.
         //cart를 저장하는데 member,item,cart가 연결되어야한다.
         orderService.cartSave(itemDto,cartDto);
-        return "redirect:/Cart";
+        return "redirect:/";
     }
 
 

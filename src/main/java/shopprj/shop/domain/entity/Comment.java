@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import shopprj.shop.domain.dto.CommentDto;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Getter
@@ -18,7 +20,10 @@ public class Comment {
     @Column(name = "comment_id")
     private Long id;
 
-    private Long point;
+    @NotNull
+    private Integer point;
+
+    @NotBlank
     private String talk;
 
     @ManyToOne

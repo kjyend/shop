@@ -8,6 +8,7 @@ import shopprj.shop.domain.dto.MemberDto;
 import shopprj.shop.domain.entity.status.MemberStatus;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,8 +23,12 @@ public class Member {
     @Column(name = "member_id")
     private Long id;
 
+    @NotBlank
     private String loginId;
+
+    @NotBlank
     private String password;
+
     private String name;
 
     @Enumerated(EnumType.STRING)
