@@ -35,17 +35,23 @@
     <form class="main-body" th:object="${item}" method="post">
         <div class="mb-2">
             <label for="name" class="form-label">이름</label>
-            <input type="text" id="name" class="form-control" th:field="*{name}">
+            <input type="text" id="name" class="form-control" th:field="*{name}" th:errorclass="field-error">
+            <div class="field-error" th:errors="*{name}">상품명 오류</div>
         </div>
         <div class="mb-2">
             <label for="price" class="form-label">가격</label>
-            <input type="text" id="price" class="form-control" th:field="*{price}">
+            <input type="text" id="price" class="form-control" th:field="*{price}" th:errorclass="field-error">
+            <div class="field-error" th:errors="*{price}">
+                가격 오류
+            </div>
         </div>
         <div class="mb-2">
             <label for="stockQuantity" class="form-label">수량</label>
-            <input type="text" id="stockQuantity" class="form-control" th:field="*{stockQuantity}">
+            <input type="text" id="stockQuantity" class="form-control" th:field="*{stockQuantity}" th:errorclass="field-error">
+            <div class="field-error" th:errors="*{stockQuantity}">
+                수량 오류
+            </div>
         </div>
-
         <div>
             <button type="submit" class="btn btn-lg btn-primary">아이탬 추가하기</button>
             <button class="btn btn-secondary btn-lg" onclick="location.href='LoginHome.html'"

@@ -3,8 +3,11 @@ package shopprj.shop.web.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import shopprj.shop.domain.dto.ItemDto;
 import shopprj.shop.domain.dto.MemberDto;
 import shopprj.shop.domain.service.ItemService;
@@ -48,7 +51,21 @@ public class ManagerController {
     }
 
     @PostMapping("CreateItem")
-    public String createItem(ItemDto itemDto){
+    public String createItem(@Login MemberDto loginMember,@Validated ItemDto itemDto,
+                             BindingResult bindingResult,Model model){
+        // 에러 이미지가 나오지 않는다;;
+        if (itemDto.getPrice() != null && itemDto.getStockQuantity() != null) {
+            int resultPrice = itemDto.getPrice() * itemDto.getStockQuantity();
+            if (resultPrice < 10000) {
+                bindingResult.reject("totalPriceMin", new Object[]{10000,
+                        resultPrice}, null);
+            }
+        }
+        model.addAttribute("member",loginMember);
+        model.addAttribute("item",itemDto);
+        if (bindingResult.hasErrors()) {
+            return "manager/CreateItem";
+        }
         itemService.createItem(itemDto);
         return "redirect:/";
     }

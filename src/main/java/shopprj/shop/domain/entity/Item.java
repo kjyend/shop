@@ -24,15 +24,13 @@ public class Item {
     @Column(name = "item_id")
     private Long id;
 
-    @NotBlank
+
     private String name;
 
-    @NotNull
-    @Range(min=1000,max=10000000)
+
     private Integer price;
 
-    @NotNull
-    @Max(value = 9999)
+
     private Integer stockQuantity;
 
     @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
