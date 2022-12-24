@@ -7,7 +7,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import shopprj.shop.domain.dto.ItemDto;
 import shopprj.shop.domain.dto.MemberDto;
 import shopprj.shop.domain.service.ItemService;
@@ -53,7 +52,7 @@ public class ManagerController {
     @PostMapping("CreateItem")
     public String createItem(@Login MemberDto loginMember,@Validated ItemDto itemDto,
                              BindingResult bindingResult,Model model){
-        // 에러 이미지가 나오지 않는다;;
+        // 에러 이미지가 나오지 않는다;; dto에 max나 notnull을 담는다.
         if (itemDto.getPrice() != null && itemDto.getStockQuantity() != null) {
             int resultPrice = itemDto.getPrice() * itemDto.getStockQuantity();
             if (resultPrice < 10000) {
@@ -62,7 +61,7 @@ public class ManagerController {
             }
         }
         model.addAttribute("member",loginMember);
-        model.addAttribute("item",itemDto);
+        model.addAttribute("itemDto",itemDto);
         if (bindingResult.hasErrors()) {
             return "manager/CreateItem";
         }

@@ -23,10 +23,8 @@ public class Member {
     @Column(name = "member_id")
     private Long id;
 
-    @NotBlank
     private String loginId;
 
-    @NotBlank
     private String password;
 
     private String name;
