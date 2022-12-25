@@ -5,11 +5,15 @@ import lombok.Getter;
 import shopprj.shop.domain.entity.Delivery;
 import shopprj.shop.domain.entity.Member;
 
+import javax.validation.constraints.NotBlank;
+
 @Builder
 @Getter
 public class DeliveryDto {
 
+    @NotBlank
     private String city;
+    @NotBlank
     private String street;
     private String zipcode;
     private Member member;

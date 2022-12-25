@@ -51,7 +51,7 @@ public class Member {
                 .loginId(loginId)
                 .password(password)
                 .name(name)
-                .status(MemberStatus.MEMBER).build();
+                .build();
     }
 
     public void updateMember(String loginId, String password, String name){

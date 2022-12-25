@@ -21,16 +21,14 @@ public class Delivery {
     @Column(name = "delivery_id")
     private Long id;
 
-    @NotBlank
     private String city;
-    @NotBlank
     private String street;
     private String zipcode;
 
     @OneToOne(mappedBy = "delivery", cascade = CascadeType.ALL)
     private Order order;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
 

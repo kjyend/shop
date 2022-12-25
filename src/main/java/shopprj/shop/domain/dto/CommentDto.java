@@ -3,6 +3,7 @@ package shopprj.shop.domain.dto;
 import lombok.Builder;
 import lombok.Getter;
 import shopprj.shop.domain.entity.Comment;
+import shopprj.shop.domain.entity.Member;
 
 import javax.validation.constraints.NotBlank;
 
@@ -15,9 +16,12 @@ public class CommentDto {
     @NotBlank
     private String talk;
 
-    public Comment toCommentEntity(){
+    private Member member;
+
+    public Comment toCommentEntity(MemberDto memberDto){
         return Comment.builder()
                 .talk(talk)
-                .point(point).build();
+                .point(point)
+                .member(member).build();
     }
 }

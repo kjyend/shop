@@ -16,7 +16,6 @@ public class MemberDto {
     @NotBlank
     private String password;
     private String name;
-    private MemberStatus status;
 
     public Member toMemberEntity(){
         return Member.builder()
