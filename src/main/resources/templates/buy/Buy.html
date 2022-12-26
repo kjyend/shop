@@ -12,6 +12,10 @@
             transform: translate(-50%,-50%);
             z-index: 3;
         }
+        .field-error {
+            border-color: #dc3545;
+            color: #dc3545;
+        }
     </style>
 </head>
 <body>
@@ -34,7 +38,7 @@
     </div>
 </div>
 <!--상품의 이름, 가격, 수량, 댓글을 달수있게해야한다.-->
-<div >
+<div  th:object="${itemDto}">
     <table class="container" >
         <thead class="table">
         <tr>
@@ -45,44 +49,61 @@
         </tr>
         </thead>
         <tbody >
-        <tr th:object="${item}">
-            <td th:text="${item.name}"></td>
-            <td th:text="${item.price}"></td>
+        <tr>
+            <td th:text="${itemDto.itemName}"></td>
+            <td th:text="${itemDto.price}"></td>
             <td>
-                <select name="stockQuantity"  th:field="${item.stockQuantity}" >
+                <select name="stockQuantity"  th:field="*{stockQuantity}" th:errorclass="field-error">
                     <option value="">수량을 선택해주세요</option>
                     <option name="stockQuantity" th:each="point:${points}" th:value="${point}" th:text="${point}"></option>
                 </select>
+                <div class="field-error" th:errors="*{stockQuantity}">
+                    점수 오류
+                </div>
             </td>
             <td>
-                <form action="Bill" method="get">
-                    <input type="hidden" name="name" th:value="${item.name}">
-                    <input type="hidden" name="price" th:value="${item.price}">
-                    <input type="hidden" name="stockQuantity" th:value="${point}">
-                    <button type="submit" class=" btn btn-lg btn-primary" th:onclick="|location.href='@{/Bill}'|">구매하기</button>
+<!--                post로 보내야겠다. 아니면 에러가 나오지 안는다.-->
+                <form action="" method="post">
+                    <input type="hidden" name="itemName" th:value="${itemDto.itemName}">
+                    <input type="hidden" name="price" th:value="${itemDto.price}">
+                    <input type="hidden" name="stockQuantity" th:value="${itemDto.stockQuantity}">
+                    <input type="hidden" name="memberName" th:value="${member.memberName}">
+                    <button type="submit" class=" btn btn-lg btn-primary">구매하기</button>
                 </form>
 <!--                    post값을 주는데 bill값으로 넘겨야한다.-->
             </td>
         </tr>
         </tbody>
     </table>
-    <!--        댓글만들자-->
-    <div class="container">
-        <form action="Comment" th:object="${comment}" method="post">
+</div>
+<!--        댓글만들자-->
+<div class="container">
+    <form action="Comment" th:object="${commentDto}" method="post">
+        <div>
             <div>
-                <div>
-                    <span th:text="${member.name}"></span>
-                    <select th:field="*{point}" style="width: 150px;">
-                        <option value="">별점을 선택해주세요</option>
-                        <option th:each="point:${points}" th:value="${point}" th:text="${point}"></option>
-                    </select>
+                <span th:text="${member.memberName}"></span>
+                <select th:field="*{point}" style="width: 150px;" th:errorclass="field-error">
+                    <option value="">별점을 선택해주세요</option>
+                    <option th:each="point:${points}" th:value="${point}" th:text="${point}"></option>
+                </select>
+                <div class="field-error" th:errors="*{point}">
+                    점수 오류
                 </div>
-<!--                별점 점수 주기-->
-                <input type="text" class="form-control" th:field="*{talk}">
-                <button type="submit">댓글달기</button>
             </div>
-        </form>
-    </div>
+            <!--           별점 점수 주기-->
+            <div>
+                <input type="text" id="talk" class="form-control" th:field="*{talk}" th:errorclass="field-error">
+                <div class="field-error" th:errors="*{talk}">
+                    댓글 오류
+                </div>
+            </div>
+            <input type="hidden" name="itemName" th:value="${itemDto.itemName}">
+            <input type="hidden" name="price" th:value="${itemDto.price}">
+            <input type="hidden" name="stockQuantity" th:value="${itemDto.stockQuantity}">
+            <input type="hidden" name="memberName" th:value="${member.memberName}">
+            <button type="submit">댓글달기</button>
+        </div>
+    </form>
 </div>
 <div class="container">
 <!--    이건 다른 댓글로 달아야 겠다.-->

@@ -6,12 +6,13 @@ import shopprj.shop.domain.entity.Comment;
 import shopprj.shop.domain.entity.Member;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 
 @Builder
 @Getter
 public class CommentDto {
-    @NotBlank
+    @NotNull
     private Integer point;
     @NotBlank
     private String talk;
