@@ -15,14 +15,14 @@ public class MemberDto {
     private String loginId;
     @NotBlank
     private String password;
-    private String name;
+    private String memberName;
 
     public Member toMemberEntity(){
         return Member.builder()
                 .id(id)
                 .loginId(loginId)
                 .password(password)
-                .name(name)
+                .memberName(memberName)
                 .status(MemberStatus.MEMBER).build();
     }
 }

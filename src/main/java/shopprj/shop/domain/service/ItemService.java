@@ -20,13 +20,13 @@ public class ItemService {
     private final ItemRepository itemRepository;
 
     public void countUpdate(ItemDto itemDto) {
-        Item stock = itemRepository.findByName(itemDto.getName());
+        Item stock = itemRepository.findByItemName(itemDto.getItemName());
         stock.addStock(itemDto.getStockQuantity());
         itemRepository.save(stock);
     }
 
     public Boolean countSubtract(ItemDto itemDto){
-        Item stock = itemRepository.findByName(itemDto.getName());
+        Item stock = itemRepository.findByItemName(itemDto.getItemName());
         stock.subtractStock(itemDto.getStockQuantity());
         if(stock.getStockQuantity()>=0){
             itemRepository.save(stock);
@@ -59,7 +59,7 @@ public class ItemService {
     }
 
     public ItemDto findBuyItem(ItemDto itemDto){
-        Item byName = itemRepository.findByName(itemDto.getName());
+        Item byName = itemRepository.findByItemName(itemDto.getItemName());
         ItemDto item = byName.toItemDto();
         return item;
 

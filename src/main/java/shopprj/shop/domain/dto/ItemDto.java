@@ -18,7 +18,7 @@ import java.util.List;
 public class ItemDto {
 
     @NotBlank
-    private String name;
+    private String itemName;
     @NotNull
     @Range(min=1000,max=10000000)
     private Integer price;
@@ -29,7 +29,7 @@ public class ItemDto {
 
     public Item toItemEntity() {
         return Item.builder()
-                .name(name)
+                .itemName(itemName)
                 .price(price)
                 .stockQuantity(stockQuantity)
                 .orderItems(orderItems)

@@ -37,7 +37,7 @@
             </div>
             <div>
                 <span style="font-size: 3em">이름 : </span>
-                <span style="font-size: 3em" id="name" th:text="*{name}"></span>
+                <span style="font-size: 3em" id="memberName" th:text="*{memberName}"></span>
             </div>
             <div class="mid ">
                 <a th:href="@{/Edit/{id} (id=${member.id})}" role="button" class="btn btn-lg btn-primary">Edit</a>
@@ -58,7 +58,7 @@
         </thead>
         <tbody>
         <tr th:each="items:${item}">
-            <td scope="row" th:text="${items.name}"></td>
+            <td scope="row" th:text="${items.itemName}"></td>
             <td th:text="${items.price}"></td>
             <td th:text="${items.stockQuantity}"></td>
             <td></td>

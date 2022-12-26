@@ -28,7 +28,7 @@ public class MemberService {
 
     public void update(String id,MemberDto memberDto){
         Member member = memberRepository.findById(Long.valueOf(id)).orElseThrow(() -> new IllegalArgumentException("해당 아이디가 없습니다."));
-        member.updateMember(memberDto.getLoginId(),memberDto.getPassword(),memberDto.getName());
+        member.updateMember(memberDto.getLoginId(),memberDto.getPassword(),memberDto.getMemberName());
     }
 
     public boolean checkLoginIdDuplicate(String loginId) {

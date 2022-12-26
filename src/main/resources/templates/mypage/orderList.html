@@ -31,7 +31,7 @@
         </thead>
         <tbody>
         <tr th:each="items:${item}">
-            <td scope="row" th:text="${items.name}"></td>
+            <td scope="row" th:text="${items.itemName}"></td>
             <td th:text="${items.price}"></td>
 <!--            수량은 따로 받아서 해야할듯한다.-->
             <td th:text="${items.stockQuantity}"></td>

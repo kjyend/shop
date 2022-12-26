@@ -24,7 +24,7 @@ public class Item {
     @Column(name = "item_id")
     private Long id;
 
-    private String name;
+    private String itemName;
 
     private Integer price;
 
@@ -41,7 +41,7 @@ public class Item {
 
     public ItemDto toItemDto() {
         return ItemDto.builder()
-                .name(name)
+                .itemName(itemName)
                 .price(price)
                 .stockQuantity(stockQuantity)
                 .orderItems(orderItems)

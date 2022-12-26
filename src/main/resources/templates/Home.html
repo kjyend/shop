@@ -30,13 +30,13 @@
         <tbody>
         <tr th:each="items,i:${item}">
             <th scope="row" th:text="${i.index+1}"></th>
-            <td th:text="${items.name}"></td>
+            <td th:text="${items.itemName}"></td>
             <td th:text="${items.price}"></td>
             <td th:text="${items.stockQuantity}"></td>
             <td>
 <!--                home이기 때문에 로그인 해주세요로 바로 로그인 화면으로 지나감-->
                 <form action="Buy" method="get">
-                    <input type="hidden" name="name" th:value="${items.name}">
+                    <input type="hidden" name="itemName" th:value="${items.itemName}">
                     <input type="hidden" name="price" th:value="${items.price}">
                     <input type="hidden" name="stockQuantity" th:value="${items.stockQuantity}">
                     <button type="submit" class=" btn btn-lg btn-primary" >구매하기</button>
@@ -45,7 +45,7 @@
             <td>
                 <!--                home이기 때문에 로그인 해주세요로 바로 로그인 화면으로 지나감-->
                 <form action="Cart" method="get">
-                    <input type="hidden" name="name" th:value="${items.name}">
+                    <input type="hidden" name="itemName" th:value="${items.itemName}">
                     <input type="hidden" name="price" th:value="${items.price}">
                     <input type="hidden" name="stockQuantity" th:value="${items.stockQuantity}">
                     <button type="submit" class=" btn btn-lg btn-primary" >쇼핑카드에 넣기</button>

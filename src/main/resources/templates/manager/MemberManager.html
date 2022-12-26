@@ -45,7 +45,7 @@
         <tr th:each="memberList,i:${members}">
             <th scope="row" th:text="${i.index+1}"></th>
             <td th:text="${memberList.loginId}"></td>
-            <td th:text="${memberList.name}"></td>
+            <td th:text="${memberList.memberName}"></td>
             <td>
                 <form action="delete" method="post">
                     <input type="hidden" name="loginId" th:value="${memberList.loginId}">

@@ -36,12 +36,12 @@
 <div class="mid">
     <form th:object="${item}">
         <div>
-            제품이름 <span th:text="${item.name}"></span>
+            제품이름 <span th:text="${item.itemName}"></span>
         </div>
     </form>
     <form th:object="${member}">
         <div>
-            이름 <span th:text="*{name}"></span>
+            이름 <span th:text="*{memberName}"></span>
         </div>
     </form>
     <form action="Success" th:object="${delivery}" method="get">
@@ -52,7 +52,7 @@
             <input id="zipcode" th:field="*{zipcode}">
         </div>
         <div>
-            <input type="hidden" name="name" th:value="${item.name}">
+            <input type="hidden" name="itemName" th:value="${item.itemName}">
             <input type="hidden" name="price" th:value="${delivery.city}">
             <input type="hidden" name="price" th:value="${delivery.street}">
             <input type="hidden" name="stockQuantity" th:value="${delivery.zipcode}">

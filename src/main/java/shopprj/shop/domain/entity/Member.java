@@ -27,7 +27,7 @@ public class Member {
 
     private String password;
 
-    private String name;
+    private String memberName;
 
     @Enumerated(EnumType.STRING)
     private MemberStatus status;//[MEMBER, MANAGER, ADMIN]
@@ -50,14 +50,14 @@ public class Member {
                 .id(id)
                 .loginId(loginId)
                 .password(password)
-                .name(name)
+                .memberName(memberName)
                 .build();
     }
 
     public void updateMember(String loginId, String password, String name){
         this.loginId=loginId;
         this.password=password;
-        this.name=name;
+        this.memberName=name;
     }
 
 }

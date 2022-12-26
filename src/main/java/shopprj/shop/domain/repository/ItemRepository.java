@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @Repository
 public interface ItemRepository extends JpaRepository<Item, String> {
-     Item findByName(String name);
+     Item findByItemName(String name);
 
      List<Item> findByCart(Cart cart);
 }
