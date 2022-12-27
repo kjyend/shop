@@ -14,6 +14,7 @@ import shopprj.shop.domain.service.ItemService;
 import shopprj.shop.domain.service.OrderService;
 import shopprj.shop.web.argumentresolver.Login;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,7 +55,7 @@ public class OrderController {
 
     //생략해야할것 같다.
     @PostMapping("/Buy")
-    public String Buy(CommentDto commentDto, @Validated ItemDto itemDto, MemberDto loginMember,
+    public String Buy(CommentDto commentDto, MemberDto loginMember,@Valid ItemDto itemDto,
                       BindingResult bindingResult, Model model){//총 가격, 주소 넣어서,
         //item에서 buy하면 item에서 표시할게 아니라 member에서 해야할듯
         //올때 orderDto로 받아야 한다.
@@ -68,12 +69,11 @@ public class OrderController {
         points.add(3);
         points.add(4);
         points.add(5);
-
+        model.addAttribute("itemDto",itemDto);
+        model.addAttribute("member", loginMember);
         if(bindingResult.hasErrors()){
             model.addAttribute("comments",talk);
-            model.addAttribute("member", loginMember);
             model.addAttribute("commentDto",commentDto);
-            model.addAttribute("itemDto",itemDto);
             model.addAttribute("points",points);
             return "buy/Buy";
         }
@@ -107,23 +107,32 @@ public class OrderController {
     public String InvoiceForm(@Login MemberDto loginMember, ItemDto itemDto, DeliveryDto deliveryDto, Model model){
         log.info("12={}",itemDto.getItemName());
         log.info("11={}",itemDto.getStockQuantity());
-        model.addAttribute("delivery",deliveryDto);
+        model.addAttribute("deliveryDto",deliveryDto);
         model.addAttribute("member", loginMember);
-        model.addAttribute("item",itemDto);
+        model.addAttribute("itemDto",itemDto);
         return "bill/Bill";
     }
 
     //Buy Post부분을 여기에 넣어야할것 같다고 생각한다.
     @PostMapping("/Bill")
-    public String Invoice(ItemDto itemDto, DeliveryDto deliveryDto){
+    public String Invoice(MemberDto loginMember,ItemDto itemDto,@Valid DeliveryDto deliveryDto,BindingResult bindingResult,Model model){
 
-        Boolean aBoolean = itemService.countSubtract(itemDto);
-        if(aBoolean.equals(false)){
-            return "redirect:/Fail";
-        }
+        //null이므로 나중에 값을 정하고 푼다.
+//        Boolean aBoolean = itemService.countSubtract(itemDto);
+//        if(aBoolean.equals(false)){
+//            return "redirect:/Fail";
+//        }
+
         //일단 수량을 체크해서 수량이 없으면 fail을 내보낸다.
         //수량이 있으면 수량을 줄이고 success를 보낸다.
         //그리고 배달로 보내야한다.
+        model.addAttribute("deliveryDto",deliveryDto);
+        model.addAttribute("member", loginMember);
+        model.addAttribute("itemDto",itemDto);
+
+        if(bindingResult.hasErrors()){
+            return "bill/Bill";
+        }
 
         return "redirect:/Success";
     }
@@ -131,8 +140,8 @@ public class OrderController {
 
     @GetMapping("Success")
     public String SuccessForm(@Login MemberDto loginMember,ItemDto itemDto, DeliveryDto deliveryDto ,Model model){
-        model.addAttribute("delivery",deliveryDto);
-        model.addAttribute("item",itemDto);
+        model.addAttribute("deliveryDto",deliveryDto);
+        model.addAttribute("itemDto",itemDto);
         model.addAttribute("member", loginMember);
         return "bill/Success";
     }

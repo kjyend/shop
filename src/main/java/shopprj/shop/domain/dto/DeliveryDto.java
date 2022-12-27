@@ -15,6 +15,7 @@ public class DeliveryDto {
     private String city;
     @NotBlank
     private String street;
+    @NotBlank
     private String zipcode;
     private Member member;
 

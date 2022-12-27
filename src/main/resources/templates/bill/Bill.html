@@ -13,6 +13,10 @@
             transform: translate(-50%,-50%);
             z-index: 3;
         }
+        .field-error {
+            border-color: #dc3545;
+            color: #dc3545;
+        }
     </style>
 </head>
 <body>
@@ -34,9 +38,9 @@
     </div>
 </div>
 <div class="mid">
-    <form th:object="${item}">
+    <form th:object="${itemDto}">
         <div>
-            제품이름 <span th:text="${item.itemName}"></span>
+            제품이름 <span th:text="*{itemName}"></span>
         </div>
     </form>
     <form th:object="${member}">
@@ -44,18 +48,28 @@
             이름 <span th:text="*{memberName}"></span>
         </div>
     </form>
-    <form action="Success" th:object="${delivery}" method="get">
+    <form action="Bill" th:object="${deliveryDto}" method="post">
         <div>
             <label class="form-label">주소</label>
-            <input id="city" th:field="*{city}">
-            <input id="street" th:field="*{street}">
-            <input id="zipcode" th:field="*{zipcode}">
+            <input id="city" th:field="*{city}" th:errorclass="field-error">
+            <span class="col field-error" th:errors="*{city}">
+                상품명 오류
+            </span>
+            <input id="street" th:field="*{street}" th:errorclass="field-error">
+            <span class="col field-error" th:errors="*{street}">
+                상품명 오류
+            </span>
+            <input id="zipcode" th:field="*{zipcode}" th:errorclass="field-error">
+            <span class="col field-error" th:errors="*{zipcode}">
+                상품명 오류
+            </span>
         </div>
         <div>
-            <input type="hidden" name="itemName" th:value="${item.itemName}">
-            <input type="hidden" name="price" th:value="${delivery.city}">
-            <input type="hidden" name="price" th:value="${delivery.street}">
-            <input type="hidden" name="stockQuantity" th:value="${delivery.zipcode}">
+            <input type="hidden" name="itemName" th:value="${itemDto.itemName}">
+            <input type="hidden" name="memberName" th:value="${member.memberName}">
+            <input type="hidden" name="price" th:value="${deliveryDto.city}">
+            <input type="hidden" name="price" th:value="${deliveryDto.street}">
+            <input type="hidden" name="stockQuantity" th:value="${deliveryDto.zipcode}">
             <button type="submit" class="btn btn-primary" >구매하기</button>
             <button class="btn btn-secondary btn-lg" onclick="location.href='LoginHome.html'"
                     th:onclick="|location.href='@{/}'|" type="button">취소</button>

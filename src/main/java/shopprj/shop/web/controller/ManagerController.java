@@ -60,9 +60,10 @@ public class ManagerController {
                         resultPrice}, null);
             }
         }
-        model.addAttribute("member",loginMember);
-        model.addAttribute("itemDto",itemDto);
+
         if (bindingResult.hasErrors()) {
+            model.addAttribute("member",loginMember);
+            model.addAttribute("itemDto",itemDto);
             return "manager/CreateItem";
         }
         itemService.createItem(itemDto);

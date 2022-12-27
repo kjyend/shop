@@ -12,9 +12,9 @@ import javax.validation.constraints.NotNull;
 @Builder
 @Getter
 public class CommentDto {
-    @NotNull
+    @NotNull(message = "별점을 주세요")
     private Integer point;
-    @NotBlank
+    @NotBlank(message = "댓글을 달아주세요")
     private String talk;
 
     private Member member;
