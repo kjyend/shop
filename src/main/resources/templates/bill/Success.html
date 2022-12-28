@@ -37,12 +37,12 @@
 <div class="mid">
     <span>주문에 성공하였습니다</span>
     <div>
-        <form th:object="${item}">
+        <form th:object="${itemDto}">
             <label class="form-label"></label>
             제품이름 : <span th:text="*{itemName}"></span>
         </form>
     </div>
-    <form th:object="${delivery}">
+    <form th:object="${deliveryDto}">
         <div>
             <div>
                 <span style="font-size: 3em">주소1 : </span>

@@ -51,25 +51,16 @@
     <form action="Bill" th:object="${deliveryDto}" method="post">
         <div>
             <label class="form-label">주소</label>
-            <input id="city" th:field="*{city}" th:errorclass="field-error">
-            <span class="col field-error" th:errors="*{city}">
-                상품명 오류
-            </span>
-            <input id="street" th:field="*{street}" th:errorclass="field-error">
-            <span class="col field-error" th:errors="*{street}">
-                상품명 오류
-            </span>
-            <input id="zipcode" th:field="*{zipcode}" th:errorclass="field-error">
-            <span class="col field-error" th:errors="*{zipcode}">
-                상품명 오류
-            </span>
+            <input id="city" th:field="*{city}" th:errorclass="field-error" required>
+            <input id="street" th:field="*{street}" th:errorclass="field-error" required>
+            <input id="zipcode" th:field="*{zipcode}" th:errorclass="field-error" required>
         </div>
         <div>
             <input type="hidden" name="itemName" th:value="${itemDto.itemName}">
             <input type="hidden" name="memberName" th:value="${member.memberName}">
-            <input type="hidden" name="price" th:value="${deliveryDto.city}">
-            <input type="hidden" name="price" th:value="${deliveryDto.street}">
-            <input type="hidden" name="stockQuantity" th:value="${deliveryDto.zipcode}">
+            <input type="hidden" name="city" th:value="${deliveryDto.city}">
+            <input type="hidden" name="street" th:value="${deliveryDto.street}">
+            <input type="hidden" name="zipcode" th:value="${deliveryDto.zipcode}">
             <button type="submit" class="btn btn-primary" >구매하기</button>
             <button class="btn btn-secondary btn-lg" onclick="location.href='LoginHome.html'"
                     th:onclick="|location.href='@{/}'|" type="button">취소</button>

@@ -44,22 +44,15 @@
 
         <div class="mb-2">
             <label for="itemName" class="form-label">이름</label>
-            <input type="text" id="itemName" class="form-control" th:field="*{itemName}" th:errorclass="field-error">
-            <div class="field-error" th:errors="*{itemName}">상품명 오류</div>
+            <input type="text" id="itemName" class="form-control" th:field="*{itemName}" th:errorclass="field-error" required>
         </div>
         <div class="mb-2">
             <label for="price" class="form-label">가격</label>
-            <input type="text" id="price" class="form-control" th:field="*{price}" th:errorclass="field-error">
-            <div class="field-error" th:errors="*{price}">
-                가격 오류
-            </div>
+            <input type="text" id="price" class="form-control" th:field="*{price}" th:errorclass="field-error" required>
         </div>
         <div class="mb-2">
             <label for="stockQuantity" class="form-label">수량</label>
-            <input type="text" id="stockQuantity" class="form-control" th:field="*{stockQuantity}" th:errorclass="field-error">
-            <div class="field-error" th:errors="*{stockQuantity}">
-                수량 오류
-            </div>
+            <input type="text" id="stockQuantity" class="form-control" th:field="*{stockQuantity}" th:errorclass="field-error" required>
         </div>
         <div>
             <button type="submit" class="btn btn-lg btn-primary">아이탬 추가하기</button>

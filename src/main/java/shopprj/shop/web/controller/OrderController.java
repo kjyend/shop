@@ -8,6 +8,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import shopprj.shop.domain.dto.*;
 import shopprj.shop.domain.service.CommentService;
 import shopprj.shop.domain.service.ItemService;
@@ -55,28 +56,7 @@ public class OrderController {
 
     //생략해야할것 같다.
     @PostMapping("/Buy")
-    public String Buy(CommentDto commentDto, MemberDto loginMember,@Valid ItemDto itemDto,
-                      BindingResult bindingResult, Model model){//총 가격, 주소 넣어서,
-        //item에서 buy하면 item에서 표시할게 아니라 member에서 해야할듯
-        //올때 orderDto로 받아야 한다.
-        //이것을 그냥 bill로 보넨다.
-        List<CommentDto> talk = commentService.findTalk();
-        //stream으로 해결해야한다.
-
-        List<Integer> points = new ArrayList<>();
-        points.add(1);
-        points.add(2);
-        points.add(3);
-        points.add(4);
-        points.add(5);
-        model.addAttribute("itemDto",itemDto);
-        model.addAttribute("member", loginMember);
-        if(bindingResult.hasErrors()){
-            model.addAttribute("comments",talk);
-            model.addAttribute("commentDto",commentDto);
-            model.addAttribute("points",points);
-            return "buy/Buy";
-        }
+    public String Buy(@Valid ItemDto itemDto, BindingResult bindingResult, Model model){//총 가격, 주소 넣어서,
         return "redirect:/Bill";
     }
 
@@ -115,7 +95,8 @@ public class OrderController {
 
     //Buy Post부분을 여기에 넣어야할것 같다고 생각한다.
     @PostMapping("/Bill")
-    public String Invoice(MemberDto loginMember,ItemDto itemDto,@Valid DeliveryDto deliveryDto,BindingResult bindingResult,Model model){
+    public String Invoice(MemberDto loginMember, ItemDto itemDto, @Valid DeliveryDto deliveryDto,
+                          BindingResult bindingResult, RedirectAttributes redirectAttributes){
 
         //null이므로 나중에 값을 정하고 푼다.
 //        Boolean aBoolean = itemService.countSubtract(itemDto);
@@ -123,23 +104,19 @@ public class OrderController {
 //            return "redirect:/Fail";
 //        }
 
-        //일단 수량을 체크해서 수량이 없으면 fail을 내보낸다.
-        //수량이 있으면 수량을 줄이고 success를 보낸다.
-        //그리고 배달로 보내야한다.
-        model.addAttribute("deliveryDto",deliveryDto);
-        model.addAttribute("member", loginMember);
-        model.addAttribute("itemDto",itemDto);
 
-        if(bindingResult.hasErrors()){
-            return "bill/Bill";
-        }
+        redirectAttributes.addFlashAttribute("deliveryDto",deliveryDto);
+        redirectAttributes.addFlashAttribute("member", loginMember);
+        redirectAttributes.addFlashAttribute("itemDto",itemDto);
 
+        //먼저 delivery의 find를 하고 없으면 save해서 값을 낸다.
         return "redirect:/Success";
     }
 
 
     @GetMapping("Success")
     public String SuccessForm(@Login MemberDto loginMember,ItemDto itemDto, DeliveryDto deliveryDto ,Model model){
+        log.info("111={}",deliveryDto.getStreet());
         model.addAttribute("deliveryDto",deliveryDto);
         model.addAttribute("itemDto",itemDto);
         model.addAttribute("member", loginMember);

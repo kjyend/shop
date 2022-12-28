@@ -54,13 +54,10 @@
                 <td th:text="${itemDto.itemName}"></td>
                 <td th:text="${itemDto.price}"></td>
                 <td>
-                    <select th:field="${itemDto.stockQuantity}" th:errorclass="field-error">
+                    <select th:field="${itemDto.stockQuantity}" th:errorclass="field-error" required>
                         <option value="">수량을 선택해주세요</option>
                         <option th:each="point:${points}" th:value="${point}" th:text="${point}"></option>
                     </select>
-                    <div class="field-error" th:errors="${itemDto.stockQuantity}">
-                        점수 오류
-                    </div>
                 </td>
                 <td>
     <!--                post로 보내야겠다. 아니면 에러가 나오지 안는다.-->
@@ -82,20 +79,14 @@
         <div>
             <div>
                 <span th:text="${member.memberName}"></span>
-                <select th:field="*{point}" th:errorclass="field-error">
+                <select th:field="*{point}" th:errorclass="field-error" required>
                     <option value="">별점을 선택해주세요</option>
                     <option th:each="point:${points}" th:value="${point}" th:text="${point}"></option>
                 </select>
-                <div class="field-error" th:errors="*{point}">
-                    점수 오류
-                </div>
             </div>
             <!--           별점 점수 주기-->
             <div>
-                <input type="text" id="talk" class="form-control" th:field="*{talk}" th:errorclass="field-error">
-                <div class="field-error" th:errors="*{talk}">
-                    댓글 오류
-                </div>
+                <input type="text" id="talk" class="form-control" th:field="*{talk}" th:errorclass="field-error" required>
             </div>
             <input type="hidden" name="itemName" th:value="${itemDto.itemName}">
             <input type="hidden" name="price" th:value="${itemDto.price}">
