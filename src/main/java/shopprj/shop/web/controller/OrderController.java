@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import shopprj.shop.domain.dto.*;
 import shopprj.shop.domain.service.CommentService;
+import shopprj.shop.domain.service.DeliveryService;
 import shopprj.shop.domain.service.ItemService;
 import shopprj.shop.domain.service.OrderService;
 import shopprj.shop.web.argumentresolver.Login;
@@ -29,6 +30,8 @@ public class OrderController {
     private final OrderService orderService;
 
     private final CommentService commentService;
+
+    private final DeliveryService deliveryService;
 
     @GetMapping("/Buy")
     public String BuyForm(@Login MemberDto loginMember, ItemDto itemDto, CommentDto commentDto, Model model){
@@ -54,9 +57,9 @@ public class OrderController {
         return "buy/Buy";
     }
 
-    //생략해야할것 같다.
     @PostMapping("/Buy")
-    public String Buy(@Valid ItemDto itemDto, BindingResult bindingResult, Model model){//총 가격, 주소 넣어서,
+    public String Buy(@Valid ItemDto itemDto, BindingResult bindingResult, RedirectAttributes redirectAttributes){//총 가격, 주소 넣어서,
+        redirectAttributes.addFlashAttribute("itemDto",itemDto);
         return "redirect:/Bill";
     }
 
@@ -104,6 +107,8 @@ public class OrderController {
 //            return "redirect:/Fail";
 //        }
 
+        log.info("333={}",deliveryDto.getStreet());
+        deliveryService.saveDelivery(deliveryDto);
 
         redirectAttributes.addFlashAttribute("deliveryDto",deliveryDto);
         redirectAttributes.addFlashAttribute("member", loginMember);

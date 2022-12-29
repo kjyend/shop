@@ -55,7 +55,7 @@ public class LoginController {
 
         if(loginMember==null){
             bindingResult.reject("loginFail","아이디 또는 비밀번호가 맞지 않습니다.");
-            return "Login/login";
+            return "redirect:/Login";
         }
         HttpSession session=request.getSession();
         session.setAttribute("loginMember",loginMember);

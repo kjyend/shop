@@ -44,7 +44,6 @@ public class Item {
                 .itemName(itemName)
                 .price(price)
                 .stockQuantity(stockQuantity)
-                .orderItems(orderItems)
                 .build();
     }
 

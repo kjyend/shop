@@ -43,7 +43,7 @@
         </div>
         <div>
             <label for="memberName" class="form-label">이름</label>
-            <input type="text" class="form-control" id="memberName" th:field="*{memberName}" >
+            <input type="text" class="form-control" id="memberName" th:field="*{memberName}" th:errorclass="field-error" required>
         </div>
         <div class="margin-button">
             <button type="submit" class="w-100 btn btn-lg btn-primary">sign-up</button>

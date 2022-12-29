@@ -22,17 +22,15 @@ public class ItemDto {
     @NotNull
     @Range(min=1000,max=10000000)
     private Integer price;
-    @NotNull
+    @NotNull(message = "갯수를 넣어주세요")
     @Max(value = 9999)
     private Integer stockQuantity;
-    private List<OrderItem> orderItems=new ArrayList<>();
 
     public Item toItemEntity() {
         return Item.builder()
                 .itemName(itemName)
                 .price(price)
                 .stockQuantity(stockQuantity)
-                .orderItems(orderItems)
                 .build();
     }
 }
