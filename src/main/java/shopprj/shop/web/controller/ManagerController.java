@@ -37,7 +37,7 @@ public class ManagerController {
     }
 
     @PostMapping("/shopManage")//물품의 양을 추가한다.
-    public String updateItem(ItemDto itemDto){
+    public String updateItem(@Validated ItemDto itemDto,BindingResult bindingResult){
         itemService.countUpdate(itemDto);//int a의 양을 넣으면 양이 추가된다. 나중에 따로 받는다.
         return "redirect:/";
     }
