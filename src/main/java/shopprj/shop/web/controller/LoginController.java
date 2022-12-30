@@ -35,6 +35,11 @@ public class LoginController {
         if (bindingResult.hasErrors()) {
             return "Login/Signup";
         }
+        MemberDto checkSignup = loginService.loginIdLookup(memberDto);
+        if(checkSignup==null){
+            return "redirect:/signup";
+        }
+
         memberService.save(memberDto);
         return "redirect:";
     }
@@ -55,7 +60,7 @@ public class LoginController {
 
         if(loginMember==null){
             bindingResult.reject("loginFail","아이디 또는 비밀번호가 맞지 않습니다.");
-            return "redirect:/Login";
+            return "redirect:/login";
         }
         HttpSession session=request.getSession();
         session.setAttribute("loginMember",loginMember);

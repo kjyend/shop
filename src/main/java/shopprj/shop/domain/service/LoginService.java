@@ -21,4 +21,14 @@ public class LoginService {
             return null;
         }
     }
+
+    public MemberDto loginIdLookup(MemberDto memberDto) {
+        Member member = memberDto.toMemberEntity();
+        boolean present = memberRepository.findByLoginId(member.getLoginId()).isPresent();
+        if(present!=true) {
+            return member.toMemberDto();
+        }else {
+            return null;
+        }
+    }
 }
