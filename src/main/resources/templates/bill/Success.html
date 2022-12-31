@@ -35,26 +35,34 @@
     </div>
 </div>
 <div class="mid">
-    <span>주문에 성공하였습니다</span>
-    <div>
-        <form th:object="${itemDto}">
-            <label class="form-label"></label>
-            제품이름 : <span th:text="*{itemName}"></span>
-        </form>
-    </div>
+    <span style="font-size: 2em">주문에 성공하였습니다</span>
+    <form th:object="${itemDto}">
+        <div>
+            <span style="font-size: 2em">제품이름 : </span>
+            <span style="font-size: 2em" th:text="*{itemName}"></span>
+        </div>
+        <div>
+            <span style="font-size: 2em">선택한 수량 : </span>
+            <span style="font-size: 2em" th:text="*{stockQuantity}"></span>
+        </div>
+        <div>
+            <span style="font-size: 2em">총 가격 : </span>
+            <span style="font-size: 2em" th:text="${pullPrice}"></span>
+        </div>
+    </form>
     <form th:object="${deliveryDto}">
         <div>
             <div>
-                <span style="font-size: 3em">주소1 : </span>
-                <span style="font-size: 3em" id="city" th:text="*{city}"></span>
+                <span style="font-size: 2em">주소1 : </span>
+                <span style="font-size: 2em" id="city" th:text="*{city}"></span>
             </div>
             <div>
-                <span style="font-size: 3em">주소2 : </span>
-                <span style="font-size: 3em" id="street" th:text="*{street}"></span>
+                <span style="font-size: 2em">주소2 : </span>
+                <span style="font-size: 2em" id="street" th:text="*{street}"></span>
             </div>
             <div>
-                <span style="font-size: 3em">상세주소 : </span>
-                <span style="font-size: 3em" id="zipcode" th:text="*{zipcode}"></span>
+                <span style="font-size: 2em">상세주소 : </span>
+                <span style="font-size: 2em" id="zipcode" th:text="*{zipcode}"></span>
             </div>
         </div>
         <div>

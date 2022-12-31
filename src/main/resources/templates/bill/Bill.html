@@ -40,7 +40,13 @@
 <div class="mid">
     <form th:object="${itemDto}">
         <div>
-            제품이름 <span th:text="*{itemName}"></span>
+            제품이름 : <span th:text="*{itemName}"></span>
+        </div>
+        <div>
+            선택한 수량 : <span th:text="*{stockQuantity}"></span>
+        </div>
+        <div>
+            총 가격 : <span th:text="${pullPrice}"></span>
         </div>
     </form>
     <form th:object="${member}">
@@ -57,6 +63,8 @@
         </div>
         <div>
             <input type="hidden" name="itemName" th:value="${itemDto.itemName}">
+            <input type="hidden" name="stockQuantity" th:value="${itemDto.stockQuantity}">
+            <input type="hidden" name="price" th:value="${itemDto.price}">
             <button type="submit" class="btn btn-primary" >구매하기</button>
             <button class="btn btn-secondary btn-lg" onclick="location.href='LoginHome.html'"
                     th:onclick="|location.href='@{/}'|" type="button">취소</button>
