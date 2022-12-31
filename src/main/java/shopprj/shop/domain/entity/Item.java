@@ -52,6 +52,6 @@ public class Item {
     }
 
     public void subtractStock(Integer stock){
-        this.stockQuantity-=stock;
+        this.stockQuantity-=stock;// 0이하로 떨어지는것을 어떻게 막을것인가?
     }
 }

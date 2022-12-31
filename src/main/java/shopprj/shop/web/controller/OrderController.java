@@ -60,6 +60,7 @@ public class OrderController {
     @PostMapping("/Buy")
     public String Buy(@Valid ItemDto itemDto, BindingResult bindingResult, RedirectAttributes redirectAttributes){//총 가격, 주소 넣어서,
         redirectAttributes.addFlashAttribute("itemDto",itemDto);
+        redirectAttributes.addFlashAttribute("pullPrice",itemDto.getPrice()*itemDto.getStockQuantity());
         return "redirect:/Bill";
     }
 
@@ -101,11 +102,7 @@ public class OrderController {
     public String Invoice(MemberDto loginMember, ItemDto itemDto, @Valid DeliveryDto deliveryDto,
                           BindingResult bindingResult, RedirectAttributes redirectAttributes){
 
-        //null이므로 나중에 값을 정하고 푼다.
-//        Boolean aBoolean = itemService.countSubtract(itemDto);
-//        if(aBoolean.equals(false)){
-//            return "redirect:/Fail";
-//        }
+        boolean checkSuccess = itemService.countSubtract(itemDto);
 
         log.info("333={}",deliveryDto.getStreet());
         deliveryService.saveDelivery(deliveryDto);
@@ -115,7 +112,11 @@ public class OrderController {
         redirectAttributes.addFlashAttribute("itemDto",itemDto);
 
         //먼저 delivery의 find를 하고 없으면 save해서 값을 낸다.
-        return "redirect:/Success";
+        if(checkSuccess) {
+            return "redirect:/Success";
+        }else {
+            return "redirect:/Fail";
+        }
     }
 
 
@@ -125,6 +126,7 @@ public class OrderController {
         model.addAttribute("deliveryDto",deliveryDto);
         model.addAttribute("itemDto",itemDto);
         model.addAttribute("member", loginMember);
+        model.addAttribute("pullPrice",itemDto.getPrice()*itemDto.getStockQuantity());
         return "bill/Success";
     }
 

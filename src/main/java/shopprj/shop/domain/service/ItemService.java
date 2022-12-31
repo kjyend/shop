@@ -1,6 +1,7 @@
 package shopprj.shop.domain.service;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import shopprj.shop.domain.dto.CartDto;
@@ -15,6 +16,7 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 @Transactional
+@Slf4j
 public class ItemService {
 
     private final ItemRepository itemRepository;
@@ -25,15 +27,16 @@ public class ItemService {
         itemRepository.save(stock);
     }
 
-    public Boolean countSubtract(ItemDto itemDto){
+    public boolean countSubtract(ItemDto itemDto){
         Item stock = itemRepository.findByItemName(itemDto.getItemName());
-        stock.subtractStock(itemDto.getStockQuantity());
-        if(stock.getStockQuantity()>=0){
+        log.info("stock={}",stock.getItemName());
+        log.info("itemDto={}",itemDto.getItemName());
+        if(stock.getStockQuantity()<itemDto.getStockQuantity()){
+            return false;
+        }else {
+            stock.subtractStock(itemDto.getStockQuantity());
             itemRepository.save(stock);
             return true;
-        } else{
-            return false;
-            //0보다 작은 값일때 if문으로 들어가게 해서 fail로 가게하는 값을 준다.
         }
     }
 
