@@ -17,6 +17,7 @@ import java.util.List;
 @Getter
 public class ItemDto {
 
+    private Long id;
     @NotBlank
     private String itemName;
     @NotNull
@@ -28,6 +29,7 @@ public class ItemDto {
 
     public Item toItemEntity() {
         return Item.builder()
+                .id(id)
                 .itemName(itemName)
                 .price(price)
                 .stockQuantity(stockQuantity)

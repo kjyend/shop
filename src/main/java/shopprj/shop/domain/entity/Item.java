@@ -41,6 +41,7 @@ public class Item {
 
     public ItemDto toItemDto() {
         return ItemDto.builder()
+                .id(id)
                 .itemName(itemName)
                 .price(price)
                 .stockQuantity(stockQuantity)

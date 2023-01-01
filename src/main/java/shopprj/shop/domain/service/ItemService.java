@@ -11,6 +11,7 @@ import shopprj.shop.domain.entity.Item;
 import shopprj.shop.domain.repository.ItemRepository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -20,6 +21,13 @@ import java.util.stream.Collectors;
 public class ItemService {
 
     private final ItemRepository itemRepository;
+
+    public void delete(ItemDto itemDto) {
+        Item item = itemRepository.findById(itemDto.getId())
+                .orElseThrow(()->new IllegalArgumentException("존재하지 않는 아이템입니다."));
+
+        itemRepository.delete(item);
+    }
 
     public void countUpdate(ItemDto itemDto) {
         Item stock = itemRepository.findByItemName(itemDto.getItemName());

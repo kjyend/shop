@@ -38,6 +38,7 @@
                 <th scope="col">가격</th>
                 <th scope="col">수량</th>
                 <th scope="col">추가 할 수량</th>
+                <th scope="col">삭제하기</th>
             </tr>
         </thead>
         <tbody>
@@ -53,6 +54,12 @@
                         <input type="hidden" name="price" th:value="${items.price}">
                         <input type="hidden" name="stockQuantity" th:value="${items.stockQuantity}">
                         <button type="submit">+</button>
+                    </form>
+                </td>
+                <td>
+                    <form action="deleteItem" method="post">
+                        <input type="hidden" name="Id" th:value="${items.id}">
+                        <button type="submit">삭제하기</button>
                     </form>
                 </td>
             </tr>
