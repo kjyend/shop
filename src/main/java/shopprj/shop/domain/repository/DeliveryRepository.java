@@ -9,7 +9,7 @@ import shopprj.shop.domain.entity.Member;
 import java.util.List;
 
 @Repository
-public interface DeliveryRepository extends JpaRepository<Delivery,String> {
+public interface DeliveryRepository extends JpaRepository<Delivery,Long> {
     List<DeliveryDto> findByMember(Member member);
     //이걸써야하나?
 }

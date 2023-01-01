@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 import shopprj.shop.domain.entity.Order;
 
 @Repository
-public interface OrderRepository extends JpaRepository<Order, String> {
+public interface OrderRepository extends JpaRepository<Order, Long> {
     Order findByMember(String memberId);
 }

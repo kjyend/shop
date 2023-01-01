@@ -6,11 +6,10 @@ import shopprj.shop.domain.entity.Cart;
 import shopprj.shop.domain.entity.Item;
 
 import java.util.List;
-import java.util.Optional;
 
 
 @Repository
-public interface ItemRepository extends JpaRepository<Item, String> {
+public interface ItemRepository extends JpaRepository<Item, Long> {
      Item findByItemName(String name);
 
      List<Item> findByCart(Cart cart);

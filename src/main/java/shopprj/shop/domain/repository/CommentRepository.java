@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 import shopprj.shop.domain.entity.Comment;
 
 @Repository
-public interface CommentRepository extends JpaRepository<Comment, String> {
+public interface CommentRepository extends JpaRepository<Comment, Long> {
 
 }
