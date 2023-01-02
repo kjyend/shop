@@ -136,7 +136,8 @@ public class OrderController {
     }
 
     @PostMapping("/deleteItem")
-    public void delete(ItemDto itemDto){
+    public String delete(ItemDto itemDto){
         itemService.delete(itemDto);
+        return "redirect:/";
     }
 }

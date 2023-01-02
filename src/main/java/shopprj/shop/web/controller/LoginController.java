@@ -41,7 +41,7 @@ public class LoginController {
         }
 
         memberService.save(memberDto);
-        return "redirect:";
+        return "redirect:/";
     }
 
     @GetMapping("/login")

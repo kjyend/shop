@@ -89,6 +89,6 @@ public class ManagerController {
     @PostMapping("/delete")
     public String MemberDelete(MemberDto loginMember){
         managerService.deleteMember(loginMember.getId());
-        return "redirect:/manager/MemberManager";
+        return "redirect:/";
     }
 }
