@@ -36,9 +36,8 @@ public class ItemService {
     }
 
     public boolean countSubtract(ItemDto itemDto){
-        Item stock = itemRepository.findByItemName(itemDto.getItemName());
-        log.info("stock={}",stock.getItemName());
-        log.info("itemDto={}",itemDto.getItemName());
+        Item stock = itemRepository.findById(itemDto.getId())
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 글입니다."));
         if(stock.getStockQuantity()<itemDto.getStockQuantity()){
             return false;
         }else {
