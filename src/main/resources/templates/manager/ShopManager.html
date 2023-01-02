@@ -57,8 +57,8 @@
                     </form>
                 </td>
                 <td>
-                    <form action="deleteItem" method="post">
-                        <input type="hidden" name="Id" th:value="${items.id}">
+                    <form th:action="@{/deleteItem}" method="post">
+                        <input type="hidden" name="id" th:value="${items.id}">
                         <button type="submit">삭제하기</button>
                     </form>
                 </td>

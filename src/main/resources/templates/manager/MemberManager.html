@@ -48,7 +48,7 @@
             <td th:text="${memberList.memberName}"></td>
             <td>
                 <form action="delete" method="post">
-                    <input type="hidden" name="loginId" th:value="${memberList.loginId}">
+                    <input type="hidden" name="id" th:value="${memberList.id}">
                     <button type="submit">delete</button>
 <!--                    admin만 들어오게한다. 회원 전체가 보여야한다. 삭제가 되어야한ㄷ나.-->
                 </form>
