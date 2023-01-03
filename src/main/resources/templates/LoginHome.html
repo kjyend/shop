@@ -45,6 +45,7 @@
             <td>
 <!--                Buy화면으로 넘어간다.-->
                 <form action="Buy" method="get">
+                    <input type="hidden" name="id" th:value="${items.id}">
                     <input type="hidden" name="itemName" th:value="${items.itemName}">
                     <input type="hidden" name="price" th:value="${items.price}">
                     <input type="hidden" name="stockQuantity" th:value="${items.stockQuantity}">
@@ -54,6 +55,7 @@
             <td>
 <!--                Cart화면으로 넘어간다.-->
                 <form action="Cart" method="post">
+                    <input type="hidden" name="id" th:value="${items.id}">
                     <input type="hidden" name="itemName" th:value="${items.itemName}">
                     <input type="hidden" name="price" th:value="${items.price}">
                     <input type="hidden" name="stockQuantity" th:value="${items.stockQuantity}">

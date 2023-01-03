@@ -62,6 +62,7 @@
              <input id="zipcode" th:field="*{zipcode}" th:errorclass="field-error" required>
         </div>
         <div>
+            <input type="hidden" name="id" th:value="${itemDto.id}">
             <input type="hidden" name="itemName" th:value="${itemDto.itemName}">
             <input type="hidden" name="stockQuantity" th:value="${itemDto.stockQuantity}">
             <input type="hidden" name="price" th:value="${itemDto.price}">
