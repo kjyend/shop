@@ -12,14 +12,17 @@ import java.time.LocalDateTime;
 @Getter
 public class OrderDto {
 
+    private Long id;
     private LocalDateTime createdDate;
     private Member member;
     private OrderStatus status;
 
     public Order toOrderEntity(){
         return Order.builder()
+                .id(id)
                 .createdDate(createdDate)
                 .member(member)
                 .status(status).build();
     }
+
 }

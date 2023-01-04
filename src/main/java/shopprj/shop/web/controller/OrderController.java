@@ -47,6 +47,7 @@ public class OrderController {
         points.add(3);
         points.add(4);
         points.add(5);
+        log.info("121={}",itemDto.getId());
 
         model.addAttribute("comments",talk);
         model.addAttribute("member", loginMember);
@@ -88,7 +89,7 @@ public class OrderController {
 
     @GetMapping("/Bill")
     public String InvoiceForm(@Login MemberDto loginMember, ItemDto itemDto, DeliveryDto deliveryDto, Model model){
-        log.info("12={}",itemDto.getItemName());
+        log.info("12={}",itemDto.getId());
         log.info("11={}",itemDto.getStockQuantity());
         model.addAttribute("deliveryDto",deliveryDto);
         model.addAttribute("member", loginMember);
@@ -98,9 +99,11 @@ public class OrderController {
 
     //Buy Post부분을 여기에 넣어야할것 같다고 생각한다.
     @PostMapping("/Bill")
-    public String Invoice(MemberDto loginMember, ItemDto itemDto, @Valid DeliveryDto deliveryDto,
+    public String Invoice(MemberDto loginMember, ItemDto itemDto,
+                          OrderDto orderDto,@Valid DeliveryDto deliveryDto,
                           BindingResult bindingResult, RedirectAttributes redirectAttributes){
 
+        log.info("==={}",itemDto.getId());
         boolean checkSuccess = itemService.countSubtract(itemDto);
 
         log.info("333={}",deliveryDto.getStreet());
@@ -112,6 +115,8 @@ public class OrderController {
 
         //먼저 delivery의 find를 하고 없으면 save해서 값을 낸다.
         if(checkSuccess) {
+            //orderitem을 해야할지 order을 해야할지 고민된다.
+            orderService.OrderItem(orderDto,itemDto);
             return "redirect:/Success";
         }else {
             return "redirect:/Fail";
@@ -138,6 +143,13 @@ public class OrderController {
     @PostMapping("/deleteItem")
     public String delete(ItemDto itemDto){
         itemService.delete(itemDto);
+        return "redirect:/";
+    }
+
+    @PostMapping("/Cancel")
+    public String Cancel(ItemDto itemDto, OrderDto orderDto){
+        //내가 주문한 item을 취소한다.
+        orderService.deliveryCancel(orderDto);
         return "redirect:/";
     }
 }

@@ -31,5 +31,10 @@ public class OrderService {
         orderRepository.save(order);
     }
 
+    public void deliveryCancel(OrderDto orderDto){
+        Order order = orderDto.toOrderEntity();
+        orderRepository.delete(order);
+    }
+
 
 }

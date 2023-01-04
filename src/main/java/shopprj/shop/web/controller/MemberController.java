@@ -8,9 +8,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import shopprj.shop.domain.dto.DeliveryDto;
 import shopprj.shop.domain.dto.ItemDto;
 import shopprj.shop.domain.dto.MemberDto;
+import shopprj.shop.domain.dto.OrderDto;
 import shopprj.shop.domain.service.ItemService;
 import shopprj.shop.domain.service.MemberService;
 import shopprj.shop.domain.service.OrderService;
@@ -55,15 +57,10 @@ public class MemberController {
     }
 
     @PostMapping("/Edit/{id}")
-    public String Edit(@PathVariable String id, MemberDto loginMember){
+    public String Edit(@PathVariable String id, MemberDto loginMember, RedirectAttributes redirectAttributes){
         memberService.update(id,loginMember);
+        redirectAttributes.addAttribute("member",loginMember);
         return "redirect:/Mypage/"+id;
-    }
-
-    @PostMapping("/Cancel")
-    public String Cancel(ItemDto itemDto){
-        //itemdto 삭제를 하거나 orderitemDto를 만들어서 삭제해야한다.
-        return "";
     }
 
     @GetMapping("/OrderList")
