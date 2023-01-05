@@ -1,9 +1,6 @@
 package shopprj.shop.domain.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.validator.constraints.Range;
 import shopprj.shop.domain.dto.ItemDto;
 
@@ -16,9 +13,7 @@ import java.util.List;
 
 @Entity
 @Getter
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Item {
     @Id @GeneratedValue
     @Column(name = "item_id")
@@ -38,6 +33,14 @@ public class Item {
 
     @OneToMany(mappedBy = "item" ,cascade = CascadeType.ALL)
     private List<Comment> commentList=new ArrayList<Comment>();
+
+    @Builder
+    public Item(Long id, String itemName, Integer price, Integer stockQuantity) {
+        this.id = id;
+        this.itemName = itemName;
+        this.price = price;
+        this.stockQuantity = stockQuantity;
+    }
 
     public ItemDto toItemDto() {
         return ItemDto.builder()

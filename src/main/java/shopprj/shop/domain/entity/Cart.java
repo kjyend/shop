@@ -1,9 +1,6 @@
 package shopprj.shop.domain.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import shopprj.shop.domain.dto.CartDto;
 import shopprj.shop.domain.entity.status.CartStatus;
 
@@ -11,9 +8,7 @@ import javax.persistence.*;
 
 @Entity
 @Getter
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Cart {
     @Id @GeneratedValue
     @Column(name = "cart_id")
@@ -29,6 +24,14 @@ public class Cart {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "item_id")
     private Item item;
+
+    @Builder
+    public Cart(Long id, CartStatus status, Member member, Item item) {
+        this.id = id;
+        this.status = status;
+        this.member = member;
+        this.item = item;
+    }
 
     public CartDto toCartDto(){
         return CartDto.builder()

@@ -1,22 +1,17 @@
 package shopprj.shop.domain.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import shopprj.shop.domain.dto.MemberDto;
 import shopprj.shop.domain.entity.status.MemberStatus;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
+
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Getter
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Member {
 
     @Id @GeneratedValue
@@ -41,9 +36,17 @@ public class Member {
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<Order> orders=new ArrayList<Order>();
 
-    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "member")
     private List<Delivery> deliveries=new ArrayList<Delivery>();
 
+    @Builder
+    public Member(Long id, String loginId, String password, String memberName, MemberStatus status) {
+        this.id=id;
+        this.loginId = loginId;
+        this.password = password;
+        this.memberName = memberName;
+        this.status = status;
+    }
 
     public MemberDto toMemberDto(){
         return MemberDto.builder()
@@ -54,7 +57,7 @@ public class Member {
                 .build();
     }
 
-    public void updateMember(String loginId, String password, String name){
+    public void updateMember(String loginId, String password, String name){//dto로 수정하는 member을 만들어야한다.
         this.loginId=loginId;
         this.password=password;
         this.memberName=name;

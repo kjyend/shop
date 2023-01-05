@@ -1,9 +1,6 @@
 package shopprj.shop.domain.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import shopprj.shop.domain.dto.OrderDto;
 import shopprj.shop.domain.entity.status.OrderStatus;
@@ -16,9 +13,7 @@ import java.util.List;
 @Entity
 @Getter
 @Table(name = "orders")
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Order {
     @Id @GeneratedValue
     @Column(name = "order_id")
@@ -41,6 +36,15 @@ public class Order {
     @JoinColumn(name = "delivery_id")
     private Delivery delivery;
 
+    @Builder
+    public Order(Long id,LocalDateTime createdDate, OrderStatus status, List<OrderItem> orderItems, Member member, Delivery delivery) {
+        this.id = id;
+        this.createdDate = createdDate;
+        this.status = status;
+        this.orderItems = orderItems;
+        this.member = member;
+        this.delivery = delivery;
+    }
 
     public OrderDto toOrderDto(){
         return OrderDto.builder()
