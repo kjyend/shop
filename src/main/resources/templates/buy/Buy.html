@@ -24,10 +24,10 @@
         <a class="navbar-brand" th:onclick="|location.href='@{/}'|">Shop</a>
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
             <div th:if="${member.loginId=='admin'}">
-                <button class="btn btn-primary" th:onclick="|location.href='shopManage'|" type="submit">Manage</button>
+                <button class="btn btn-primary" th:onclick="|location.href='manage'|" type="submit">Manage</button>
             </div>
             <div th:unless="${member.loginId=='admin'}">
-                <a href="#" class="btn btn-primary" th:href="@{/Mypage/{id} (id=${member.id})}" role="button">Mypage</a>
+                <a href="#" class="btn btn-primary" th:href="@{/mypage/{id} (id=${member.id})}" role="button">Mypage</a>
             </div>
             <form th:action="@{/logout}" method="post">
                 <div>
@@ -50,7 +50,7 @@
         </thead>
         <tbody >
         <tr>
-            <form th:object="${itemDto}"action="Buy" method="post">
+            <form th:object="${itemDto}"action="buy" method="post">
                 <td th:text="${itemDto.itemName}"></td>
                 <td th:text="${itemDto.price}"></td>
                 <td>
@@ -76,7 +76,7 @@
 </div>
 <!--        댓글만들자-->
 <div class="container">
-    <form action="Comment" th:object="${commentDto}" method="post">
+    <form action="comment" th:object="${commentDto}" method="post">
         <div>
             <div>
                 <span th:text="${member.memberName}"></span>

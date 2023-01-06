@@ -32,7 +32,7 @@ public class OrderController {
 
     private final DeliveryService deliveryService;
 
-    @GetMapping("/Buy")
+    @GetMapping("/buy")
     public String BuyForm(@Login MemberDto loginMember, ItemDto itemDto, CommentDto commentDto, Model model){
         if(loginMember==null){
             return "redirect:/login";
@@ -57,14 +57,14 @@ public class OrderController {
         return "buy/Buy";
     }
 
-    @PostMapping("/Buy")
+    @PostMapping("/buy")
     public String Buy(@Valid ItemDto itemDto, BindingResult bindingResult, RedirectAttributes redirectAttributes){//총 가격, 주소 넣어서,
         redirectAttributes.addFlashAttribute("itemDto",itemDto);
         redirectAttributes.addFlashAttribute("pullPrice",itemDto.getPrice()*itemDto.getStockQuantity());
-        return "redirect:/Bill";
+        return "redirect:/bill";
     }
 
-    @GetMapping("/Cart")
+    @GetMapping("/cart")
     public String CartForm(@Login MemberDto loginMember, ItemDto itemDto, Model model){
         if(loginMember==null){
             return "redirect:/login";
@@ -78,7 +78,7 @@ public class OrderController {
         return "buy/Cart";
     }
 
-    @PostMapping("/Cart")
+    @PostMapping("/cart")
     public String Cart(ItemDto itemDto,CartDto cartDto){
         //cart로 자신의 id를 넣는다던가 아니면 다른 식으로 표현해야한다.
         //cart를 저장하는데 member,item,cart가 연결되어야한다.
@@ -87,7 +87,7 @@ public class OrderController {
     }
 
 
-    @GetMapping("/Bill")
+    @GetMapping("/bill")
     public String InvoiceForm(@Login MemberDto loginMember, ItemDto itemDto, DeliveryDto deliveryDto, Model model){
         log.info("12={}",itemDto.getId());
         log.info("11={}",itemDto.getStockQuantity());
@@ -98,7 +98,7 @@ public class OrderController {
     }
 
     //Buy Post부분을 여기에 넣어야할것 같다고 생각한다.
-    @PostMapping("/Bill")
+    @PostMapping("/bill")
     public String Invoice(MemberDto loginMember, ItemDto itemDto,
                           OrderDto orderDto,@Valid DeliveryDto deliveryDto,
                           BindingResult bindingResult, RedirectAttributes redirectAttributes){
@@ -117,14 +117,14 @@ public class OrderController {
         if(checkSuccess) {
             //orderitem을 해야할지 order을 해야할지 고민된다.
             orderService.OrderItem(orderDto,itemDto);
-            return "redirect:/Success";
+            return "redirect:/success";
         }else {
-            return "redirect:/Fail";
+            return "redirect:/fail";
         }
     }
 
 
-    @GetMapping("Success")
+    @GetMapping("success")
     public String SuccessForm(@Login MemberDto loginMember,ItemDto itemDto, DeliveryDto deliveryDto ,Model model){
         log.info("111={}",deliveryDto.getStreet());
         model.addAttribute("deliveryDto",deliveryDto);
@@ -134,19 +134,19 @@ public class OrderController {
         return "bill/Success";
     }
 
-    @GetMapping("/Fail")
+    @GetMapping("/fail")
     public String FailForm(@Login MemberDto loginMember, Model model){
         model.addAttribute("member", loginMember);
         return "bill/Fail";
     }
 
-    @PostMapping("/deleteItem")
+    @PostMapping("/delete/item")
     public String delete(ItemDto itemDto){
         itemService.delete(itemDto);
         return "redirect:/";
     }
 
-    @PostMapping("/Cancel")
+    @PostMapping("/cancel")
     public String Cancel(ItemDto itemDto, OrderDto orderDto){
         //내가 주문한 item을 취소한다.
         orderService.deliveryCancel(orderDto);

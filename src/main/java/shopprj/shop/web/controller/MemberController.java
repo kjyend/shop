@@ -31,8 +31,8 @@ public class MemberController {
 
     private final OrderService orderService;
 
-    @GetMapping("/Mypage/{id}")
-    public String MypageForm(@Login MemberDto loginMember,DeliveryDto deliveryDto, Model model){
+    @GetMapping("/mypage/{memberId}")
+    public String MypageForm(@Login MemberDto loginMember,@PathVariable Long memberId,DeliveryDto deliveryDto, Model model){
         //여기서 에러가 나온다. 일단 대기를 해야할듯
         //findAll이 아니라 구매할때 넣는것을 넣어야할듯
         //member에서
@@ -43,28 +43,28 @@ public class MemberController {
         return "mypage/MyPage";
     }
 
-    @GetMapping("/Mypage-loginId/{loginId}")
-    public ResponseEntity<Boolean> checkLoginIdDuplicate(@PathVariable("loginId") String loginId){
+    @PostMapping("/mypage/{memberId}")
+    public ResponseEntity<Boolean> checkLoginIdDuplicate(@PathVariable("memberId") Long memberId){
         //다른 걸로 확인을 해야하나? 고민해야한다. ?? 중복 안됨; 뭐야;
         //할때 확인을 해야한다. 아 html에서 해야하는걸 안했다.
-        return ResponseEntity.ok(memberService.checkLoginIdDuplicate(loginId));
+        return ResponseEntity.ok(memberService.checkLoginIdDuplicate(memberId));
     }
 
-    @GetMapping("/Edit/{id}")
-    public String EditForm(@PathVariable Long id, @Login MemberDto loginMember, Model model){
+    @GetMapping("/edit/{memberId}")
+    public String EditForm(@PathVariable Long memberId, @Login MemberDto loginMember, Model model){
         model.addAttribute("member",loginMember);
         return "mypage/Edit";
     }
 
-    @PostMapping("/Edit/{id}")
-    public String Edit(@PathVariable String id, MemberDto loginMember, RedirectAttributes redirectAttributes){
-        memberService.update(id,loginMember);
+    @PostMapping("/edit/{memberId}")
+    public String Edit(@PathVariable Long memberId, MemberDto loginMember, RedirectAttributes redirectAttributes){
+        memberService.update(memberId,loginMember);
         redirectAttributes.addAttribute("member",loginMember);
-        return "redirect:/Mypage/"+id;
+        return "redirect:/mypage/"+memberId;
     }
 
-    @GetMapping("/OrderList")
-    public String ListForm(@Login MemberDto loginMember,Model model){
+    @GetMapping("/list/{memberId}")
+    public String ListForm(@Login MemberDto loginMember,@PathVariable Long memberId,Model model){
         // order에서 status에 order인경우+자신의 리스트만 list에서 나오게 해야한다.
         //query를 만들어서 쏴야할듯하다.
         List<ItemDto> all = itemService.findAll();

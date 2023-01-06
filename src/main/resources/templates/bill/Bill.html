@@ -25,10 +25,10 @@
         <a class="navbar-brand" th:onclick="|location.href='@{/}'|">Shop</a>
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
             <div th:if="${member.loginId=='admin'}">
-                <button class="btn btn-primary" th:onclick="|location.href='shopManage'|" type="submit">Manage</button>
+                <button class="btn btn-primary" th:onclick="|location.href='manage'|" type="submit">Manage</button>
             </div>
             <div th:unless="${member.loginId=='admin'}">
-                <a href="#" class="btn btn-primary" th:href="@{/Mypage/{id} (id=${member.id})}" role="button">Mypage</a>            </div>
+                <a href="#" class="btn btn-primary" th:href="@{/mypage/{id} (id=${member.id})}" role="button">Mypage</a>            </div>
             <form th:action="@{/logout}" method="post">
                 <div>
                     <button class="btn btn-primary" th:onclick="|location.href='login.html'|" type="submit">sign out</button>
@@ -54,7 +54,7 @@
             이름 <span th:text="*{memberName}"></span>
         </div>
     </form>
-    <form action="Bill" th:object="${deliveryDto}" method="post">
+    <form action="bill" th:object="${deliveryDto}" method="post">
         주소
         <div>
             <input id="city" th:field="*{city}" th:errorclass="field-error" required>

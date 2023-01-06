@@ -11,10 +11,10 @@
         <a class="navbar-brand" th:onclick="|location.href='@{/}'|">Shop</a>
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
             <div th:if="${member.loginId=='admin'}">
-                <button class="btn btn-primary" th:onclick="|location.href='shopManage'|" type="submit">Manage</button>
+                <button class="btn btn-primary" th:onclick="|location.href='manage'|" type="submit">Manage</button>
             </div>
             <div th:unless="${member.loginId=='admin'}">
-                <a href="#" class="btn btn-primary" th:href="@{/Mypage/{id} (id=${member.id})}" role="button">Mypage</a>
+                <a href="#" class="btn btn-primary" th:href="@{/mypage/{id} (id=${member.id})}" role="button">Mypage</a>
             </div>
             <form th:action="@{/logout}" method="post">
                 <div>
@@ -44,7 +44,7 @@
             <td th:text="${items.stockQuantity}"></td>
             <td>
 <!--                Buy화면으로 넘어간다.-->
-                <form action="Buy" method="get">
+                <form action="buy" method="get">
                     <input type="hidden" name="id" th:value="${items.id}">
                     <input type="hidden" name="itemName" th:value="${items.itemName}">
                     <input type="hidden" name="price" th:value="${items.price}">
@@ -54,7 +54,7 @@
             </td>
             <td>
 <!--                Cart화면으로 넘어간다.-->
-                <form action="Cart" method="post">
+                <form action="cart" method="post">
                     <input type="hidden" name="id" th:value="${items.id}">
                     <input type="hidden" name="itemName" th:value="${items.itemName}">
                     <input type="hidden" name="price" th:value="${items.price}">
