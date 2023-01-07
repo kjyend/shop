@@ -27,13 +27,13 @@ public class Member {
     @Enumerated(EnumType.STRING)
     private MemberStatus status;//[MEMBER, MANAGER, ADMIN]
 
-    @OneToMany(mappedBy="member", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy="member")
     private List<Comment> comments=new ArrayList<Comment>();
 
-    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "member")
     private List<Cart> carts=new ArrayList<Cart>();
 
-    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "member")
     private List<Order> orders=new ArrayList<Order>();
 
     @OneToMany(mappedBy = "member")

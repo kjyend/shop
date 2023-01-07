@@ -23,7 +23,7 @@ public class Delivery {
     @OneToOne(mappedBy = "delivery", cascade = CascadeType.ALL)
     private Order order;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "member_id")
     private Member member;
 

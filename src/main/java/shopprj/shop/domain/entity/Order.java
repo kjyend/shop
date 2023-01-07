@@ -25,10 +25,10 @@ public class Order {
     @Enumerated(EnumType.STRING)
     private OrderStatus status; //[ORDER, CANCEL]
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "order")
     private List<OrderItem> orderItems=new ArrayList<OrderItem>();
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "member_id")
     private Member member; //주문 회원
 

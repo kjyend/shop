@@ -14,19 +14,15 @@ public class OrderItem {
     @Column(name = "order_item_id")
     private Long id;
 
-    @NotNull
-    @Range(min=1000,max=10000000)
     private Integer orderPrice;
 
-    @NotNull
-    @Max(value = 9999)
     private Integer count;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "order_id")
     private Order order;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name="item_id")
     private Item item;
 }
