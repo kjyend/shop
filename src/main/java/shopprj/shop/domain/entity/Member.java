@@ -27,16 +27,16 @@ public class Member {
     @Enumerated(EnumType.STRING)
     private MemberStatus status;//[MEMBER, MANAGER, ADMIN]
 
-    @OneToMany(mappedBy="member")
+    @OneToMany(mappedBy="member" ,fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Comment> comments=new ArrayList<Comment>();
 
-    @OneToMany(mappedBy = "member")
+    @OneToMany(mappedBy = "member" ,fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Cart> carts=new ArrayList<Cart>();
 
-    @OneToMany(mappedBy = "member")
+    @OneToMany(mappedBy = "member" ,fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Order> orders=new ArrayList<Order>();
 
-    @OneToMany(mappedBy = "member")
+    @OneToMany(mappedBy = "member" ,fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Delivery> deliveries=new ArrayList<Delivery>();
 
     @Builder

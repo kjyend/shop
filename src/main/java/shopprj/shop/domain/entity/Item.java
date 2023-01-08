@@ -25,13 +25,13 @@ public class Item {
 
     private Integer stockQuantity;
 
-    @OneToMany(mappedBy = "item")
+    @OneToMany(mappedBy = "item" ,fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Cart> cart=new ArrayList<Cart>();
 
-    @OneToMany(mappedBy = "item")
+    @OneToMany(mappedBy = "item" ,fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<OrderItem> orderItems=new ArrayList<OrderItem>();
 
-    @OneToMany(mappedBy = "item")
+    @OneToMany(mappedBy = "item" ,fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Comment> commentList=new ArrayList<Comment>();
 
     @Builder

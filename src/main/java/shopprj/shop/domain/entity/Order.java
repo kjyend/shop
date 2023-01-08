@@ -25,10 +25,10 @@ public class Order {
     @Enumerated(EnumType.STRING)
     private OrderStatus status; //[ORDER, CANCEL]
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order" ,fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<OrderItem> orderItems=new ArrayList<OrderItem>();
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "member_id")
     private Member member; //주문 회원
 
@@ -48,8 +48,6 @@ public class Order {
 
     public OrderDto toOrderDto(){
         return OrderDto.builder()
-                .createdDate(createdDate)
-                .member(member)
                 .status(status).build();
     }
 }
