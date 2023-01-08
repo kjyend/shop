@@ -30,14 +30,15 @@ public class ItemService {
     }
 
     public void countUpdate(ItemDto itemDto) {
-        Item stock = itemRepository.findByItemName(itemDto.getItemName());
+        Item stock = itemRepository.findById(itemDto.getId())
+                .orElseThrow(()->new IllegalArgumentException("존재하지 않는 아이템입니다."));
         stock.addStock(itemDto.getStockQuantity());
         itemRepository.save(stock);
     }
 
-    public boolean countSubtract(ItemDto itemDto){
-        Item stock = itemRepository.findById(itemDto.getId())
-                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 글입니다."));
+    public boolean countSubtract(Long itemId,ItemDto itemDto){
+        Item stock = itemRepository.findById(itemId)
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 아이템입니다."));
         if(stock.getStockQuantity()<itemDto.getStockQuantity()){
             return false;
         }else {
@@ -49,7 +50,7 @@ public class ItemService {
 
 
     public void createItem(ItemDto itemDto) {
-        Item item = itemDto.toItemEntity();
+        Item item = itemDto.toItemEntity();//itemDto->ItemCreate
         itemRepository.save(item);
     }
 

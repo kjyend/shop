@@ -50,6 +50,7 @@
                 <td>
                     <form action="" method="post">
                         <input type="text" id="stockQuantity" th:value="${items.stockQuantity}" required>
+                        <input type="hidden" name="id" th:value="${items.id}">
                         <input type="hidden" name="itemName" th:value="${items.itemName}">
                         <input type="hidden" name="price" th:value="${items.price}">
                         <input type="hidden" name="stockQuantity" th:value="${items.stockQuantity}">

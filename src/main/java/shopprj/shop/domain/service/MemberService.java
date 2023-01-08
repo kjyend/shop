@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import shopprj.shop.domain.dto.MemberDto;
 import shopprj.shop.domain.entity.Member;
+import shopprj.shop.domain.entity.status.MemberStatus;
 import shopprj.shop.domain.repository.MemberRepository;
 
 import java.util.List;
@@ -21,17 +22,36 @@ public class MemberService {
     private final MemberRepository memberRepository;
 
     public void save(MemberDto memberDto){
-        Member member = memberDto.toMemberEntity();
-        memberRepository.save(member);
+        if(memberDto.getLoginId().equals("admin")){
+            memberRepository.save(Member.builder()
+                    .loginId(memberDto.getLoginId())
+                    .password(memberDto.getPassword())
+                    .memberName(memberDto.getMemberName())
+                    .status(MemberStatus.ADMIN)
+                    .build());
+        }else {
+            memberRepository.save(Member.builder()
+                    .loginId(memberDto.getLoginId())
+                    .password(memberDto.getPassword())
+                    .memberName(memberDto.getMemberName())
+                    .status(MemberStatus.MEMBER)
+                    .build());
+        }
     }
 
 
-    public void update(String id,MemberDto memberDto){
-        Member member = memberRepository.findById(Long.valueOf(id)).orElseThrow(() -> new IllegalArgumentException("해당 아이디가 없습니다."));
-        member.updateMember(memberDto.getLoginId(),memberDto.getPassword(),memberDto.getMemberName());
+    public void update(Long id,MemberDto memberDto){// updatedto만들것을 생각
+        Member member = memberRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 아이디가 없습니다."));
+        Member updateMember = member.builder()
+                .id(member.getId())
+                .loginId(memberDto.getLoginId())
+                .password(memberDto.getPassword())
+                .memberName(memberDto.getMemberName())
+                .build();
+        memberRepository.save(updateMember);
     }
 
-    public boolean checkLoginIdDuplicate(String loginId) {
+    public boolean checkLoginIdDuplicate(Long loginId) {
         return memberRepository.existsByLoginId(loginId);
     }
 

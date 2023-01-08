@@ -6,7 +6,9 @@ import shopprj.shop.domain.dto.DeliveryDto;
 import shopprj.shop.domain.dto.MemberDto;
 import shopprj.shop.domain.entity.Delivery;
 import shopprj.shop.domain.entity.Member;
+import shopprj.shop.domain.entity.status.DeliveryStatus;
 import shopprj.shop.domain.repository.DeliveryRepository;
+import shopprj.shop.domain.repository.MemberRepository;
 
 import java.util.List;
 
@@ -15,6 +17,7 @@ import java.util.List;
 public class DeliveryService {
 
     private final DeliveryRepository deliveryRepository;
+    private final MemberRepository memberRepository;
 
     public List<DeliveryDto> findMyDelivery(MemberDto loginMember) {
         Member member = loginMember.toMemberEntity();
@@ -24,8 +27,16 @@ public class DeliveryService {
         //member로 바꾸고 해야하나?
     }
 
-    public void saveDelivery(DeliveryDto deliveryDto){
-        Delivery delivery = deliveryDto.toDelivery();
+    public void saveDelivery(MemberDto memberDto,DeliveryDto deliveryDto){
+        Member member = memberRepository.findById(memberDto.getId())
+                .orElseThrow(() -> new IllegalArgumentException("멤버가 없습니다."));
+        Delivery delivery = Delivery.builder()
+                .city(deliveryDto.getCity())
+                .street(deliveryDto.getStreet())
+                .zipcode(deliveryDto.getZipcode())
+                .status(DeliveryStatus.READY)
+                .member(member)
+                .build();
         deliveryRepository.save(delivery);
     }
 }

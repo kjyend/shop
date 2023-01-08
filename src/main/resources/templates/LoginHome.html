@@ -44,18 +44,18 @@
             <td th:text="${items.stockQuantity}"></td>
             <td>
 <!--                Buy화면으로 넘어간다.-->
-                <form action="buy" method="get">
+                <form th:action="@{/buy}" method="get">
                     <input type="hidden" name="id" th:value="${items.id}">
                     <input type="hidden" name="itemName" th:value="${items.itemName}">
                     <input type="hidden" name="price" th:value="${items.price}">
-                    <input type="hidden" name="stockQuantity" th:value="${items.stockQuantity}">
                     <button type="submit" class=" btn btn-lg btn-primary" >구매하기</button>
                 </form>
             </td>
             <td>
 <!--                Cart화면으로 넘어간다.-->
                 <form action="cart" method="post">
-                    <input type="hidden" name="id" th:value="${items.id}">
+                    <input type="hidden" name="itemId" th:value="${items.id}">
+                    <input type="hidden" name="id" th:value="${member.id}">
                     <input type="hidden" name="itemName" th:value="${items.itemName}">
                     <input type="hidden" name="price" th:value="${items.price}">
                     <input type="hidden" name="stockQuantity" th:value="${items.stockQuantity}">

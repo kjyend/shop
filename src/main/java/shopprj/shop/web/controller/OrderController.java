@@ -16,6 +16,7 @@ import shopprj.shop.domain.service.OrderService;
 import shopprj.shop.web.argumentresolver.Login;
 
 import javax.validation.Valid;
+import javax.websocket.server.PathParam;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +34,7 @@ public class OrderController {
     private final DeliveryService deliveryService;
 
     @GetMapping("/buy")
-    public String BuyForm(@Login MemberDto loginMember, ItemDto itemDto, CommentDto commentDto, Model model){
+    public String BuyForm(@Login MemberDto loginMember,ItemDto itemDto, CommentDto commentDto, Model model){
         if(loginMember==null){
             return "redirect:/login";
         }
@@ -47,7 +48,6 @@ public class OrderController {
         points.add(3);
         points.add(4);
         points.add(5);
-        log.info("121={}",itemDto.getId());
 
         model.addAttribute("comments",talk);
         model.addAttribute("member", loginMember);
@@ -60,7 +60,7 @@ public class OrderController {
     @PostMapping("/buy")
     public String Buy(@Valid ItemDto itemDto, BindingResult bindingResult, RedirectAttributes redirectAttributes){//총 가격, 주소 넣어서,
         redirectAttributes.addFlashAttribute("itemDto",itemDto);
-        redirectAttributes.addFlashAttribute("pullPrice",itemDto.getPrice()*itemDto.getStockQuantity());
+        redirectAttributes.addFlashAttribute("fullPrice",itemDto.getPrice()*itemDto.getStockQuantity());
         return "redirect:/bill";
     }
 
@@ -79,10 +79,11 @@ public class OrderController {
     }
 
     @PostMapping("/cart")
-    public String Cart(ItemDto itemDto,CartDto cartDto){
+    public String Cart(MemberDto memberDto, @PathParam("itemId") Long itemId, CartDto cartDto){
+        log.info("member={}",memberDto.getId());
         //cart로 자신의 id를 넣는다던가 아니면 다른 식으로 표현해야한다.
         //cart를 저장하는데 member,item,cart가 연결되어야한다.
-        orderService.cartSave(itemDto,cartDto);
+        orderService.cartSave(memberDto,itemId);
         return "redirect:/";
     }
 
@@ -90,7 +91,9 @@ public class OrderController {
     @GetMapping("/bill")
     public String InvoiceForm(@Login MemberDto loginMember, ItemDto itemDto, DeliveryDto deliveryDto, Model model){
         log.info("12={}",itemDto.getId());
+
         log.info("11={}",itemDto.getStockQuantity());
+        log.info("11={}",itemDto.getItemName());
         model.addAttribute("deliveryDto",deliveryDto);
         model.addAttribute("member", loginMember);
         model.addAttribute("itemDto",itemDto);
@@ -99,15 +102,15 @@ public class OrderController {
 
     //Buy Post부분을 여기에 넣어야할것 같다고 생각한다.
     @PostMapping("/bill")
-    public String Invoice(MemberDto loginMember, ItemDto itemDto,
+    public String Invoice(MemberDto loginMember, ItemDto itemDto,@PathParam("itemId") Long itemId,
                           OrderDto orderDto,@Valid DeliveryDto deliveryDto,
                           BindingResult bindingResult, RedirectAttributes redirectAttributes){
 
         log.info("==={}",itemDto.getId());
-        boolean checkSuccess = itemService.countSubtract(itemDto);
+        boolean checkSuccess = itemService.countSubtract(itemId,itemDto);
 
         log.info("333={}",deliveryDto.getStreet());
-        deliveryService.saveDelivery(deliveryDto);
+        deliveryService.saveDelivery(loginMember,deliveryDto);
 
         redirectAttributes.addFlashAttribute("deliveryDto",deliveryDto);
         redirectAttributes.addFlashAttribute("member", loginMember);
@@ -116,7 +119,8 @@ public class OrderController {
         //먼저 delivery의 find를 하고 없으면 save해서 값을 낸다.
         if(checkSuccess) {
             //orderitem을 해야할지 order을 해야할지 고민된다.
-            orderService.OrderItem(orderDto,itemDto);
+            orderService.orderSave(orderDto,itemId);
+            orderService.orderItemSave();
             return "redirect:/success";
         }else {
             return "redirect:/fail";
@@ -149,7 +153,7 @@ public class OrderController {
     @PostMapping("/cancel")
     public String Cancel(ItemDto itemDto, OrderDto orderDto){
         //내가 주문한 item을 취소한다.
-        orderService.deliveryCancel(orderDto);
+        orderService.orderCancel(orderDto);
         return "redirect:/";
     }
 }
