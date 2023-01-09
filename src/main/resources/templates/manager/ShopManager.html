@@ -22,6 +22,7 @@
             <div th:if="${member.loginId=='admin'}">
                 <button class="btn btn-primary" th:onclick="|location.href='/list/member'|" type="submit">MemberManage</button>
                 <button class="btn btn-primary" th:onclick="|location.href='create'|" type="submit">CreateItem</button>
+                <a class="btn btn-primary" th:href="@{/list/{id} (id=${member.id})}" type="submit">orderList</a>
             </div>
             <form th:action="@{/logout}" method="post">
                 <button class="btn btn-primary" th:onclick="|location.href='login.html'|" type="submit">sign out</button>

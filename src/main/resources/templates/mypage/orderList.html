@@ -10,8 +10,15 @@
     <div class="container-md">
         <a class="navbar-brand" th:onclick="|location.href='@{/}'|">Shop</a>
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <a class="btn btn-primary" th:onclick="|location.href='@{/cart}'|" type="submit">Cart</a>
-            <a href="#" class="btn btn-primary" th:href="@{/mypage/{id} (id=${member.id})}" role="button">Mypage</a>
+            <div th:if="${member.loginId=='admin'}">
+                <button class="btn btn-primary" th:onclick="|location.href='@{/manage}'|" type="submit">Manage</button>
+                <button class="btn btn-primary" th:onclick="|location.href='@{/create}'|" type="submit">CreateItem</button>
+                <button class="btn btn-primary" th:onclick="|location.href='/list/member'|" type="submit">MemberManage</button>
+            </div>
+            <div th:unless="${member.loginId=='admin'}">
+                <a class="btn btn-primary" th:onclick="|location.href='@{/cart}'|" type="submit">Cart</a>
+                <a href="#" class="btn btn-primary" th:href="@{/mypage/{id} (id=${member.id})}" role="button">Mypage</a>
+            </div>
             <form th:action="@{/logout}" method="post">
                 <button class="btn btn-primary" th:onclick="|location.href='login.html'|" type="submit">sign out</button>
             </form>
@@ -37,8 +44,9 @@
             <td th:text="${items.stockQuantity}"></td>
 <!--            <td th:text="${items.orderItems}"></td>-->
             <!--다른값으로 받아야 할듯하다.-->
+            <td></td>
             <td>
-                <form action="" method="post">
+                <form action="cancel" method="post">
                     <button type="submit">취소하기</button>
                 </form>
             </td>
