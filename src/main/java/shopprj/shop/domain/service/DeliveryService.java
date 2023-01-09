@@ -27,7 +27,7 @@ public class DeliveryService {
         //member로 바꾸고 해야하나?
     }
 
-    public void saveDelivery(MemberDto memberDto,DeliveryDto deliveryDto){
+    public Long saveDelivery(MemberDto memberDto,DeliveryDto deliveryDto){
         Member member = memberRepository.findById(memberDto.getId())
                 .orElseThrow(() -> new IllegalArgumentException("멤버가 없습니다."));
         Delivery delivery = Delivery.builder()
@@ -37,6 +37,7 @@ public class DeliveryService {
                 .status(DeliveryStatus.READY)
                 .member(member)
                 .build();
-        deliveryRepository.save(delivery);
+        Delivery deliveryCheck = deliveryRepository.save(delivery);
+        return deliveryCheck.getId();
     }
 }

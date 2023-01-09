@@ -12,6 +12,7 @@ import javax.validation.constraints.NotBlank;
 @Getter
 public class DeliveryDto {
 
+    private Long id;
     @NotBlank
     private String city;
     @NotBlank

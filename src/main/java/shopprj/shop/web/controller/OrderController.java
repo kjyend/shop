@@ -9,10 +9,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import shopprj.shop.domain.dto.*;
-import shopprj.shop.domain.service.CommentService;
-import shopprj.shop.domain.service.DeliveryService;
-import shopprj.shop.domain.service.ItemService;
-import shopprj.shop.domain.service.OrderService;
+import shopprj.shop.domain.service.*;
 import shopprj.shop.web.argumentresolver.Login;
 
 import javax.validation.Valid;
@@ -32,6 +29,8 @@ public class OrderController {
     private final CommentService commentService;
 
     private final DeliveryService deliveryService;
+
+    private final MemberService memberService;
 
     @GetMapping("/buy")
     public String BuyForm(@Login MemberDto loginMember,ItemDto itemDto, CommentDto commentDto, Model model){
@@ -83,7 +82,7 @@ public class OrderController {
         log.info("member={}",memberDto.getId());
         //cart로 자신의 id를 넣는다던가 아니면 다른 식으로 표현해야한다.
         //cart를 저장하는데 member,item,cart가 연결되어야한다.
-        orderService.cartSave(memberDto,itemId);
+        memberService.cartSave(memberDto,itemId);
         return "redirect:/";
     }
 
@@ -103,14 +102,14 @@ public class OrderController {
     //Buy Post부분을 여기에 넣어야할것 같다고 생각한다.
     @PostMapping("/bill")
     public String Invoice(MemberDto loginMember, ItemDto itemDto,@PathParam("itemId") Long itemId,
-                          OrderDto orderDto,@Valid DeliveryDto deliveryDto,
+                          @PathParam("fullPrice") Integer fullPrice,OrderDto orderDto,@Valid DeliveryDto deliveryDto,
                           BindingResult bindingResult, RedirectAttributes redirectAttributes){
 
         log.info("==={}",itemDto.getId());
         boolean checkSuccess = itemService.countSubtract(itemId,itemDto);
 
         log.info("333={}",deliveryDto.getStreet());
-        deliveryService.saveDelivery(loginMember,deliveryDto);
+        Long deliveryId = deliveryService.saveDelivery(loginMember, deliveryDto);
 
         redirectAttributes.addFlashAttribute("deliveryDto",deliveryDto);
         redirectAttributes.addFlashAttribute("member", loginMember);
@@ -119,8 +118,8 @@ public class OrderController {
         //먼저 delivery의 find를 하고 없으면 save해서 값을 낸다.
         if(checkSuccess) {
             //orderitem을 해야할지 order을 해야할지 고민된다.
-            orderService.orderSave(orderDto,itemId);
-            orderService.orderItemSave();
+            Long orderId = orderService.orderSave(orderDto,loginMember,deliveryId);
+            orderService.orderItemSave(orderId,itemId,itemDto.getStockQuantity(),fullPrice);
             return "redirect:/success";
         }else {
             return "redirect:/fail";
@@ -134,7 +133,7 @@ public class OrderController {
         model.addAttribute("deliveryDto",deliveryDto);
         model.addAttribute("itemDto",itemDto);
         model.addAttribute("member", loginMember);
-        model.addAttribute("pullPrice",itemDto.getPrice()*itemDto.getStockQuantity());
+        model.addAttribute("fullPrice",itemDto.getPrice()*itemDto.getStockQuantity());
         return "bill/Success";
     }
 

@@ -19,7 +19,6 @@ public class Order {
     @Column(name = "order_id")
     private Long id;
 
-    @CreatedDate
     private LocalDateTime createdDate;
 
     @Enumerated(EnumType.STRING)
@@ -37,17 +36,13 @@ public class Order {
     private Delivery delivery;
 
     @Builder
-    public Order(Long id,LocalDateTime createdDate, OrderStatus status, List<OrderItem> orderItems, Member member, Delivery delivery) {
+    public Order(Long id,LocalDateTime createdDate, OrderStatus status, Member member, Delivery delivery) {
         this.id = id;
         this.createdDate = createdDate;
         this.status = status;
-        this.orderItems = orderItems;
         this.member = member;
         this.delivery = delivery;
     }
 
-    public OrderDto toOrderDto(){
-        return OrderDto.builder()
-                .status(status).build();
-    }
+
 }

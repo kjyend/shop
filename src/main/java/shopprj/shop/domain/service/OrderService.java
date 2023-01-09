@@ -3,19 +3,9 @@ package shopprj.shop.domain.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import shopprj.shop.domain.dto.CartDto;
-import shopprj.shop.domain.dto.ItemDto;
-import shopprj.shop.domain.dto.MemberDto;
-import shopprj.shop.domain.dto.OrderDto;
-import shopprj.shop.domain.entity.Cart;
-import shopprj.shop.domain.entity.Item;
-import shopprj.shop.domain.entity.Member;
-import shopprj.shop.domain.entity.Order;
-import shopprj.shop.domain.entity.status.CartStatus;
-import shopprj.shop.domain.repository.CartRepository;
-import shopprj.shop.domain.repository.ItemRepository;
-import shopprj.shop.domain.repository.MemberRepository;
-import shopprj.shop.domain.repository.OrderRepository;
+import shopprj.shop.domain.dto.*;
+import shopprj.shop.domain.entity.*;
+import shopprj.shop.domain.repository.*;
 
 @Service
 @RequiredArgsConstructor
@@ -23,43 +13,42 @@ import shopprj.shop.domain.repository.OrderRepository;
 public class OrderService {
 
     private final OrderRepository orderRepository;
-    private final CartRepository cartRepository;
     private final MemberRepository memberRepository;
     private final ItemRepository itemRepository;
+    private final OrderItemRepository orderItemRepository;
+    private final DeliveryRepository deliveryRepository;
     
-    public void cartSave(MemberDto memberDto,Long itemId){
-        //원하는 물건 담기
+
+    public Long orderSave(OrderDto orderDto, MemberDto memberDto, Long deliveryId){
         Member member = memberRepository.findById(memberDto.getId())
-                .orElseThrow(() -> new IllegalArgumentException());
+                .orElseThrow(() -> new IllegalArgumentException("회원이 없습니다."));
+        Delivery delivery = deliveryRepository.findById(deliveryId)
+                .orElseThrow(() -> new IllegalArgumentException("일치하는 주소가 없습니다."));
+
+        Order order = orderDto.toOrderEntity(member,delivery);
+        orderRepository.save(order);
+        return order.getId();
+    }
+
+    public void orderItemSave(Long orderId,Long itemId,Integer stock,Integer price){
 
         Item item = itemRepository.findById(itemId)
-                .orElseThrow(() -> new IllegalArgumentException());
+                .orElseThrow(() -> new IllegalArgumentException("일치하는 아이템이 없습니다."));
+        Order order = orderRepository.findById(orderId)
+                .orElseThrow(() -> new IllegalArgumentException("일치하는 주문이 없습니다."));
 
-        Cart cart = Cart.builder()
-                .status(CartStatus.LIKE)
+        OrderItem orderItem = OrderItem.builder()
+                .orderPrice(price)
+                .count(stock)
+                .order(order)
                 .item(item)
-                .member(member)
                 .build();
-        cartRepository.save(cart);
-    }
-
-    public void orderSave(OrderDto orderDto, Long itemId){
-        //중간에 save하는 과정이 필요하다.
-        Order order = orderDto.toOrderEntity();
-//        Order.builder() //시간값을 따로 지정해야한다.
-//                .status()
-//                .member()
-//                .delivery()
-//                .build();
-        orderRepository.save(order);
-    }
-
-    public void orderItemSave(){
-
+        orderItemRepository.save(orderItem);
     }
 
     public void orderCancel(OrderDto orderDto){
-        Order order = orderDto.toOrderEntity();
+        Order order = orderRepository.findById(orderDto.getId())
+                .orElseThrow(() -> new IllegalArgumentException("주문이 없습니다."));
         orderRepository.delete(order);
     }
 

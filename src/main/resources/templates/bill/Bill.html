@@ -46,7 +46,7 @@
             선택한 수량 : <span th:text="*{stockQuantity}"></span>
         </div>
         <div>
-            총 가격 : <span th:text="${fullPrice}"></span>
+            총 가격 : <span name="fullPrice" th:text="${fullPrice}"></span>
         </div>
     </form>
     <form th:object="${member}">
@@ -63,6 +63,7 @@
         </div>
         <div>
             <input type="hidden" name="id" th:value="${member.id}">
+            <input type="hidden" name="fullPrice" th:value="${fullPrice}">
             <input type="hidden" name="itemId" th:value="${itemDto.id}">
             <input type="hidden" name="itemName" th:value="${itemDto.itemName}">
             <input type="hidden" name="stockQuantity" th:value="${itemDto.stockQuantity}">
