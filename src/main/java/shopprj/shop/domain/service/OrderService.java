@@ -7,6 +7,8 @@ import shopprj.shop.domain.dto.*;
 import shopprj.shop.domain.entity.*;
 import shopprj.shop.domain.repository.*;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 @Transactional
@@ -46,8 +48,12 @@ public class OrderService {
         orderItemRepository.save(orderItem);
     }
 
-    public void orderCancel(OrderDto orderDto){
-        Order order = orderRepository.findById(orderDto.getId())
+    public List<OrderItemDto> listOrder(Long memberId){
+        return orderItemRepository.getOrderItemList(memberId);
+    }
+
+    public void orderCancel(Long orderId){
+        Order order = orderRepository.findById(orderId)
                 .orElseThrow(() -> new IllegalArgumentException("주문이 없습니다."));
         orderRepository.delete(order);
     }

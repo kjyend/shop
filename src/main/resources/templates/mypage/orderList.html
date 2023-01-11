@@ -29,7 +29,7 @@
     <table class="table">
         <thead>
         <tr>
-            <th scope="col">상품 주문</th>
+            <th scope="col">상품 이름</th>
             <th scope="col">주문 금액</th>
             <th scope="col">수량</th>
             <th scope="col">주문 상태</th>
@@ -37,20 +37,21 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="items:${item}">
-            <td scope="row" th:text="${items.itemName}"></td>
-            <td th:text="${items.price}"></td>
-<!--            수량은 따로 받아서 해야할듯한다.-->
-            <td th:text="${items.stockQuantity}"></td>
-<!--            <td th:text="${items.orderItems}"></td>-->
+        <form action="cancel" method="post">
+            <tr th:each="orderitems:${orderItem}">
+                <td scope="row" th:text="${orderitems.orderPrice}"></td>
+               <td th:text="${orderitems.orderPrice}"></td>
+<!--             수량은 따로 받아서 해야할듯한다.-->
+                 <td th:text="${orderitems.count}"></td>
+<!--                <td th:text="${items.orderItems}"></td>-->
             <!--다른값으로 받아야 할듯하다.-->
-            <td></td>
-            <td>
-                <form action="cancel" method="post">
-                    <button type="submit">취소하기</button>
-                </form>
-            </td>
-        </tr>
+                <td></td>
+               <td>
+                   <input type="hidden" name="orderId" th:value="${order?.id}">
+                   <button type="submit">취소하기</button>
+               </td>
+            </tr>
+        </form>
         </tbody>
     </table>
 </div>
