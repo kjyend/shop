@@ -45,31 +45,5 @@
         </div>
     </form>
 </div>
-<div class="container">
-    <table class="table">
-        <thead>
-        <tr>
-            <th scope="col">상품 주문</th>
-            <th scope="col">주문 금액</th>
-            <th scope="col">수량</th>
-            <th scope="col">주문 상태</th>
-            <th scope="col">배송 취소</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="items:${item}">
-            <td scope="row" th:text="${items.itemName}"></td>
-            <td th:text="${items.price}"></td>
-            <td th:text="${items.stockQuantity}"></td>
-            <td></td>
-            <td>
-                <form action="" method="post">
-                    <button type="submit">취소하기</button>
-                </form>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-</div>
 </body>
 </html>

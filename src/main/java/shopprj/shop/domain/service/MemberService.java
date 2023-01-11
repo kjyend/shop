@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import shopprj.shop.domain.dto.CartDto;
 import shopprj.shop.domain.dto.MemberDto;
 import shopprj.shop.domain.entity.Cart;
 import shopprj.shop.domain.entity.Item;
@@ -85,4 +86,10 @@ public class MemberService {
         cartRepository.save(cart);
     }
 
+    public void cartCancel(CartDto cartDto){
+        Cart cart = cartRepository.findById(cartDto.getId())
+                .orElseThrow(() -> new IllegalArgumentException("좋아요가 없습니다."));
+
+        cartRepository.delete(cart);
+    }
 }

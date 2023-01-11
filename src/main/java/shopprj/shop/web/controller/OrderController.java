@@ -82,7 +82,11 @@ public class OrderController {
         log.info("member={}",memberDto.getId());
         //cart로 자신의 id를 넣는다던가 아니면 다른 식으로 표현해야한다.
         //cart를 저장하는데 member,item,cart가 연결되어야한다.
-        memberService.cartSave(memberDto,itemId);
+        if(cartDto.getMember().equals(memberDto)){
+            memberService.cartCancel(cartDto);
+        }else{
+            memberService.cartSave(memberDto,itemId);
+        }
         return "redirect:/";
     }
 
@@ -150,9 +154,9 @@ public class OrderController {
     }
 
     @PostMapping("/cancel")
-    public String Cancel(ItemDto itemDto, OrderDto orderDto){
+    public String Cancel(ItemDto itemDto, @PathParam("orderId") Long orderId){
         //내가 주문한 item을 취소한다.
-        orderService.orderCancel(orderDto);
+        orderService.orderCancel(orderId);
         return "redirect:/";
     }
 }
