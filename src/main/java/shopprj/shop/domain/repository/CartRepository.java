@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 import shopprj.shop.domain.entity.Cart;
 
 @Repository
-public interface CartRepository extends JpaRepository<Cart, Long> {
+public interface CartRepository extends JpaRepository<Cart, Long>,CartCustomRepository {
 
 }
