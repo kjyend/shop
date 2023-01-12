@@ -86,8 +86,12 @@ public class MemberService {
         cartRepository.save(cart);
     }
 
-    public void cartCancel(CartDto cartDto){
-        Cart cart = cartRepository.findById(cartDto.getId())
+    public List<CartDto> cartList(Long memberId){
+        return cartRepository.getLikeList(memberId);
+    }
+
+    public void cartCancel(Long cartId){
+        Cart cart = cartRepository.findById(cartId)
                 .orElseThrow(() -> new IllegalArgumentException("좋아요가 없습니다."));
 
         cartRepository.delete(cart);

@@ -33,9 +33,4 @@ public class Cart {
         this.item = item;
     }
 
-    public CartDto toCartDto(){
-        return CartDto.builder()
-                .id(id)
-                .status(CartStatus.LIKE).build();
-    }
 }

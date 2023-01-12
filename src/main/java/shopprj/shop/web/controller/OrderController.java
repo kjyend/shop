@@ -63,30 +63,26 @@ public class OrderController {
         return "redirect:/bill";
     }
 
-    @GetMapping("/cart")
-    public String CartForm(@Login MemberDto loginMember, ItemDto itemDto, Model model){
+    @GetMapping("/cart/{memberId}")
+    public String CartForm(@Login MemberDto loginMember,@PathVariable("memberId") Long memberId , Model model){
         if(loginMember==null){
             return "redirect:/login";
         }
-        List<ItemDto> all = itemService.findAll();
+
+        List<CartDto> cartDto = memberService.cartList(memberId);
         //dto로 바꾸어서 다시 나오게 해야한다. 그리고 출력해야한다. 그리고 model값에 넣는다.
         //금요일에 stream으로 한번에해서 전부 열기
         //선호하는것만 뽑아야한다.
         model.addAttribute("member", loginMember);
-        model.addAttribute("item",all);
+        model.addAttribute("cart",cartDto);
+
         return "buy/Cart";
     }
 
     @PostMapping("/cart")
     public String Cart(MemberDto memberDto, @PathParam("itemId") Long itemId, CartDto cartDto){
         log.info("member={}",memberDto.getId());
-        //cart로 자신의 id를 넣는다던가 아니면 다른 식으로 표현해야한다.
-        //cart를 저장하는데 member,item,cart가 연결되어야한다.
-        if(cartDto.getMember().equals(memberDto)){
-            memberService.cartCancel(cartDto);
-        }else{
-            memberService.cartSave(memberDto,itemId);
-        }
+        memberService.cartSave(memberDto,itemId);
         return "redirect:/";
     }
 
@@ -157,6 +153,12 @@ public class OrderController {
     public String Cancel(ItemDto itemDto, @PathParam("orderId") Long orderId){
         //내가 주문한 item을 취소한다.
         orderService.orderCancel(orderId);
+        return "redirect:/";
+    }
+    @PostMapping("/cart/delete")
+    public String cartDelete(@PathParam("cartId")Long cartId){
+        log.info("cart=={}",cartId);
+        memberService.cartCancel(cartId);
         return "redirect:/";
     }
 }

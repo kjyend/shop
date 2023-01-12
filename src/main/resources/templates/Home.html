@@ -44,10 +44,7 @@
             </td>
             <td>
                 <!--                home이기 때문에 로그인 해주세요로 바로 로그인 화면으로 지나감-->
-                <form action="cart" method="get">
-                    <input type="hidden" name="itemName" th:value="${items.itemName}">
-                    <input type="hidden" name="price" th:value="${items.price}">
-                    <input type="hidden" name="stockQuantity" th:value="${items.stockQuantity}">
+                <form action="login" method="get">
                     <button type="submit" class=" btn btn-lg btn-primary" >쇼핑카드에 넣기</button>
                 </form>
             </td>

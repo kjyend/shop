@@ -38,24 +38,22 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="items,i:${item}">
+        <tr th:each="carts,i:${cart}">
             <th scope="row" th:text="${i.index+1}"></th>
-            <td th:text="${items.itemName}"></td>
-            <td th:text="${items.price}"></td>
-            <td th:text="${items.stockQuantity}"></td>
+            <td th:text="${carts.status}"></td>
+            <td th:text="${carts.status}"></td>
+            <td th:text="${carts.status}"></td>
 <!--        이름,가격,수량은 내가 text값해서 넣어야한다.-->
             <td>
                 <form action="buy" method="get">
-                    <input type="hidden" name="itemName" th:value="${items.itemName}">
-                    <input type="hidden" name="price" th:value="${items.price}">
-                    <input type="hidden" name="stockQuantity" th:value="${items.stockQuantity}">
                     <button type="submit" class=" btn btn-lg btn-primary" >구매하기</button>
                     <!--                    post값을 주는데 bill값으로 넘겨야한다.-->
                 </form>
             </td>
             <td>
-<!--          th:action="${/deletea}"      -->
-                <form action="" method="post">
+
+                <form action="delete" method="post">
+                    <input type="hidden" name="cartId" th:value="${carts?.id}">
                     <button type="submit"  class=" btn btn-lg btn-primary">제거하기</button>
                 </form>
             </td>
