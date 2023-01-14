@@ -41,18 +41,10 @@ public class OrderController {
         List<CommentDto> talk = commentService.findTalk();
         //stream으로 해결해야한다.
 
-        List<Integer> points = new ArrayList<>();
-        points.add(1);
-        points.add(2);
-        points.add(3);
-        points.add(4);
-        points.add(5);
-
         model.addAttribute("comments",talk);
         model.addAttribute("member", loginMember);
         model.addAttribute("commentDto",commentDto);
         model.addAttribute("itemDto",itemDto);
-        model.addAttribute("points",points);
         return "buy/Buy";
     }
 
@@ -149,12 +141,7 @@ public class OrderController {
         return "redirect:/";
     }
 
-    @PostMapping("/cancel")
-    public String Cancel(ItemDto itemDto, @PathParam("orderId") Long orderId){
-        //내가 주문한 item을 취소한다.
-        orderService.orderCancel(orderId);
-        return "redirect:/";
-    }
+
     @PostMapping("/cart/delete")
     public String cartDelete(@PathParam("cartId")Long cartId){
         log.info("cart=={}",cartId);

@@ -54,10 +54,7 @@
                 <td th:text="${itemDto.itemName}"></td>
                 <td th:text="${itemDto.price}"></td>
                 <td>
-                    <select th:field="${itemDto.stockQuantity}" th:errorclass="field-error" required>
-                        <option value="">수량을 선택해주세요</option>
-                        <option th:each="point:${points}" th:value="${point}" th:text="${point}"></option>
-                    </select>
+                    <input type="number" class="form-control" min="0" max="100" step="1" th:field="${itemDto.stockQuantity}" th:errorclass="field-error" placeholder="주문 수량을 입력해주세요.">
                 </td>
                 <td>
     <!--                post로 보내야겠다. 아니면 에러가 나오지 안는다.-->
@@ -78,11 +75,9 @@
         <div>
             <div>
                 <span th:text="${member.memberName}"></span>
-                <select th:field="*{point}" th:errorclass="field-error" required>
-                    <option value="">별점을 선택해주세요</option>
-                    <option th:each="point:${points}" th:value="${point}" th:text="${point}"></option>
-                </select>
+                <input type="number" class="form-control" min="0" max="5" step="1" th:field="*{point}" th:errorclass="field-error" placeholder="별점을 입력해주세요">
             </div>
+
             <!--           별점 점수 주기-->
             <div>
                 <input type="text" id="talk" class="form-control" th:field="*{talk}" th:errorclass="field-error" required>
@@ -102,6 +97,7 @@
         <div>
 <!--            멤버의 이름을 써야한다.-->
 <!--            폼을 만들어야 한다.-->
+            이름 : <span th:text="${commentList.member?.memberName}"></span>
             평점 : <span th:text="${commentList.point}"></span>
             내용 : <span th:text="${commentList.talk}"></span>
         </div>

@@ -29,19 +29,12 @@ public class CommentController {
                           BindingResult bindingResult, Model model){
         List<CommentDto> talk = commentService.findTalk();
 
-        List<Integer> points = new ArrayList<>();
-        points.add(1);
-        points.add(2);
-        points.add(3);
-        points.add(4);
-        points.add(5);
 
         if(bindingResult.hasErrors()){
             model.addAttribute("comments",talk);
             model.addAttribute("member", loginMember);
             model.addAttribute("commentDto",commentDto);
             model.addAttribute("itemDto",itemDto);
-            model.addAttribute("points",points);
             return "buy/Buy";
         }
         //Member를 저장해야한다. 객체로 변환해서 저장해야 할듯
