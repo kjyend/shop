@@ -1,6 +1,5 @@
-package shopprj.shop.domain.dto;
+package shopprj.shop.dto;
 
-import lombok.Builder;
 import lombok.Getter;
 import shopprj.shop.domain.entity.Cart;
 import shopprj.shop.domain.entity.Member;

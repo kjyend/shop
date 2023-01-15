@@ -1,8 +1,8 @@
-package shopprj.shop.domain.repository;
+package shopprj.shop.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import shopprj.shop.domain.dto.DeliveryDto;
+import shopprj.shop.dto.DeliveryDto;
 import shopprj.shop.domain.entity.Delivery;
 import shopprj.shop.domain.entity.Member;
 

@@ -1,19 +1,19 @@
-package shopprj.shop.domain.service;
+package shopprj.shop.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import shopprj.shop.domain.dto.CartDto;
-import shopprj.shop.domain.dto.MemberDto;
+import shopprj.shop.dto.CartDto;
+import shopprj.shop.dto.MemberDto;
 import shopprj.shop.domain.entity.Cart;
 import shopprj.shop.domain.entity.Item;
 import shopprj.shop.domain.entity.Member;
 import shopprj.shop.domain.entity.status.CartStatus;
 import shopprj.shop.domain.entity.status.MemberStatus;
-import shopprj.shop.domain.repository.CartRepository;
-import shopprj.shop.domain.repository.ItemRepository;
-import shopprj.shop.domain.repository.MemberRepository;
+import shopprj.shop.repository.CartRepository;
+import shopprj.shop.repository.ItemRepository;
+import shopprj.shop.repository.MemberRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;

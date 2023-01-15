@@ -1,11 +1,13 @@
-package shopprj.shop.domain.service;
+package shopprj.shop.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import shopprj.shop.domain.dto.*;
 import shopprj.shop.domain.entity.*;
-import shopprj.shop.domain.repository.*;
+import shopprj.shop.dto.MemberDto;
+import shopprj.shop.dto.OrderDto;
+import shopprj.shop.dto.OrderItemDto;
+import shopprj.shop.repository.*;
 
 import java.util.List;
 
@@ -52,8 +54,8 @@ public class OrderService {
         return orderItemRepository.getOrderItemList(memberId);
     }
 
-    public void orderCancel(Long orderId){
-        Order order = orderRepository.findById(orderId)
+    public void orderCancel(OrderItemDto orderItemDto){
+        Order order = orderRepository.findById(orderItemDto.getOrder().getId())
                 .orElseThrow(() -> new IllegalArgumentException("주문이 없습니다."));
         orderRepository.delete(order);
     }

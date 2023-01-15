@@ -1,4 +1,4 @@
-package shopprj.shop.domain.dto;
+package shopprj.shop.dto;
 
 import lombok.Builder;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package shopprj.shop.domain.repository;
+package shopprj.shop.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

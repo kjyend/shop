@@ -1,8 +1,8 @@
-package shopprj.shop.domain.service;
+package shopprj.shop.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import shopprj.shop.domain.repository.MemberRepository;
+import shopprj.shop.repository.MemberRepository;
 
 @Service
 @RequiredArgsConstructor

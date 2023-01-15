@@ -1,4 +1,4 @@
-package shopprj.shop.domain;
+package shopprj.shop;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.context.annotation.Bean;

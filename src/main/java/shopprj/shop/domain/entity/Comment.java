@@ -1,7 +1,7 @@
 package shopprj.shop.domain.entity;
 
 import lombok.*;
-import shopprj.shop.domain.dto.CommentDto;
+import shopprj.shop.dto.CommentDto;
 
 import javax.persistence.*;
 

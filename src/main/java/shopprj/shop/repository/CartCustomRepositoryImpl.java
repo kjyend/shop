@@ -1,9 +1,9 @@
-package shopprj.shop.domain.repository;
+package shopprj.shop.repository;
 
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
-import shopprj.shop.domain.dto.CartDto;
+import shopprj.shop.dto.CartDto;
 
 
 import java.util.List;

@@ -1,9 +1,8 @@
-package shopprj.shop.domain.dto;
+package shopprj.shop.dto;
 
 import lombok.Builder;
 import lombok.Getter;
 import shopprj.shop.domain.entity.Member;
-import shopprj.shop.domain.entity.status.MemberStatus;
 
 import javax.validation.constraints.NotBlank;
 

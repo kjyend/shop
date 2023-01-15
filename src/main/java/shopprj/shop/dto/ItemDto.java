@@ -1,17 +1,13 @@
-package shopprj.shop.domain.dto;
+package shopprj.shop.dto;
 
 import lombok.Builder;
 import lombok.Getter;
 import org.hibernate.validator.constraints.Range;
-import shopprj.shop.domain.entity.Cart;
 import shopprj.shop.domain.entity.Item;
-import shopprj.shop.domain.entity.OrderItem;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.List;
 
 @Builder
 @Getter

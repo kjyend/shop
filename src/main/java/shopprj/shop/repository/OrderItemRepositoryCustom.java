@@ -1,7 +1,6 @@
-package shopprj.shop.domain.repository;
+package shopprj.shop.repository;
 
-import shopprj.shop.domain.dto.OrderItemDto;
-import shopprj.shop.domain.entity.OrderItem;
+import shopprj.shop.dto.OrderItemDto;
 
 import java.util.List;
 

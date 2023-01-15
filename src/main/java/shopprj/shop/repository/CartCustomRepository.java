@@ -1,6 +1,6 @@
-package shopprj.shop.domain.repository;
+package shopprj.shop.repository;
 
-import shopprj.shop.domain.dto.CartDto;
+import shopprj.shop.dto.CartDto;
 
 import java.util.List;
 
