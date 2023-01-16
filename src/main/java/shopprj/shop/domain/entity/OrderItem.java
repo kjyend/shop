@@ -4,11 +4,8 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Getter

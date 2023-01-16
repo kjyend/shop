@@ -5,16 +5,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import shopprj.shop.domain.dto.*;
-import shopprj.shop.domain.service.*;
+import shopprj.shop.dto.*;
+import shopprj.shop.service.*;
 import shopprj.shop.web.argumentresolver.Login;
 
 import javax.validation.Valid;
 import javax.websocket.server.PathParam;
-import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -33,7 +31,7 @@ public class OrderController {
     private final MemberService memberService;
 
     @GetMapping("/buy")
-    public String BuyForm(@Login MemberDto loginMember,ItemDto itemDto, CommentDto commentDto, Model model){
+    public String BuyForm(@Login MemberDto loginMember, ItemDto itemDto, CommentDto commentDto, Model model){
         if(loginMember==null){
             return "redirect:/login";
         }
@@ -93,8 +91,8 @@ public class OrderController {
 
     //Buy Post부분을 여기에 넣어야할것 같다고 생각한다.
     @PostMapping("/bill")
-    public String Invoice(MemberDto loginMember, ItemDto itemDto,@PathParam("itemId") Long itemId,
-                          @PathParam("fullPrice") Integer fullPrice,OrderDto orderDto,@Valid DeliveryDto deliveryDto,
+    public String Invoice(MemberDto loginMember, ItemDto itemDto, @PathParam("itemId") Long itemId,
+                          @PathParam("fullPrice") Integer fullPrice, OrderDto orderDto, @Valid DeliveryDto deliveryDto,
                           BindingResult bindingResult, RedirectAttributes redirectAttributes){
 
         log.info("==={}",itemDto.getId());

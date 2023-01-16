@@ -1,7 +1,6 @@
 package shopprj.shop.domain.entity;
 
 import lombok.*;
-import shopprj.shop.domain.dto.CartDto;
 import shopprj.shop.domain.entity.status.CartStatus;
 
 import javax.persistence.*;

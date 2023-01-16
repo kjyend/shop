@@ -1,8 +1,6 @@
 package shopprj.shop.domain.entity;
 
 import lombok.*;
-import org.springframework.data.annotation.CreatedDate;
-import shopprj.shop.domain.dto.OrderDto;
 import shopprj.shop.domain.entity.status.OrderStatus;
 
 import javax.persistence.*;

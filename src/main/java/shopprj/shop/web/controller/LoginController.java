@@ -9,9 +9,9 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import shopprj.shop.domain.dto.MemberDto;
-import shopprj.shop.domain.service.LoginService;
-import shopprj.shop.domain.service.MemberService;
+import shopprj.shop.dto.MemberDto;
+import shopprj.shop.service.LoginService;
+import shopprj.shop.service.MemberService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;

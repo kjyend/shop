@@ -1,11 +1,10 @@
 package shopprj.shop.domain.entity;
 
 import lombok.*;
-import shopprj.shop.domain.dto.DeliveryDto;
+import shopprj.shop.dto.DeliveryDto;
 import shopprj.shop.domain.entity.status.DeliveryStatus;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 
 @Entity
 @Getter

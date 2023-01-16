@@ -5,15 +5,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import shopprj.shop.domain.dto.CommentDto;
-import shopprj.shop.domain.dto.ItemDto;
-import shopprj.shop.domain.dto.MemberDto;
-import shopprj.shop.domain.service.CommentService;
+import shopprj.shop.dto.CommentDto;
+import shopprj.shop.dto.ItemDto;
+import shopprj.shop.dto.MemberDto;
+import shopprj.shop.service.CommentService;
 
 import javax.websocket.server.PathParam;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
