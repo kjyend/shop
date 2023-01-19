@@ -34,26 +34,28 @@
             <th scope="col">#</th>
             <th scope="col">제목</th>
             <th scope="col">가격</th>
-            <th scope="col">수량</th>
+            <th scope="col">남은 수량</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="carts,i:${cart}">
             <th scope="row" th:text="${i.index+1}"></th>
-            <td th:text="${carts.status}"></td>
-            <td th:text="${carts.status}"></td>
-            <td th:text="${carts.status}"></td>
+            <td th:text="${carts.item.itemName}"></td>
+            <td th:text="${carts.item.price}"></td>
+            <td th:text="${carts.item.stockQuantity}"></td>
 <!--        이름,가격,수량은 내가 text값해서 넣어야한다.-->
             <td>
-                <form action="buy" method="get">
+                <form th:action="@{/buy}" method="get">
+                    <input type="hidden" name="itemName" th:value="${carts.item.itemName}">
+                    <input type="hidden" name="price" th:value="${carts.item.price}">
+                    <input type="hidden" name="id" th:value="${carts.item.id}">
                     <button type="submit" class=" btn btn-lg btn-primary" >구매하기</button>
-                    <!--                    post값을 주는데 bill값으로 넘겨야한다.-->
                 </form>
             </td>
             <td>
 
                 <form action="delete" method="post">
-                    <input type="hidden" name="cartId" th:value="${carts?.id}">
+                    <input type="hidden" name="cartId" th:value="${carts.id}">
                     <button type="submit"  class=" btn btn-lg btn-primary">제거하기</button>
                 </form>
             </td>

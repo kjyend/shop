@@ -27,10 +27,6 @@ public class MemberService {
 
     private final MemberRepository memberRepository;
 
-    private final ItemRepository itemRepository;
-
-    private final CartRepository cartRepository;
-
     public void save(MemberDto memberDto){
         if(memberDto.getLoginId().equals("admin")){
             memberRepository.save(Member.builder()
@@ -69,31 +65,5 @@ public class MemberService {
         List<Member> all = memberRepository.findAll();
         List<MemberDto> findMember = all.stream().map(Member::toMemberDto).collect(Collectors.toList());
         return findMember;
-    }
-
-    public void cartSave(MemberDto memberDto,Long itemId){
-        //원하는 물건 담기
-        Member member = memberRepository.findById(memberDto.getId())
-                .orElseThrow(() -> new IllegalArgumentException());
-        Item item = itemRepository.findById(itemId)
-                .orElseThrow(() -> new IllegalArgumentException());
-
-        Cart cart = Cart.builder()
-                .status(CartStatus.LIKE)
-                .item(item)
-                .member(member)
-                .build();
-        cartRepository.save(cart);
-    }
-
-    public List<CartDto> cartList(Long memberId){
-        return cartRepository.getLikeList(memberId);
-    }
-
-    public void cartCancel(Long cartId){
-        Cart cart = cartRepository.findById(cartId)
-                .orElseThrow(() -> new IllegalArgumentException("좋아요가 없습니다."));
-
-        cartRepository.delete(cart);
     }
 }

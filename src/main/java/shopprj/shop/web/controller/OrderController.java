@@ -28,7 +28,7 @@ public class OrderController {
 
     private final DeliveryService deliveryService;
 
-    private final MemberService memberService;
+    private final CartService cartService;
 
     @GetMapping("/buy")
     public String BuyForm(@Login MemberDto loginMember, ItemDto itemDto, CommentDto commentDto, Model model){
@@ -59,7 +59,7 @@ public class OrderController {
             return "redirect:/login";
         }
 
-        List<CartDto> cartDto = memberService.cartList(memberId);
+        List<CartDto> cartDto = cartService.cartList(memberId);
         //dto로 바꾸어서 다시 나오게 해야한다. 그리고 출력해야한다. 그리고 model값에 넣는다.
         //금요일에 stream으로 한번에해서 전부 열기
         //선호하는것만 뽑아야한다.
@@ -72,7 +72,7 @@ public class OrderController {
     @PostMapping("/cart")
     public String Cart(MemberDto memberDto, @PathParam("itemId") Long itemId, CartDto cartDto){
         log.info("member={}",memberDto.getId());
-        memberService.cartSave(memberDto,itemId);
+        cartService.cartSave(memberDto,itemId);
         return "redirect:/";
     }
 
@@ -143,7 +143,7 @@ public class OrderController {
     @PostMapping("/cart/delete")
     public String cartDelete(@PathParam("cartId")Long cartId){
         log.info("cart=={}",cartId);
-        memberService.cartCancel(cartId);
+        cartService.cartCancel(cartId);
         return "redirect:/";
     }
 }
