@@ -80,7 +80,7 @@
 
             <!--           별점 점수 주기-->
             <div>
-                <input type="text" id="talk" class="form-control" th:field="*{talk}" th:errorclass="field-error" required>
+                <textarea type="text" id="talk" class="form-control" th:field="*{talk}" th:errorclass="field-error" required></textarea>
             </div>
             <div>
                 <input type="hidden" name="itemId" th:value="${itemDto.id}">
