@@ -28,10 +28,10 @@ public class ItemService {
         itemRepository.delete(item);
     }
 
-    public void countUpdate(ItemDto itemDto) {
+    public void countUpdate(ItemDto itemDto,Integer stockAdd) {
         Item stock = itemRepository.findById(itemDto.getId())
                 .orElseThrow(()->new IllegalArgumentException("존재하지 않는 아이템입니다."));
-        stock.addStock(itemDto.getStockQuantity());
+        stock.addStock(stockAdd);
         itemRepository.save(stock);
     }
 
@@ -61,18 +61,5 @@ public class ItemService {
         return itemList;
     }
 
-    public List<ItemDto> findCart(CartDto cartDto){//CartDto 만들어야할듯
-        Cart cart = cartDto.toCart();
-        List<Item> findCart = itemRepository.findByCart(cart);
-        List<ItemDto> cartList = findCart.stream().map(Item::toItemDto).collect(Collectors.toList());
-        return cartList;
-    }
-
-    public ItemDto findBuyItem(ItemDto itemDto){
-        Item byName = itemRepository.findByItemName(itemDto.getItemName());
-        ItemDto item = byName.toItemDto();
-        return item;
-
-    }
 
 }
