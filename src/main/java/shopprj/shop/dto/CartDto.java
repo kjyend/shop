@@ -13,7 +13,8 @@ public class CartDto {
     private Item item;
     private Member member;
 
-    public CartDto(CartStatus status,Item item,Member member) {
+    public CartDto(Long id,CartStatus status,Item item,Member member) {
+        this.id=id;
         this.status = status;
         this.item=item;
         this.member=member;

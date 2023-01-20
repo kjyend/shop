@@ -20,7 +20,7 @@ public class CartCustomRepositoryImpl implements CartCustomRepository{
     @Override
     public List<CartDto> getLikeList(Long memberId) {
         return jpaQueryFactory.select(Projections.constructor(CartDto.class,
-                cart.status,cart.item,cart.member))
+                cart.id,cart.status,cart.item,cart.member))
                 .from(cart)//join,cart랑 member랑 조인
                 .join(cart.item, item).on(cart.member.id.eq(memberId))
                 .fetch();

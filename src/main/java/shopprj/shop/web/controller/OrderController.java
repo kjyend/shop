@@ -141,8 +141,7 @@ public class OrderController {
 
 
     @PostMapping("/cart/delete")
-    public String cartDelete(@PathParam("cartId")Long cartId){
-        log.info("cart=={}",cartId);
+    public String cartDelete(@PathParam("cartId") Long cartId){
         cartService.cartCancel(cartId);
         return "redirect:/";
     }
