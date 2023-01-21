@@ -8,11 +8,11 @@ import javax.validation.constraints.NotBlank;
 
 @Builder
 @Getter
-public class MemberDto {
+public class MemberDto {//계정 생성 dto
     private Long id;
-    @NotBlank
+    @NotBlank(message = "아이디는 null이 들어올 수 없습니다")
     private String loginId;
-    @NotBlank
+    @NotBlank(message = "비밀번호는 null이 들어올 수 없습니다")
     private String password;
     private String memberName;
 

@@ -22,11 +22,11 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-@Transactional
 public class MemberService {
 
     private final MemberRepository memberRepository;
 
+    @Transactional
     public void save(MemberDto memberDto){
         if(memberDto.getLoginId().equals("admin")){
             memberRepository.save(Member.builder()
@@ -45,18 +45,21 @@ public class MemberService {
         }
     }
 
-
-    public void update(Long id,MemberDto memberDto){// updatedto만들것을 생각
+    @Transactional
+    public boolean update(Long id,MemberDto memberDto){// updatedto만들것을 생각
         Member member = memberRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 아이디가 없습니다."));
-        Member updateMember = member.builder()
-                .id(member.getId())
-                .loginId(memberDto.getLoginId())
-                .password(memberDto.getPassword())
-                .memberName(memberDto.getMemberName())
-                .build();
-        memberRepository.save(updateMember);
+
+        boolean present = memberRepository.findByLoginId(memberDto.getLoginId()).isPresent();
+
+        if(present!=true) {//자신의 원래 id일때 중복되는건지 확인해야한다.
+            member.edit(memberDto.getLoginId(), memberDto.getPassword(), memberDto.getMemberName());
+            return false;
+        }else{
+            return true;
+        }
     }
 
+    @Transactional
     public boolean checkLoginIdDuplicate(Long loginId) {
         return memberRepository.existsByLoginId(loginId);
     }

@@ -57,10 +57,9 @@ public class Member {
                 .build();
     }
 
-    public void updateMember(String loginId, String password, String name){//dto로 수정하는 member을 만들어야한다.
+    public void edit(String loginId, String password, String name) {
         this.loginId=loginId;
         this.password=password;
         this.memberName=name;
     }
-
 }

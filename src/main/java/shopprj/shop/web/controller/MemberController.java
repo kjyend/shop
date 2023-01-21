@@ -5,19 +5,19 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import shopprj.shop.dto.DeliveryDto;
-import shopprj.shop.dto.ItemDto;
-import shopprj.shop.dto.MemberDto;
-import shopprj.shop.dto.OrderItemDto;
+import shopprj.shop.dto.*;
 import shopprj.shop.service.ItemService;
 import shopprj.shop.service.MemberService;
 import shopprj.shop.service.OrderService;
 import shopprj.shop.web.argumentresolver.Login;
 
+import javax.websocket.server.PathParam;
 import java.util.List;
 
 @Controller
@@ -49,15 +49,23 @@ public class MemberController {
     }
 
     @GetMapping("/edit/{memberId}")
-    public String EditForm(@PathVariable Long memberId, @Login MemberDto loginMember, Model model){
+    public String EditForm(@PathVariable("memberId") Long memberId, @Login MemberDto loginMember, Model model){
         model.addAttribute("member",loginMember);
         return "mypage/Edit";
     }
 
     @PostMapping("/edit/{memberId}")
-    public String Edit(@PathVariable Long memberId, MemberDto loginMember, RedirectAttributes redirectAttributes){
-        memberService.update(memberId,loginMember);
-        redirectAttributes.addAttribute("member",loginMember);
+    public String Edit(@PathVariable("memberId") Long memberId, @Validated MemberDto loginMember, BindingResult bindingResult, RedirectAttributes redirectAttributes){
+        if (bindingResult.hasErrors()) {
+            return "mypage/Edit";
+        }
+
+        boolean update = memberService.update(memberId, loginMember);
+
+        if(update){
+            return "redirect:/edit/{memberId}";
+        }
+
         return "redirect:/";
     }
 
@@ -79,11 +87,10 @@ public class MemberController {
     }
 
     @PostMapping("/list/cancel")
-    public String Cancel(ItemDto itemDto, OrderItemDto orderItemDto){
+    public String Cancel(@PathParam("orderId") Long orderId){
         //내가 주문한 item을 취소한다.
-
-        log.info("=={}",orderItemDto.getOrder());
-        orderService.orderCancel(orderItemDto);
+        log.info("orderId={}",orderId);
+        orderService.orderCancel(orderId);
         return "redirect:/";
     }
 
