@@ -29,9 +29,6 @@ public class Order {
     @JoinColumn(name = "member_id")
     private Member member; //주문 회원
 
-    @OneToOne
-    @JoinColumn(name = "delivery_id")
-    private Delivery delivery;
 
     @Builder
     public Order(Long id,LocalDateTime createdDate, OrderStatus status, Member member, Delivery delivery) {
@@ -39,7 +36,6 @@ public class Order {
         this.createdDate = createdDate;
         this.status = status;
         this.member = member;
-        this.delivery = delivery;
     }
 
 

@@ -19,8 +19,6 @@ public class Delivery {
     private String street;
     private String zipcode;
 
-    @OneToOne(mappedBy = "delivery", cascade = CascadeType.ALL)
-    private Order order;
 
     @ManyToOne
     @JoinColumn(name = "member_id")

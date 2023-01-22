@@ -17,13 +17,11 @@ public class OrderDto {
     private OrderStatus status;
     private Member member;
     private LocalDateTime createDate;
-    private Delivery delivery;
 
 
-    public Order toOrderEntity(Member member,Delivery delivery){
+    public Order toOrderEntity(Member member){
         return Order.builder()
                 .member(member)
-                .delivery(delivery)
                 .createdDate(LocalDateTime.now())
                 .status(OrderStatus.ORDER).build();
     }

@@ -99,7 +99,7 @@ public class OrderController {
         boolean checkSuccess = itemService.countSubtract(itemId,itemDto);
 
         log.info("333={}",deliveryDto.getStreet());
-        Long deliveryId = deliveryService.saveDelivery(loginMember, deliveryDto);
+        deliveryService.saveDelivery(loginMember, deliveryDto);
 
         redirectAttributes.addFlashAttribute("deliveryDto",deliveryDto);
         redirectAttributes.addFlashAttribute("member", loginMember);
@@ -108,7 +108,7 @@ public class OrderController {
         //먼저 delivery의 find를 하고 없으면 save해서 값을 낸다.
         if(checkSuccess) {
             //orderitem을 해야할지 order을 해야할지 고민된다.
-            Long orderId = orderService.orderSave(orderDto,loginMember,deliveryId);
+            Long orderId = orderService.orderSave(orderDto,loginMember);
             orderService.orderItemSave(orderId,itemId,itemDto.getStockQuantity(),fullPrice);
             return "redirect:/success";
         }else {
