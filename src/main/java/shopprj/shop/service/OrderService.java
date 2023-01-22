@@ -1,6 +1,7 @@
 package shopprj.shop.service;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import shopprj.shop.domain.entity.*;
@@ -14,22 +15,21 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 @Transactional
+@Slf4j
 public class OrderService {
 
     private final OrderRepository orderRepository;
     private final MemberRepository memberRepository;
     private final ItemRepository itemRepository;
     private final OrderItemRepository orderItemRepository;
-    private final DeliveryRepository deliveryRepository;
+
     
 
-    public Long orderSave(OrderDto orderDto, MemberDto memberDto, Long deliveryId){
+    public Long orderSave(OrderDto orderDto, MemberDto memberDto){
         Member member = memberRepository.findById(memberDto.getId())
                 .orElseThrow(() -> new IllegalArgumentException("회원이 없습니다."));
-        Delivery delivery = deliveryRepository.findById(deliveryId)
-                .orElseThrow(() -> new IllegalArgumentException("일치하는 주소가 없습니다."));
 
-        Order order = orderDto.toOrderEntity(member,delivery);
+        Order order = orderDto.toOrderEntity(member);
         orderRepository.save(order);
         return order.getId();
     }
@@ -54,11 +54,17 @@ public class OrderService {
         return orderItemRepository.getOrderItemList(memberId);
     }
 
-    public void orderCancel(OrderItemDto orderItemDto){
-        Order order = orderRepository.findById(orderItemDto.getOrder().getId())
+    public void orderCancel(Long orderId,Integer stock,Long itemId){
+        Order order = orderRepository.findById(orderId)
                 .orElseThrow(() -> new IllegalArgumentException("주문이 없습니다."));
+
+        Item item = itemRepository.findById(itemId)
+                .orElseThrow(() -> new IllegalArgumentException("아이템이 없습니다."));
+
+        item.addStock(stock);
+
         orderRepository.delete(order);
+
+
     }
-
-
 }

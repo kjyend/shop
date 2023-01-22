@@ -16,8 +16,8 @@
                 <button class="btn btn-primary" th:onclick="|location.href='/list/member'|" type="submit">MemberManage</button>
             </div>
             <div th:unless="${member.loginId=='admin'}">
-                <a class="btn btn-primary" th:onclick="|location.href='@{/cart}'|" type="submit">Cart</a>
-                <a href="#" class="btn btn-primary" th:href="@{/mypage/{id} (id=${member.id})}" role="button">Mypage</a>
+                <a class="btn btn-primary" th:href="@{/cart/{id} (id=${member.id})}" type="submit">Cart</a>
+                <a class="btn btn-primary" th:href="@{/mypage/{id} (id=${member.id})}" role="button">Mypage</a>
             </div>
             <form th:action="@{/logout}" method="post">
                 <button class="btn btn-primary" th:onclick="|location.href='login.html'|" type="submit">sign out</button>
@@ -37,21 +37,21 @@
         </tr>
         </thead>
         <tbody>
-        <form action="cancel" method="post">
             <tr th:each="orderitems:${orderItem}">
-                <td scope="row" th:text="${orderitems.orderPrice}"></td>
+                <td scope="row" th:text="${orderitems.item.itemName}"></td>
                <td th:text="${orderitems.orderPrice}"></td>
 <!--             수량은 따로 받아서 해야할듯한다.-->
                  <td th:text="${orderitems.count}"></td>
-<!--                <td th:text="${items.orderItems}"></td>-->
-            <!--다른값으로 받아야 할듯하다.-->
-                <td></td>
+                <td th:text="${orderitems.order.status}"></td>
                <td>
-                   <input type="hidden" name="orderId" th:value="${order?.id}">
-                   <button type="submit">취소하기</button>
+                   <form th:action="@{/list/cancel}" method="post">
+                       <input type="hidden" name="orderId" th:value="${orderitems.order.id}">
+                       <input type="hidden" name="stock" th:value="${orderitems.count}">
+                       <input type="hidden" name="itemId" th:value="${orderitems.item.id}">
+                       <button type="submit">취소하기</button>
+                   </form>
                </td>
             </tr>
-        </form>
         </tbody>
     </table>
 </div>

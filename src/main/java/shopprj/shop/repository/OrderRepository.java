@@ -6,5 +6,4 @@ import shopprj.shop.domain.entity.Order;
 
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Long> {
-    Order findByMember(String memberId);
 }
