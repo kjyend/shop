@@ -38,11 +38,11 @@
         </thead>
         <tbody>
             <tr th:each="orderitems:${orderItem}">
-                <td scope="row" th:text="${orderitems.item.itemName}"></td>
+               <td scope="row" th:text="${orderitems.item.itemName}"></td>
                <td th:text="${orderitems.orderPrice}"></td>
 <!--             수량은 따로 받아서 해야할듯한다.-->
-                 <td th:text="${orderitems.count}"></td>
-                <td th:text="${orderitems.order.status}"></td>
+               <td th:text="${orderitems.count}"></td>
+               <td th:text="${orderitems.order.status}"></td>
                <td>
                    <form th:action="@{/list/cancel}" method="post">
                        <input type="hidden" name="orderId" th:value="${orderitems.order.id}">

@@ -4,15 +4,6 @@
     <meta charset="UTF-8">
     <link th:href="@{/css/bootstrap.min.css}" href="../css/bootstrap.min.css" rel="stylesheet">
     <title>ShopManager</title>
-    <style>
-        .mid{
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%,-50%);
-            z-index: 3;
-        }
-    </style>
 </head>
 <body>
 <div class="navbar navbar-dark bg-dark">
@@ -45,15 +36,13 @@
         <tbody>
             <tr th:each="items,i:${item}">
                 <th scope="row" th:text="${i.index+1}"></th>
-                <td th:text="${items.itemName}"></td>
-                <td th:text="${items.price}"></td>
+                <td name="itemName" th:text="${items.itemName}"></td>
+                <td name="price" th:text="${items.price}"></td>
                 <td th:text="${items.stockQuantity}"></td>
                 <td>
                     <form action="" method="post">
                         <input type="text" name="stock" th:value="${stock}" required>
                         <input type="hidden" name="id" th:value="${items.id}">
-                        <input type="hidden" name="itemName" th:value="${items.itemName}">
-                        <input type="hidden" name="price" th:value="${items.price}">
                         <button type="submit">+</button>
                     </form>
                 </td>

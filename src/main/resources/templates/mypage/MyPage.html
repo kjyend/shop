@@ -4,16 +4,6 @@
     <meta charset="UTF-8">
     <link th:href="@{/css/bootstrap.min.css}" href="../css/bootstrap.min.css" rel="stylesheet">
     <title>MyPage</title>
-    <style>
-        .mid{
-            position: absolute;
-            top: 20%;
-            left: 80%;
-            transform: translate(-50%,-50%);
-            z-index: 3;
-        }
-
-    </style>
 </head>
 <body>
 <div class="navbar navbar-dark bg-dark">
@@ -31,18 +21,14 @@
 <div class="container">
     <form action="" th:object="${member}" method="get">
         <div>
-            <div>
-                <span style="font-size: 3em">아이디 : </span>
-                <span style="font-size: 3em" id="loginId" th:text="*{loginId}"></span>
-            </div>
-            <div>
-                <span style="font-size: 3em">이름 : </span>
-                <span style="font-size: 3em" id="memberName" th:text="*{memberName}"></span>
-            </div>
-            <div class="mid ">
-                <a th:href="@{/edit/{id} (id=${member.id})}" role="button" class="btn btn-lg btn-primary">Edit</a>
-            </div>
+            <span style="font-size: 3em">아이디 : </span>
+            <span style="font-size: 3em" id="loginId" th:text="*{loginId}"></span>
         </div>
+        <div>
+            <span style="font-size: 3em">이름 : </span>
+            <span style="font-size: 3em" id="memberName" th:text="*{memberName}"></span>
+        </div>
+        <a th:href="@{/edit/{id} (id=${member.id})}" role="button" class="btn btn-lg btn-primary">Edit</a>
     </form>
 </div>
 </body>

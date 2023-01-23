@@ -5,13 +5,6 @@
     <link th:href="@{/css/bootstrap.min.css}" href="../css/bootstrap.min.css" rel="stylesheet">
     <title>home</title>
     <style>
-        .mid{
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%,-50%);
-            z-index: 3;
-        }
         .field-error {
             border-color: #dc3545;
             color: #dc3545;
@@ -74,18 +67,15 @@
     <form th:action="@{comment}" th:object="${commentDto}" method="post">
         <div>
             <div>
-                <span th:text="${member.memberName}"></span>
+                이름 : <span name="memberName" th:text="${member.memberName}"></span>
                 <input type="number" class="form-control" min="0" max="5" step="1" th:field="*{point}" th:errorclass="field-error" placeholder="별점을 입력해주세요">
             </div>
-
-            <!--           별점 점수 주기-->
             <div>
                 <textarea type="text" id="talk" class="form-control" th:field="*{talk}" th:errorclass="field-error" required></textarea>
             </div>
             <div>
                 <input type="hidden" name="itemId" th:value="${itemDto.id}">
                 <input type="hidden" name="id" th:value="${member.id}">
-                <input type="hidden" name="memberName" th:value="${member.memberName}">
                 <button type="submit">댓글달기</button>
             </div>
         </div>
