@@ -22,7 +22,7 @@ public class OrderItemRepositoryImpl implements OrderItemRepositoryCustom{
 
         return jpaQueryFactory.select(Projections.constructor(OrderItemDto.class,
                          orderItem.id,orderItem.orderPrice
-                        ,orderItem.count,orderItem.order))
+                        ,orderItem.count,orderItem.order,orderItem.item))
                 .from(orderItem)
                 .join(orderItem.order, order).on(order.member.id.eq(memberId))
                 .fetch();//querydsl 살펴볼것
