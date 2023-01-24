@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import shopprj.shop.dto.*;
@@ -47,7 +48,7 @@ public class OrderController {
     }
 
     @PostMapping("/buy")
-    public String Buy(@Valid ItemDto itemDto, BindingResult bindingResult, RedirectAttributes redirectAttributes){//총 가격, 주소 넣어서,
+    public String Buy(@Validated ItemDto itemDto, BindingResult bindingResult, RedirectAttributes redirectAttributes){//총 가격, 주소 넣어서,
         redirectAttributes.addFlashAttribute("itemDto",itemDto);
         redirectAttributes.addFlashAttribute("fullPrice",itemDto.getPrice()*itemDto.getStockQuantity());
         return "redirect:/bill";
@@ -70,7 +71,7 @@ public class OrderController {
     }
 
     @PostMapping("/cart")
-    public String Cart(MemberDto memberDto, @PathParam("itemId") Long itemId, CartDto cartDto){
+    public String Cart(MemberDto memberDto, @RequestParam("itemId") Long itemId, CartDto cartDto){
         log.info("member={}",memberDto.getId());
         cartService.cartSave(memberDto,itemId);
         return "redirect:/";
@@ -91,8 +92,8 @@ public class OrderController {
 
     //Buy Post부분을 여기에 넣어야할것 같다고 생각한다.
     @PostMapping("/bill")
-    public String Invoice(MemberDto loginMember, ItemDto itemDto, @PathParam("itemId") Long itemId,
-                          @PathParam("fullPrice") Integer fullPrice, OrderDto orderDto, @Valid DeliveryDto deliveryDto,
+    public String Invoice(MemberDto loginMember, ItemDto itemDto, @RequestParam("itemId") Long itemId,
+                          @RequestParam("fullPrice") Integer fullPrice, OrderDto orderDto, @Validated DeliveryDto deliveryDto,
                           BindingResult bindingResult, RedirectAttributes redirectAttributes){
 
         log.info("==={}",itemDto.getId());
@@ -141,7 +142,7 @@ public class OrderController {
 
 
     @PostMapping("/cart/delete")
-    public String cartDelete(@PathParam("cartId") Long cartId){
+    public String cartDelete(@RequestParam("cartId") Long cartId){
         cartService.cartCancel(cartId);
         return "redirect:/";
     }

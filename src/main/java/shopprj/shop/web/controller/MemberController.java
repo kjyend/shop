@@ -10,6 +10,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import shopprj.shop.dto.*;
 import shopprj.shop.service.ItemService;
@@ -55,7 +56,7 @@ public class MemberController {
     }
 
     @PostMapping("/edit/{memberId}")
-    public String Edit(@PathVariable("memberId") Long memberId, @Validated MemberDto loginMember, BindingResult bindingResult, RedirectAttributes redirectAttributes){
+    public String Edit(@PathVariable("memberId") Long memberId, @Validated MemberDto loginMember, BindingResult bindingResult){
         if (bindingResult.hasErrors()) {
             return "mypage/Edit";
         }
@@ -70,7 +71,7 @@ public class MemberController {
     }
 
     @GetMapping("/list/{memberId}")
-    public String ListForm(@Login MemberDto loginMember,@PathVariable Long memberId,Model model){
+    public String ListForm(@Login MemberDto loginMember,@PathVariable("memberId") Long memberId,Model model){
         // order에서 status에 order인경우+자신의 리스트만 list에서 나오게 해야한다.
         //query를 만들어서 쏴야할듯하다.
 
@@ -87,7 +88,7 @@ public class MemberController {
     }
 
     @PostMapping("/list/cancel")
-    public String Cancel(@PathParam("orderId") Long orderId,@PathParam("stock") Integer stock,@PathParam("itemId") Long itemId){
+    public String Cancel(@RequestParam("orderId") Long orderId, @RequestParam("stock") Integer stock, @RequestParam("itemId") Long itemId){
         //내가 주문한 item을 취소한다.
         log.info("orderId={}",orderId);
         orderService.orderCancel(orderId,stock,itemId);
