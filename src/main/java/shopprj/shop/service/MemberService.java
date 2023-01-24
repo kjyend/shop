@@ -51,7 +51,7 @@ public class MemberService {
 
         boolean present = memberRepository.findByLoginId(memberDto.getLoginId()).isPresent();
 
-        if(present!=true) {//자신의 원래 id일때 중복되는건지 확인해야한다.
+        if(member.getLoginId().equals(memberDto.getLoginId()) || present!=true) {//자신의 원래 id일때 중복되는건지 확인해야한다.
             member.edit(memberDto.getLoginId(), memberDto.getPassword(), memberDto.getMemberName());
             return false;
         }else{
