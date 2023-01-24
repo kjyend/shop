@@ -15,7 +15,6 @@ import shopprj.shop.service.ManagerService;
 import shopprj.shop.service.MemberService;
 import shopprj.shop.web.argumentresolver.Login;
 
-import javax.websocket.server.PathParam;
 import java.util.List;
 
 @Controller

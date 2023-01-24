@@ -1,11 +1,13 @@
 package shopprj.shop.domain.entity;
 
-import lombok.*;
-import shopprj.shop.dto.MemberDto;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import shopprj.shop.domain.entity.status.MemberStatus;
+import shopprj.shop.dto.MemberDto;
 
 import javax.persistence.*;
-
 import java.util.ArrayList;
 import java.util.List;
 

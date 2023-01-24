@@ -5,12 +5,10 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import shopprj.shop.dto.CartDto;
 
-
 import java.util.List;
 
 import static shopprj.shop.domain.entity.QCart.cart;
 import static shopprj.shop.domain.entity.QItem.item;
-import static shopprj.shop.domain.entity.QMember.member;
 
 @RequiredArgsConstructor
 public class CartCustomRepositoryImpl implements CartCustomRepository{

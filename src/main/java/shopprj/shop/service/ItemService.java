@@ -4,10 +4,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import shopprj.shop.dto.CartDto;
-import shopprj.shop.dto.ItemDto;
-import shopprj.shop.domain.entity.Cart;
 import shopprj.shop.domain.entity.Item;
+import shopprj.shop.dto.ItemDto;
 import shopprj.shop.repository.ItemRepository;
 
 import java.util.List;

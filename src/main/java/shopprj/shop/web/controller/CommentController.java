@@ -12,7 +12,6 @@ import shopprj.shop.dto.ItemDto;
 import shopprj.shop.dto.MemberDto;
 import shopprj.shop.service.CommentService;
 
-import javax.websocket.server.PathParam;
 import java.util.List;
 
 @Controller

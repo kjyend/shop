@@ -2,8 +2,8 @@ package shopprj.shop.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import shopprj.shop.dto.MemberDto;
 import shopprj.shop.domain.entity.Member;
+import shopprj.shop.dto.MemberDto;
 import shopprj.shop.repository.MemberRepository;
 
 @Service

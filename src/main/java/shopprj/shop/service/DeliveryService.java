@@ -2,11 +2,11 @@ package shopprj.shop.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import shopprj.shop.dto.DeliveryDto;
-import shopprj.shop.dto.MemberDto;
 import shopprj.shop.domain.entity.Delivery;
 import shopprj.shop.domain.entity.Member;
 import shopprj.shop.domain.entity.status.DeliveryStatus;
+import shopprj.shop.dto.DeliveryDto;
+import shopprj.shop.dto.MemberDto;
 import shopprj.shop.repository.DeliveryRepository;
 import shopprj.shop.repository.MemberRepository;
 

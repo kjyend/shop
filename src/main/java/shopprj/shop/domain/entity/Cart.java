@@ -1,6 +1,9 @@
 package shopprj.shop.domain.entity;
 
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import shopprj.shop.domain.entity.status.CartStatus;
 
 import javax.persistence.*;
