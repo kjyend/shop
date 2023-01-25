@@ -34,11 +34,11 @@ public class MemberController {
     private final OrderService orderService;
 
     @GetMapping("/mypage/{memberId}")
-    public String MypageForm(@Login MemberDto loginMember, DeliveryDto deliveryDto, Model model){
+    public String MypageForm(@Login MemberDto memberDto, DeliveryDto deliveryDto, Model model){
         //여기서 에러가 나온다. 일단 대기를 해야할듯
         //findAll이 아니라 구매할때 넣는것을 넣어야할듯
         //member에서
-        model.addAttribute("member", loginMember);
+        model.addAttribute("member", memberDto);
         model.addAttribute("delivery",deliveryDto);
         return "mypage/MyPage";
     }
@@ -51,18 +51,18 @@ public class MemberController {
     }
 
     @GetMapping("/edit/{memberId}")
-    public String EditForm(@PathVariable("memberId") Long memberId, @Login MemberDto loginMember, Model model){
-        model.addAttribute("member",loginMember);
+    public String EditForm(@PathVariable("memberId") Long memberId, @Login MemberDto memberDto, Model model){
+        model.addAttribute("member",memberDto);
         return "mypage/Edit";
     }
 
     @PostMapping("/edit/{memberId}")
-    public String Edit(@PathVariable("memberId") Long memberId, @Validated MemberDto loginMember, BindingResult bindingResult){
+    public String Edit(@PathVariable("memberId") Long memberId, @Validated MemberDto memberDto, BindingResult bindingResult){
         if (bindingResult.hasErrors()) {
             return "mypage/Edit";
         }
 
-        boolean update = memberService.update(memberId, loginMember);
+        boolean update = memberService.update(memberId, memberDto);
 
         if(update){
             return "redirect:/edit/{memberId}";
@@ -72,7 +72,7 @@ public class MemberController {
     }
 
     @GetMapping("/list/{memberId}")
-    public String ListForm(@Login MemberDto loginMember,@PathVariable("memberId") Long memberId,Model model){
+    public String ListForm(@Login MemberDto memberDto,@PathVariable("memberId") Long memberId,Model model){
         // order에서 status에 order인경우+자신의 리스트만 list에서 나오게 해야한다.
         //query를 만들어서 쏴야할듯하다.
 
@@ -81,7 +81,7 @@ public class MemberController {
 
         List<OrderItemDto> orderItem = orderService.listOrder(memberId);
 
-        model.addAttribute("member",loginMember);
+        model.addAttribute("member",memberDto);
         model.addAttribute("item", all);
         model.addAttribute("orderItem", orderItem);
 

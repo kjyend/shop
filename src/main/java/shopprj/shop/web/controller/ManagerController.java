@@ -29,9 +29,9 @@ public class ManagerController {
 
     //물품 추가-2가지로 생각한다. 1. 물품의 양을 추가한다. 2. 물품의 종류를 추가한다.
     @GetMapping("/manage")
-    public String shopManageForm(@Login MemberDto loginMember, Model model){
+    public String shopManageForm(@Login MemberDto memberDto, Model model){
         List<ItemDto> all = itemService.findAll();//dto로 바꾸어서 다시 나오게 해야한다. 그리고 출력해야한다. 그리고 model값에 넣는다.
-        model.addAttribute("member",loginMember);
+        model.addAttribute("member",memberDto);
         model.addAttribute("item",all);
         return "manager/ShopManager";
     }
@@ -43,14 +43,14 @@ public class ManagerController {
     }
 
     @GetMapping("/create")
-    public String createItemForm(@Login MemberDto loginMember, ItemDto itemDto, Model model){
-        model.addAttribute("member",loginMember);
+    public String createItemForm(@Login MemberDto memberDto, ItemDto itemDto, Model model){
+        model.addAttribute("member",memberDto);
         model.addAttribute("item",itemDto);
         return "manager/CreateItem";
     }
 
     @PostMapping("/create")
-    public String createItem(@Login MemberDto loginMember,@Validated ItemDto itemDto,
+    public String createItem(@Login MemberDto memberDto,@Validated ItemDto itemDto,
                              BindingResult bindingResult,Model model){
         // 에러 이미지가 나오지 않는다;; dto에 max나 notnull을 담는다.
         if (itemDto.getPrice() != null && itemDto.getStockQuantity() != null) {
@@ -62,7 +62,7 @@ public class ManagerController {
         }
 
         if (bindingResult.hasErrors()) {
-            model.addAttribute("member",loginMember);
+            model.addAttribute("member",memberDto);
             model.addAttribute("itemDto",itemDto);
             return "manager/CreateItem";
         }
@@ -71,18 +71,18 @@ public class ManagerController {
     }
 
     @GetMapping("/list/member")
-    public String MemberManageForm(@Login MemberDto loginMember,Model model){//회원 관리를 해야한다.
+    public String MemberManageForm(@Login MemberDto memberDto,Model model){//회원 관리를 해야한다.
         //스트림 방법으로 해야한다. 금요일에한다. 지금은 null이 나온다.
         //findAll이 아니라 나중에 status에서 member만 뽑아서 리스트를 만든다.
         List<MemberDto> all = memberService.findAll();
-        model.addAttribute("member",loginMember);
+        model.addAttribute("member",memberDto);
         model.addAttribute("members",all);
         return "manager/MemberManager";
     }
 
     @PostMapping("/delete")
-    public String MemberDelete(MemberDto loginMember){
-        managerService.deleteMember(loginMember.getId());
+    public String MemberDelete(MemberDto memberDto){
+        managerService.deleteMember(memberDto.getId());
         return "redirect:/";
     }
 }
