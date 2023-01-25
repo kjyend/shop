@@ -33,16 +33,18 @@ public class OrderController {
     private final CartService cartService;
 
     @GetMapping("/buy")
-    public String BuyForm(@Login MemberDto loginMember, ItemDto itemDto, CommentDto commentDto, Model model){
-        if(loginMember==null){
+    public String BuyForm(@Login MemberDto memberDto, ItemDto itemDto, CommentDto commentDto, Model model){
+        if(memberDto==null){
             return "redirect:/login";
         }
         //금요일에 stream으로 한번에해서 전부 열기
         List<CommentDto> talk = commentService.findTalk();
         //stream으로 해결해야한다.
-
+        if(talk.size()!=0) {
+            log.info("memberTalk={}", talk.get(0).getMember());
+        }
         model.addAttribute("comments",talk);
-        model.addAttribute("member", loginMember);
+        model.addAttribute("member", memberDto);
         model.addAttribute("commentDto",commentDto);
         model.addAttribute("itemDto",itemDto);
         return "buy/Buy";
@@ -56,8 +58,8 @@ public class OrderController {
     }
 
     @GetMapping("/cart/{memberId}")
-    public String CartForm(@Login MemberDto loginMember,@PathVariable("memberId") Long memberId , Model model){
-        if(loginMember==null){
+    public String CartForm(@Login MemberDto memberDto,@PathVariable("memberId") Long memberId , Model model){
+        if(memberDto==null){
             return "redirect:/login";
         }
 
@@ -65,7 +67,7 @@ public class OrderController {
         //dto로 바꾸어서 다시 나오게 해야한다. 그리고 출력해야한다. 그리고 model값에 넣는다.
         //금요일에 stream으로 한번에해서 전부 열기
         //선호하는것만 뽑아야한다.
-        model.addAttribute("member", loginMember);
+        model.addAttribute("member", memberDto);
         model.addAttribute("cart",cartDto);
 
         return "buy/Cart";
@@ -73,27 +75,29 @@ public class OrderController {
 
     @PostMapping("/cart")
     public String Cart(MemberDto memberDto, @RequestParam("itemId") Long itemId, CartDto cartDto){
-        log.info("member={}",memberDto.getId());
-        cartService.cartSave(memberDto,itemId);
+        boolean cartCheck = cartService.cartCheck(memberDto.getId(), itemId);
+        if(!cartCheck) {
+            cartService.cartSave(memberDto, itemId);
+        }
         return "redirect:/";
     }
 
 
     @GetMapping("/bill")
-    public String InvoiceForm(@Login MemberDto loginMember, ItemDto itemDto, DeliveryDto deliveryDto, Model model){
+    public String InvoiceForm(@Login MemberDto memberDto, ItemDto itemDto, DeliveryDto deliveryDto, Model model){
         log.info("12={}",itemDto.getId());
 
         log.info("11={}",itemDto.getStockQuantity());
         log.info("11={}",itemDto.getItemName());
         model.addAttribute("deliveryDto",deliveryDto);
-        model.addAttribute("member", loginMember);
+        model.addAttribute("member", memberDto);
         model.addAttribute("itemDto",itemDto);
         return "bill/Bill";
     }
 
     //Buy Post부분을 여기에 넣어야할것 같다고 생각한다.
     @PostMapping("/bill")
-    public String Invoice(MemberDto loginMember, ItemDto itemDto, @RequestParam("itemId") Long itemId,
+    public String Invoice(MemberDto memberDto, ItemDto itemDto, @RequestParam("itemId") Long itemId,
                           @RequestParam("fullPrice") Integer fullPrice, OrderDto orderDto, @Validated DeliveryDto deliveryDto,
                           BindingResult bindingResult, RedirectAttributes redirectAttributes){
 
@@ -101,16 +105,16 @@ public class OrderController {
         boolean checkSuccess = itemService.countSubtract(itemId,itemDto);
 
         log.info("333={}",deliveryDto.getStreet());
-        deliveryService.saveDelivery(loginMember, deliveryDto);
+        deliveryService.saveDelivery(memberDto, deliveryDto);
 
         redirectAttributes.addFlashAttribute("deliveryDto",deliveryDto);
-        redirectAttributes.addFlashAttribute("member", loginMember);
+        redirectAttributes.addFlashAttribute("member", memberDto);
         redirectAttributes.addFlashAttribute("itemDto",itemDto);
 
         //먼저 delivery의 find를 하고 없으면 save해서 값을 낸다.
         if(checkSuccess) {
             //orderitem을 해야할지 order을 해야할지 고민된다.
-            Long orderId = orderService.orderSave(orderDto,loginMember);
+            Long orderId = orderService.orderSave(orderDto,memberDto);
             orderService.orderItemSave(orderId,itemId,itemDto.getStockQuantity(),fullPrice);
             return "redirect:/success";
         }else {
