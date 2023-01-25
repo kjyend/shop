@@ -39,6 +39,11 @@ public class CartService {
         cartRepository.save(cart);
     }
 
+    public boolean cartCheck(Long memberId,Long itemId){
+        List<CartDto> list = cartRepository.getLikeList(memberId);
+        return list.stream().anyMatch(cartDto -> cartDto.getItem().getId().equals(itemId));
+    }
+
     public List<CartDto> cartList(Long memberId){
         return cartRepository.getLikeList(memberId);
     }
