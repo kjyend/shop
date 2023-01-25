@@ -16,7 +16,6 @@ import shopprj.shop.repository.MemberRepository;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Slf4j
 @Service
 @RequiredArgsConstructor
 @Transactional
@@ -30,25 +29,26 @@ public class CommentService {
 
     public List<CommentDto> findTalk(){
         List<Comment> all = commentRepository.findAll();
+
         List<CommentDto> commentList = all.stream()
-                .map(Comment::toCommentDto).collect(Collectors.toList());
+                .map(comment -> new CommentDto(comment.getPoint(),comment.getTalk(),comment.getMember())).collect(Collectors.toList());
+
         return commentList;
     }
 
     public void save(CommentDto commentDto, Long itemId, MemberDto memberDto) {
-        log.info("2=2={}",memberDto.getId());
         Member member = memberRepository.findById(memberDto.getId())
                 .orElseThrow(() -> new IllegalArgumentException("회원이 없다."));
 
         Item item = itemRepository.findById(itemId)
                 .orElseThrow(() -> new IllegalArgumentException());
+
         Comment comment = Comment.builder()
                 .talk(commentDto.getTalk())
                 .point(commentDto.getPoint())
                 .member(member)
                 .item(item)
                 .build();
-        log.info("=={}",comment.getMember());
         commentRepository.save(comment);
     }
 }

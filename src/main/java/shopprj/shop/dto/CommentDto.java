@@ -19,6 +19,12 @@ public class CommentDto {
 
     private Member member;
 
+    public CommentDto(Integer point, String talk, Member member) {
+        this.point = point;
+        this.talk = talk;
+        this.member = member;
+    }
+
     public Comment toCommentEntity(MemberDto memberDto){
         return Comment.builder()
                 .talk(talk)
