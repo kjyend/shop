@@ -56,9 +56,6 @@
                 <form action="cart" method="post">
                     <input type="hidden" name="itemId" th:value="${items.id}">
                     <input type="hidden" name="id" th:value="${member.id}">
-                    <input type="hidden" name="itemName" th:value="${items.itemName}">
-                    <input type="hidden" name="price" th:value="${items.price}">
-                    <input type="hidden" name="stockQuantity" th:value="${items.stockQuantity}">
                     <button type="submit" class=" btn btn-lg btn-primary" >쇼핑카드에 넣기</button>
                 </form>
             </td>

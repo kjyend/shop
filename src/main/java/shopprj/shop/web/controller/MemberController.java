@@ -1,7 +1,6 @@
 package shopprj.shop.web.controller;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,7 +23,6 @@ import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
-@Slf4j
 public class MemberController {
 
     private final MemberService memberService;
@@ -91,7 +89,6 @@ public class MemberController {
     @PostMapping("/list/cancel")
     public String Cancel(@RequestParam("orderId") Long orderId, @RequestParam("stock") Integer stock, @RequestParam("itemId") Long itemId){
         //내가 주문한 item을 취소한다.
-        log.info("orderId={}",orderId);
         orderService.orderCancel(orderId,stock,itemId);
         return "redirect:/";
     }

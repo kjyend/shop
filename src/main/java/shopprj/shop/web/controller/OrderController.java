@@ -1,7 +1,6 @@
 package shopprj.shop.web.controller;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,7 +16,6 @@ import shopprj.shop.web.argumentresolver.Login;
 
 import java.util.List;
 
-@Slf4j
 @Controller
 @RequiredArgsConstructor
 public class OrderController {
@@ -40,9 +38,7 @@ public class OrderController {
         //금요일에 stream으로 한번에해서 전부 열기
         List<CommentDto> talk = commentService.findTalk();
         //stream으로 해결해야한다.
-        if(talk.size()!=0) {
-            log.info("memberTalk={}", talk.get(0).getMember());
-        }
+
         model.addAttribute("comments",talk);
         model.addAttribute("member", memberDto);
         model.addAttribute("commentDto",commentDto);
@@ -85,10 +81,7 @@ public class OrderController {
 
     @GetMapping("/bill")
     public String InvoiceForm(@Login MemberDto memberDto, ItemDto itemDto, DeliveryDto deliveryDto, Model model){
-        log.info("12={}",itemDto.getId());
 
-        log.info("11={}",itemDto.getStockQuantity());
-        log.info("11={}",itemDto.getItemName());
         model.addAttribute("deliveryDto",deliveryDto);
         model.addAttribute("member", memberDto);
         model.addAttribute("itemDto",itemDto);
@@ -101,10 +94,8 @@ public class OrderController {
                           @RequestParam("fullPrice") Integer fullPrice, OrderDto orderDto, @Validated DeliveryDto deliveryDto,
                           BindingResult bindingResult, RedirectAttributes redirectAttributes){
 
-        log.info("==={}",itemDto.getId());
         boolean checkSuccess = itemService.countSubtract(itemId,itemDto);
 
-        log.info("333={}",deliveryDto.getStreet());
         deliveryService.saveDelivery(memberDto, deliveryDto);
 
         redirectAttributes.addFlashAttribute("deliveryDto",deliveryDto);
@@ -125,7 +116,7 @@ public class OrderController {
 
     @GetMapping("success")
     public String SuccessForm(@Login MemberDto loginMember,ItemDto itemDto, DeliveryDto deliveryDto ,Model model){
-        log.info("111={}",deliveryDto.getStreet());
+
         model.addAttribute("deliveryDto",deliveryDto);
         model.addAttribute("itemDto",itemDto);
         model.addAttribute("member", loginMember);
