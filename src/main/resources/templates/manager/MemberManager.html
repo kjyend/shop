@@ -11,9 +11,9 @@
         <a class="navbar-brand" th:onclick="|location.href='@{/}'|">Shop</a>
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
             <div th:if="${member.loginId=='admin'}">
-                <button class="btn btn-primary" th:onclick="|location.href='@{/manage}'|" type="submit">Manage</button>
-                <button class="btn btn-primary" th:onclick="|location.href='@{/create}'|" type="submit">CreateItem</button>
-                <a class="btn btn-primary" th:href="@{/list/{id} (id=${member.id})}" type="submit">orderList</a>
+                <button class="btn btn-primary" th:onclick="|location.href='@{/management}'|" type="submit">Manage</button>
+                <button class="btn btn-primary" th:onclick="|location.href='@{/management/items}'|" type="submit">CreateItem</button>
+                <a class="btn btn-primary" th:href="@{/members/{id}/orders (id=${member.id})}" type="submit">orderList</a>
             </div>
             <form th:action="@{/logout}" method="post">
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -39,7 +39,7 @@
             <td th:text="${memberList.loginId}"></td>
             <td th:text="${memberList.memberName}"></td>
             <td>
-                <form th:action="@{/delete}" method="post">
+                <form action="/management/member/delete" method="post">
                     <input type="hidden" name="id" th:value="${memberList.id}">
                     <button type="submit">delete</button>
 <!--                    admin만 들어오게한다. 회원 전체가 보여야한다. 삭제가 되어야한ㄷ나.-->

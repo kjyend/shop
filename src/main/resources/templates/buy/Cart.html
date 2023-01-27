@@ -11,13 +11,13 @@
         <a class="navbar-brand" th:onclick="|location.href='@{/}'|">Shop</a>
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
             <div th:if="${member.loginId=='admin'}">
-                <button class="btn btn-primary" th:onclick="|location.href='manage'|" type="submit">Manage</button>
+                <button class="btn btn-primary" th:onclick="|location.href='@{/management}'|" type="submit">Manage</button>
             </div>
             <div th:unless="${member.loginId=='admin'}">
-                <a href="#" class="btn btn-primary" th:href="@{/mypage/{id} (id=${member.id})}" role="button">Mypage</a>
+                <a href="#" class="btn btn-primary" th:href="@{/members/{id} (id=${member.id})}" role="button">Mypage</a>
             </div>
             <div th:unless="${member.loginId=='admin'}">
-                <a class="btn btn-primary" th:href="@{/list/{id} (id=${member.id})}" type="submit">orderList</a>
+                <a class="btn btn-primary" th:href="@{/members/{id}/orders (id=${member.id})}" type="submit">orderList</a>
             </div>
             <form th:action="@{/logout}" method="post">
                 <div>
@@ -45,7 +45,7 @@
             <td th:text="${carts.item.stockQuantity}"></td>
 <!--        이름,가격,수량은 내가 text값해서 넣어야한다.-->
             <td>
-                <form th:action="@{/buy}" method="get">
+                <form th:action="@{/items}" method="get">
                     <input type="hidden" name="itemName" th:value="${carts.item.itemName}">
                     <input type="hidden" name="price" th:value="${carts.item.price}">
                     <input type="hidden" name="id" th:value="${carts.item.id}">
@@ -54,7 +54,7 @@
             </td>
             <td>
 
-                <form action="delete" method="post">
+                <form th:action="@{/cart/{cartId}/delete}" method="post">
                     <input type="hidden" name="cartId" th:value="${carts.id}">
                     <button type="submit"  class=" btn btn-lg btn-primary">제거하기</button>
                 </form>

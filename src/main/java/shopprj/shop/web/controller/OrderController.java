@@ -30,7 +30,7 @@ public class OrderController {
 
     private final CartService cartService;
 
-    @GetMapping("/buy")
+    @GetMapping("/items")//buy
     public String BuyForm(@Login MemberDto memberDto, ItemDto itemDto, CommentDto commentDto, Model model){
         if(memberDto==null){
             return "redirect:/login";
@@ -46,11 +46,11 @@ public class OrderController {
         return "buy/Buy";
     }
 
-    @PostMapping("/buy")
+    @PostMapping("/items")
     public String Buy(@Validated ItemDto itemDto, BindingResult bindingResult, RedirectAttributes redirectAttributes){//총 가격, 주소 넣어서,
         redirectAttributes.addFlashAttribute("itemDto",itemDto);
         redirectAttributes.addFlashAttribute("fullPrice",itemDto.getPrice()*itemDto.getStockQuantity());
-        return "redirect:/bill";
+        return "redirect:/items/bill";
     }
 
     @GetMapping("/cart/{memberId}")
@@ -69,7 +69,7 @@ public class OrderController {
         return "buy/Cart";
     }
 
-    @PostMapping("/cart")
+    @PostMapping("/cart/{memberId}")
     public String Cart(MemberDto memberDto, @RequestParam("itemId") Long itemId, CartDto cartDto){
         boolean cartCheck = cartService.cartCheck(memberDto.getId(), itemId);
         if(!cartCheck) {
@@ -79,7 +79,7 @@ public class OrderController {
     }
 
 
-    @GetMapping("/bill")
+    @GetMapping("/items/bill")//bill
     public String InvoiceForm(@Login MemberDto memberDto, ItemDto itemDto, DeliveryDto deliveryDto, Model model){
 
         model.addAttribute("deliveryDto",deliveryDto);
@@ -89,7 +89,7 @@ public class OrderController {
     }
 
     //Buy Post부분을 여기에 넣어야할것 같다고 생각한다.
-    @PostMapping("/bill")
+    @PostMapping("/items/bill")
     public String Invoice(MemberDto memberDto, ItemDto itemDto, @RequestParam("itemId") Long itemId,
                           @RequestParam("fullPrice") Integer fullPrice, OrderDto orderDto, @Validated DeliveryDto deliveryDto,
                           BindingResult bindingResult, RedirectAttributes redirectAttributes){
@@ -107,14 +107,14 @@ public class OrderController {
             //orderitem을 해야할지 order을 해야할지 고민된다.
             Long orderId = orderService.orderSave(orderDto,memberDto);
             orderService.orderItemSave(orderId,itemId,itemDto.getStockQuantity(),fullPrice);
-            return "redirect:/success";
+            return "redirect:/items/success";
         }else {
-            return "redirect:/fail";
+            return "redirect:/items/fail";
         }
     }
 
 
-    @GetMapping("success")
+    @GetMapping("/items/success")//success
     public String SuccessForm(@Login MemberDto loginMember,ItemDto itemDto, DeliveryDto deliveryDto ,Model model){
 
         model.addAttribute("deliveryDto",deliveryDto);
@@ -124,20 +124,20 @@ public class OrderController {
         return "bill/Success";
     }
 
-    @GetMapping("/fail")
+    @GetMapping("/items/fail")//fail
     public String FailForm(@Login MemberDto loginMember, Model model){
         model.addAttribute("member", loginMember);
         return "bill/Fail";
     }
 
-    @PostMapping("/delete/item")
+    @PostMapping("/management/items/delete")//management-> item/delete
     public String delete(ItemDto itemDto){
         itemService.delete(itemDto);
         return "redirect:/";
     }
 
 
-    @PostMapping("/cart/delete")
+    @PostMapping("/cart/{cartId}/delete")//cart/delete
     public String cartDelete(@RequestParam("cartId") Long cartId){
         cartService.cartCancel(cartId);
         return "redirect:/";

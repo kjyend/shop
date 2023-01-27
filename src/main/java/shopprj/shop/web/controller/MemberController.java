@@ -31,7 +31,7 @@ public class MemberController {
 
     private final OrderService orderService;
 
-    @GetMapping("/mypage/{memberId}")
+    @GetMapping("/members/{memberId}")//mypage/{memberId}
     public String MypageForm(@Login MemberDto memberDto, DeliveryDto deliveryDto, Model model){
         //여기서 에러가 나온다. 일단 대기를 해야할듯
         //findAll이 아니라 구매할때 넣는것을 넣어야할듯
@@ -41,20 +41,20 @@ public class MemberController {
         return "mypage/MyPage";
     }
 
-    @PostMapping("/mypage/{memberId}")
+    @PostMapping("/members/{memberId}")
     public ResponseEntity<Boolean> checkLoginIdDuplicate(@PathVariable("memberId") Long memberId){
         //다른 걸로 확인을 해야하나? 고민해야한다. ?? 중복 안됨; 뭐야;
         //할때 확인을 해야한다. 아 html에서 해야하는걸 안했다.
         return ResponseEntity.ok(memberService.checkLoginIdDuplicate(memberId));
     }
 
-    @GetMapping("/edit/{memberId}")
+    @GetMapping("/members/{memberId}/edit")//edit/{memberId}
     public String EditForm(@PathVariable("memberId") Long memberId, @Login MemberDto memberDto, Model model){
         model.addAttribute("member",memberDto);
         return "mypage/Edit";
     }
 
-    @PostMapping("/edit/{memberId}")
+    @PostMapping("/members/{memberId}/edit")
     public String Edit(@PathVariable("memberId") Long memberId, @Validated MemberDto memberDto, BindingResult bindingResult){
         if (bindingResult.hasErrors()) {
             return "mypage/Edit";
@@ -69,7 +69,7 @@ public class MemberController {
         return "redirect:/";
     }
 
-    @GetMapping("/list/{memberId}")
+    @GetMapping("/members/{memberId}/orders")//list/{memberId}
     public String ListForm(@Login MemberDto memberDto,@PathVariable("memberId") Long memberId,Model model){
         // order에서 status에 order인경우+자신의 리스트만 list에서 나오게 해야한다.
         //query를 만들어서 쏴야할듯하다.
@@ -86,7 +86,7 @@ public class MemberController {
         return "mypage/orderList";
     }
 
-    @PostMapping("/list/cancel")
+    @PostMapping("/members/{memberId}/orders/delete")
     public String Cancel(@RequestParam("orderId") Long orderId, @RequestParam("stock") Integer stock, @RequestParam("itemId") Long itemId){
         //내가 주문한 item을 취소한다.
         orderService.orderCancel(orderId,stock,itemId);

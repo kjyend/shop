@@ -24,7 +24,7 @@
         <a class="navbar-brand" th:onclick="|location.href='@{/}'|">Shop</a>
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
             <a class="btn btn-primary" th:href="@{/cart/{id} (id=${member.id})}" type="submit">Cart</a>
-            <a class="btn btn-primary" th:href="@{/list/{id} (id=${member.id})}" type="submit">orderList</a>
+            <a class="btn btn-primary" th:href="@{/members/{id}/orders (id=${member.id})}" type="submit">orderList</a>
             <form th:action="@{/logout}" method="post">
                     <button class="btn btn-primary" th:onclick="|location.href='login.html'|" type="submit">sign out</button>
             </form>

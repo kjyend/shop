@@ -24,9 +24,9 @@
         <a class="navbar-brand" th:onclick="|location.href='@{/}'|">Shop</a>
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
             <div th:if="${member.loginId=='admin'}">
-                <button class="btn btn-primary" th:onclick="|location.href='manage'|" type="submit">Manage</button>
-                <button class="btn btn-primary" th:onclick="|location.href='/list/member'|" type="submit">MemberManage</button>
-                <a class="btn btn-primary" th:href="@{/list/{id} (id=${member.id})}" type="submit">orderList</a>
+                <button class="btn btn-primary" th:onclick="|location.href='@{/management}'|" type="submit">Manage</button>
+                <button class="btn btn-primary" th:onclick="|location.href='@{/management/member}'|" type="submit">MemberManage</button>
+                <a class="btn btn-primary" th:href="@{/members/{id}/orders (id=${member.id})}" type="submit">orderList</a>
             </div>
             <form th:action="@{/logout}" method="post">
                 <div>

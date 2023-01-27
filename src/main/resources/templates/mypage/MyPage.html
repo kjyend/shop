@@ -11,7 +11,7 @@
         <a class="navbar-brand" th:onclick="|location.href='@{/}'|">Shop</a>
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
             <a class="btn btn-primary" th:href="@{/cart/{id} (id=${member.id})}" type="submit">Cart</a>
-            <a class="btn btn-primary" th:href="@{/list/{id} (id=${member.id})}" type="submit">orderList</a>
+            <a class="btn btn-primary" th:href="@{/members/{id}/orders(id=${member.id})}" type="submit">orderList</a>
             <form th:action="@{/logout}" method="post">
                 <button class="btn btn-primary" th:onclick="|location.href='login.html'|" type="submit">sign out</button>
             </form>
@@ -28,7 +28,7 @@
             <span style="font-size: 3em">이름 : </span>
             <span style="font-size: 3em" id="memberName" th:text="*{memberName}"></span>
         </div>
-        <a th:href="@{/edit/{id} (id=${member.id})}" role="button" class="btn btn-lg btn-primary">Edit</a>
+        <a th:href="@{/members/{id}/edit (id=${member.id})}" role="button" class="btn btn-lg btn-primary">Edit</a>
     </form>
 </div>
 </body>
