@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import shopprj.shop.dto.ItemCreateDto;
 import shopprj.shop.dto.ItemDto;
 import shopprj.shop.dto.MemberDto;
 import shopprj.shop.service.ItemService;
@@ -38,8 +39,8 @@ public class ManagerController {
     }
 
     @PostMapping("/management")//물품의 양을 추가한다.
-    public String updateItem(@RequestParam("stock") Integer stock, @Validated ItemDto itemDto, BindingResult bindingResult){
-        itemService.countUpdate(itemDto,stock);//int a의 양을 넣으면 양이 추가된다. 나중에 따로 받는다.
+    public String updateItem(@RequestParam("stock") Integer stock, @Validated ItemCreateDto itemCreateDto, BindingResult bindingResult){
+        itemService.countUpdate(itemCreateDto,stock);//int a의 양을 넣으면 양이 추가된다. 나중에 따로 받는다.
         return "redirect:/";
     }
 

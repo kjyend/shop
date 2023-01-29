@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import shopprj.shop.domain.entity.Member;
 import shopprj.shop.domain.entity.status.MemberStatus;
+import shopprj.shop.dto.EditDto;
 import shopprj.shop.dto.MemberDto;
 import shopprj.shop.repository.MemberRepository;
 
@@ -38,7 +39,7 @@ public class MemberService {
     }
 
     @Transactional
-    public boolean update(Long id,MemberDto memberDto){// updatedto만들것을 생각
+    public boolean update(Long id, EditDto memberDto){// updatedto만들것을 생각
         Member member = memberRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 아이디가 없습니다."));
 
         boolean present = memberRepository.findByLoginId(memberDto.getLoginId()).isPresent();

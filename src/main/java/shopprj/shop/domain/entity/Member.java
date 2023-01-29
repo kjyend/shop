@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import shopprj.shop.domain.entity.status.MemberStatus;
+import shopprj.shop.dto.EditDto;
 import shopprj.shop.dto.MemberDto;
 
 import javax.persistence.*;
@@ -56,6 +57,13 @@ public class Member {
                 .loginId(loginId)
                 .password(password)
                 .memberName(memberName)
+                .build();
+    }
+
+    public EditDto toLoginDto(){
+        return EditDto.builder()
+                .loginId(loginId)
+                .password(password)
                 .build();
     }
 

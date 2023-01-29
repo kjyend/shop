@@ -38,7 +38,7 @@
                 <th scope="row" th:text="${i.index+1}"></th>
                 <td name="itemName" th:text="${items.itemName}"></td>
                 <td name="price" th:text="${items.price}"></td>
-                <td th:text="${items.stockQuantity}"></td>
+                <td name="stockQuantity"th:text="${items.stockQuantity}"></td>
                 <td>
                     <form action="" method="post">
                         <input type="text" name="stock" th:value="${stock}" required>

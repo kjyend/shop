@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import shopprj.shop.domain.entity.Item;
+import shopprj.shop.dto.ItemCreateDto;
 import shopprj.shop.dto.ItemDto;
 import shopprj.shop.repository.ItemRepository;
 
@@ -24,8 +25,8 @@ public class ItemService {
         itemRepository.delete(item);
     }
 
-    public void countUpdate(ItemDto itemDto,Integer stockAdd) {
-        Item stock = itemRepository.findById(itemDto.getId())
+    public void countUpdate(ItemCreateDto itemCreateDto, Integer stockAdd) {
+        Item stock = itemRepository.findById(itemCreateDto.getId())
                 .orElseThrow(()->new IllegalArgumentException("존재하지 않는 아이템입니다."));
         stock.addStock(stockAdd);
         itemRepository.save(stock);

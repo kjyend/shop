@@ -10,10 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import shopprj.shop.dto.DeliveryDto;
-import shopprj.shop.dto.ItemDto;
-import shopprj.shop.dto.MemberDto;
-import shopprj.shop.dto.OrderItemDto;
+import shopprj.shop.dto.*;
 import shopprj.shop.service.ItemService;
 import shopprj.shop.service.MemberService;
 import shopprj.shop.service.OrderService;
@@ -55,7 +52,7 @@ public class MemberController {
     }
 
     @PostMapping("/members/{memberId}/edit")
-    public String Edit(@PathVariable("memberId") Long memberId, @Validated MemberDto memberDto, BindingResult bindingResult){
+    public String Edit(@PathVariable("memberId") Long memberId, @Validated EditDto memberDto, BindingResult bindingResult){
         if (bindingResult.hasErrors()) {
             return "mypage/Edit";
         }
