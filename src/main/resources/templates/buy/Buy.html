@@ -73,10 +73,10 @@
             <div>
                 <textarea type="text" id="talk" class="form-control" th:field="*{talk}" th:errorclass="field-error" required></textarea>
             </div>
-            <div>
+            <div >
                 <input type="hidden" name="itemId" th:value="${itemDto.id}">
                 <input type="hidden" name="id" th:value="${member.id}">
-                <button type="submit">댓글달기</button>
+                <button type="submit" class="btn btn-primary">댓글달기</button>
             </div>
         </div>
     </form>
