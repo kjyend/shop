@@ -15,8 +15,6 @@
             </div>
             <div th:unless="${member.loginId=='admin'}">
                 <a href="#" class="btn btn-primary" th:href="@{/members/{id} (id=${member.id})}" role="button">Mypage</a>
-            </div>
-            <div th:unless="${member.loginId=='admin'}">
                 <a class="btn btn-primary" th:href="@{/members/{id}/orders (id=${member.id})}" type="submit">orderList</a>
             </div>
             <form th:action="@{/logout}" method="post">
