@@ -1,6 +1,5 @@
 package shopprj.shop.service;
 
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -8,19 +7,17 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import shopprj.shop.domain.entity.Cart;
 import shopprj.shop.domain.entity.Item;
 import shopprj.shop.domain.entity.Member;
 import shopprj.shop.dto.CartDto;
 import shopprj.shop.dto.ItemDto;
 import shopprj.shop.dto.MemberDto;
-import shopprj.shop.repository.CartRepository;
-import shopprj.shop.repository.ItemRepository;
-import shopprj.shop.repository.MemberRepository;
+import shopprj.shop.repository.cart.CartRepository;
+import shopprj.shop.repository.item.ItemRepository;
+import shopprj.shop.repository.member.MemberRepository;
+import shopprj.shop.service.cart.CartService;
 
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @Slf4j
 @SpringBootTest

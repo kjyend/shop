@@ -6,7 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import shopprj.shop.dto.EditDto;
 import shopprj.shop.dto.MemberDto;
-import shopprj.shop.repository.MemberRepository;
+import shopprj.shop.repository.member.MemberRepository;
+import shopprj.shop.service.member.MemberService;
 
 @Slf4j
 @SpringBootTest

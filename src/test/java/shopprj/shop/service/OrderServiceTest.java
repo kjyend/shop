@@ -9,9 +9,8 @@ import shopprj.shop.domain.entity.Item;
 import shopprj.shop.domain.entity.Member;
 import shopprj.shop.dto.ItemDto;
 import shopprj.shop.dto.MemberDto;
-import shopprj.shop.repository.OrderRepository;
-
-import static org.junit.jupiter.api.Assertions.*;
+import shopprj.shop.repository.order.OrderRepository;
+import shopprj.shop.service.order.OrderService;
 
 @SpringBootTest
 class OrderServiceTest {

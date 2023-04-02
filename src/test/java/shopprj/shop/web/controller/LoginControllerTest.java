@@ -12,7 +12,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import shopprj.shop.dto.MemberDto;
-import shopprj.shop.repository.MemberRepository;
+import shopprj.shop.repository.member.MemberRepository;
 
 
 @SpringBootTest

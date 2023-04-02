@@ -5,12 +5,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import shopprj.shop.domain.entity.Member;
 import shopprj.shop.domain.entity.status.MemberStatus;
 import shopprj.shop.dto.MemberDto;
-import shopprj.shop.repository.MemberRepository;
+import shopprj.shop.repository.member.MemberRepository;
+import shopprj.shop.service.member.LoginService;
 
 
 @SpringBootTest
